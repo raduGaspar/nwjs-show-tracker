@@ -113,6 +113,7 @@
       pendingShowsListUpdate();
     };
     $scope.addShow = function(model) {
+      if($scope.filtered.length) { return; }
       console.log('addShow', model);
     };
 
