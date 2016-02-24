@@ -40,11 +40,15 @@
           }
         );
       },
-
+      days = [
+        'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+        'Friday', 'Saturday', 'Sunday'
+      ],
       // dummy shows data
       dummy = [
       {
         name: 'The Flash',
+        airsOn: 'Wednesday',
         seasons: [
           {
             ep: 15
@@ -53,6 +57,7 @@
       },
       {
         name: 'Game of Thrones',
+        airsOn: 'Monday',
         seasons: [
           {
             ep: 10
@@ -76,6 +81,19 @@
       }
     ];
 
+    // shows data
+    fs.readFile(dirname + '/shows.json', 'utf8', function(err, data) {
+      if(err) {
+        $scope.err = err.message;
+        console.log('error', err.message);
+        console.log('using dummy data');
+      }
+
+      console.log('data', data);
+      $scope.shows = angular.fromJson(data) || dummy;
+      $scope.$apply();
+    });
+
     // all console.log calls are removed when packaging; cool huh? :D
     console.log(developMode = true);
 
@@ -83,6 +101,7 @@
       win.showDevTools();
     }
 
+    $scope.days = days;
     $scope.getEpisodeToView = getEpisodeToView;
     $scope.downloadTorrent = function(show) {
       var next = getEpisodeToView(show),
@@ -125,17 +144,6 @@
     $document.bind('keyup', function(e) {
       $scope.pressedKey = null;
       $scope.$apply();
-    });
-
-    // shows data
-    fs.readFile(dirname + '/shows.json', 'utf8', function(err, data) {
-      if(err) {
-        $scope.err = err.message;
-        console.log('error', err.message);
-        console.log('using dummy data');
-      }
-
-      $scope.shows = angular.fromJson(data) || dummy;
     });
   }
 }());

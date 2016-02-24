@@ -26,6 +26,9 @@
             { label: 'Add' },
             { label: 'Manage' }
           ]
+        },
+        {
+          label: 'Settings'
         }
       ],
       onClick = function() {
