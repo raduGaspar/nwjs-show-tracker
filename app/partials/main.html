@@ -1,0 +1,40 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    TV Show Tracker
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-filter"></i>
+      </span>
+      <input type="text" class="form-control" placeholder="Filter / Add show" ng-model="showsFilter">
+      <span class="input-group-addon">
+        <button class="btn btn-xs btn-default" ng-click="addShow(showsFilter)">
+          Add show
+        </button>
+      </span>
+    </div>
+    <p class="label label-default" ng-if="!pressedKey || pressedKey !== 18">Press and hold <code>ALT</code> to increase the season number</p>
+    <p class="label label-danger" ng-if="pressedKey === 18">You can now increase the show season number.</p>
+  </div>
+  <div class="panel-body">
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="show in shows | filter: showsFilter track by $index">
+        <div class="row">
+          <div class="col-xs-4">{{ show.name }}</div>
+          <div class="col-xs-4">{{ getEpisodeToView(show) }}</div>
+          <div class="col-xs-4 text-right">
+            <button class="btn btn-xs btn-default" ng-click="nextEpisode(show)">
+              <i class="fa fa-arrow-up"></i>
+            </button>
+            <button class="btn btn-xs btn-default" ng-click="prevEpisode(show)">
+              <i class="fa fa-arrow-down"></i>
+            </button>
+            <button class="btn btn-xs btn-success" title="download"
+              ng-click="downloadTorrent(show)">
+              <i class="fa fa-download"></i>
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

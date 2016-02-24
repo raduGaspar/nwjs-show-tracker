@@ -1,0 +1,49 @@
+{
+  "name": "show-tracker",
+  "version": "1.0.0",
+  "description": "A simple interface for tracking tv shows.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tv",
+    "show",
+    "tracker",
+    "javascript"
+  ],
+  "single-instance": false,
+  "author": "Radu B. Gaspar",
+  "license": "MIT",
+  "main": "index.html",
+  "window": {
+    "_comment": {
+      "title": "node-webkit",
+      "icon": "something.png",
+      "frame": false,
+      "max_width": 600,
+      "max_height": 350
+    },
+    "position": "center",
+    "toolbar": false,
+    "width": 600,
+    "height": 350,
+    "min_width": 600,
+    "min_height": 350
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-cheerio": "^0.6.2",
+    "gulp-compass": "^2.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-dom-src": "^0.2.0",
+    "gulp-jshint": "^1.11.0",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-ng-annotate": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^1.2.0",
+    "nw-builder": "^2.0.2"
+  },
+  "dependencies": {
+  }
+}

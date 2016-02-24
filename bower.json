@@ -1,0 +1,30 @@
+{
+  "name": "ShowTracker",
+  "version": "1.0.0",
+  "authors": [
+    "Radu Gaspar <radu.gaspar@evozon.com>"
+  ],
+  "description": "A simple interface for tracking tv shows.",
+  "main": "app.js",
+  "keywords": [
+    "tv",
+    "show",
+    "tracker",
+    "javascript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "angular": "~1.4.3",
+    "components-font-awesome": "~4.3.0",
+    "angular-animate": "~1.4.3",
+    "angular-ui-router": "~0.2.18"
+  }
+}
