@@ -157,6 +157,8 @@
 
       // save to JSON
       pendingShowsListUpdate();
+
+      // TODO: reset model
     };
 
     // keyboard events
