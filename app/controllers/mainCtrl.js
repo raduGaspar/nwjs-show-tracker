@@ -133,10 +133,28 @@
     };
     $scope.addShow = {
       name: undefined,
-      airDay: days[new Date().getDay()],
+      airsOn: days[new Date().getDay()],
       season: 1,
       episode: 1
-    }
+    };
+    $scope.saveShow = function(model) {
+      var data = angular.copy(model),
+        startSeason = data.season;
+      data.seasons = [];
+
+      // create an entry for every season
+      for(var i=0; i<startSeason; i++) {
+        data.seasons.push({ ep: 1 });
+      }
+      data.seasons[startSeason-1].ep = parseInt(data.episode);
+
+      delete data.season;
+      delete data.episode;
+
+      console.log('show details', data);
+
+      $scope.shows.push(data);
+    };
 
     // keyboard events
     $document.bind('keydown', function(e) {

@@ -19,5 +19,9 @@
     .input-group {
       margin-bottom: 10px;
     }
+    .input-group-addon {
+      min-width: 100px;
+      text-align: left;
+    }
   }
 }
