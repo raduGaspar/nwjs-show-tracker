@@ -1,6 +1,14 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    TV Show Tracker
+    <div class="row">
+      <div class="col-xs-6">TV Show Tracker</div>
+      <div class="col-xs-6 text-right">
+        <label>
+          <input type="checkbox" ng-model="showTags"></input>
+          show tags
+        </label>
+      </div>
+    </div>
     <div class="input-group">
       <span class="input-group-addon">
         <i class="fa fa-filter"></i>
@@ -11,6 +19,7 @@
     <p class="label label-danger" ng-if="pressedKey === 18">You can now increase the show season number.</p>
   </div>
   <div class="panel-body">
+    <!-- add show fields -->
     <div class="add-show" ng-if="!filtered.length">
       <h4>The show <code>{{addShow.name}}</code> is not in your list; add it now!</h4>
       <div class="input-group">
@@ -56,6 +65,8 @@
         <button class="btn btn-success" ng-click="saveShow(addShow)">Add Show</button>
       </div>
     </div>
+
+    <!-- tv show list -->
     <ul class="list-group">
       <li class="list-group-item" ng-repeat="show in filtered = (shows | filter: addShow.name) track by $index">
         <div class="row">
@@ -73,6 +84,9 @@
               ng-click="downloadTorrent(show)">
               <i class="fa fa-download"></i>
             </button>
+          </div>
+          <div class="col-xs-12" ng-if="showTags">
+            <span class="tags label label-primary" ng-repeat="tag in show.tags">{{ tag.text }}</span>
           </div>
         </div>
       </li>
