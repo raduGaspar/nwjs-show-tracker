@@ -154,6 +154,9 @@
       console.log('show details', data);
 
       $scope.shows.push(data);
+
+      // save to JSON
+      pendingShowsListUpdate();
     };
 
     // keyboard events
