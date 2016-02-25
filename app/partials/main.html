@@ -5,17 +5,56 @@
       <span class="input-group-addon">
         <i class="fa fa-filter"></i>
       </span>
-      <input type="text" class="form-control" placeholder="Filter / Add show" ng-model="showsFilter" ng-enter="addShow(showsFilter)">
-      <span class="input-group-addon" ng-if="!filtered.length">
-        <small>press <code>ENTER</code> to add show</small>
-      </span>
+      <input type="text" class="form-control" placeholder="Filter / Add show" ng-model="addShow.name">
     </div>
     <p class="label label-default" ng-if="!pressedKey || pressedKey !== 18">Press and hold <code>ALT</code> to increase the season number</p>
     <p class="label label-danger" ng-if="pressedKey === 18">You can now increase the show season number.</p>
   </div>
   <div class="panel-body">
+    <div class="add-show" ng-if="!filtered.length">
+      <h4>Add show to list</h4>
+      <div class="input-group">
+        <span class="input-group-addon">
+          Show Name
+        </span>
+        <input type="text" class="form-control" ng-model="addShow.name" disabled>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">
+          Air Day
+        </span>
+        <select class="form-control"
+          ng-model="addShow.airDay"
+          ng-options="value as value for value in days">
+        </select>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="input-group">
+            <span class="input-group-addon">
+              Season
+            </span>
+            <input type="text" class="form-control" ng-model="addShow.season" valid-number>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="input-group">
+            <span class="input-group-addon">
+              Episode
+            </span>
+            <input type="text" class="form-control" ng-model="addShow.episode" valid-number>
+          </div>
+        </div>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">
+          Tags
+        </span>
+        <tags-input ng-model="addShow.tags"></tags-input>
+      </div>
+    </div>
     <ul class="list-group">
-      <li class="list-group-item" ng-repeat="show in filtered = (shows | filter: showsFilter) track by $index">
+      <li class="list-group-item" ng-repeat="show in filtered = (shows | filter: addShow.name) track by $index">
         <div class="row">
           <div class="col-xs-4">{{ show.name }}</div>
           <div class="col-xs-2">{{ getEpisodeToView(show) }}</div>
@@ -35,39 +74,5 @@
         </div>
       </li>
     </ul>
-    <div class="add-show" ng-if="!filtered.length">
-      <div class="input-group">
-        <span class="input-group-addon">
-          Show Name
-        </span>
-        <input type="text" class="form-control" ng-model="showsFilter" disabled>
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon">
-          Airs On
-        </span>
-        <select class="form-control">
-          <option ng-repeat="day in days track by $index" value="{{ day }}">{{ day }}</option>
-        </select>
-      </div>
-      <div class="row">
-        <div class="col-xs-6">
-          <div class="input-group">
-            <span class="input-group-addon">
-              Season
-            </span>
-            <input type="number" class="form-control">
-          </div>
-        </div>
-        <div class="col-xs-6">
-          <div class="input-group">
-            <span class="input-group-addon">
-              Episode
-            </span>
-            <input type="number" class="form-control">
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

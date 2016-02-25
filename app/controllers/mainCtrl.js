@@ -41,8 +41,8 @@
         );
       },
       days = [
-        'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-        'Friday', 'Saturday', 'Sunday'
+        'Sunday', 'Monday', 'Tuesday', 'Wednesday',
+        'Thursday', 'Friday', 'Saturday'
       ],
       // dummy shows data
       dummy = [
@@ -131,10 +131,12 @@
 
       pendingShowsListUpdate();
     };
-    $scope.addShow = function(model) {
-      if($scope.filtered.length) { return; }
-      console.log('addShow', model);
-    };
+    $scope.addShow = {
+      name: undefined,
+      airDay: days[new Date().getDay()],
+      season: 1,
+      episode: 1
+    }
 
     // keyboard events
     $document.bind('keydown', function(e) {

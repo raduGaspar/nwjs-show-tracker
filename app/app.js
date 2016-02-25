@@ -4,6 +4,7 @@
   angular.app = angular
     .module('showtracker', [
       'ui.router',
-      'ngAnimate'
+      'ngAnimate',
+      'ngTagsInput'
     ]);
 }());
