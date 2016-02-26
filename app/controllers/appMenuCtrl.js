@@ -5,13 +5,14 @@
     .app
     .controller('AppMenuCtrl', AppMenuCtrl);
 
-  AppMenuCtrl.$inject = ['$scope', '$state'];
+  AppMenuCtrl.$inject = ['$scope', '$state', 'Utils'];
 
-  function AppMenuCtrl($scope, $state) {
+  function AppMenuCtrl($scope, $state, Utils) {
     console.log('Hello from AppMenuCtrl!');
 
-    var gui = require('nw.gui'),
-      win = gui.Window.get(),
+    var globals = Utils.getGlobals(),
+      gui = globals.gui,
+      win = globals.win,
       menu = [
         {
           label: 'Shows'

@@ -5,17 +5,18 @@
     .app
     .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope', '$document'];
+  MainCtrl.$inject = ['$scope', '$document', 'Utils'];
 
-  function MainCtrl($scope, $document) {
+  function MainCtrl($scope, $document, Utils) {
     console.log('Hello from MainCtrl!');
     var developMode,
       fileSaveTimeout,
-      gui = require('nw.gui'),
-      fs = require('fs'),
-      path = require('path'),
-      dirname = path.dirname(),
-      win = gui.Window.get(),
+      globals = Utils.getGlobals(),
+      gui = globals.gui,
+      fs = globals.fs,
+      path = globals.path,
+      dirname = globals.dirname,
+      win = globals.win,
       getEpisodeToView = function(show) {
         var ep = show.seasons[show.seasons.length-1].ep,
           se = show.seasons.length;
