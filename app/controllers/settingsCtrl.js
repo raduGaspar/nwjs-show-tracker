@@ -9,7 +9,15 @@
 
   function SettingsCtrl($scope, Utils) {
     console.log('Hello from SettingsCtrl!');
-    var globals = Utils.getGlobals();
+    var globals = Utils.getGlobals(),
+      dirname = globals.dirname;
+
+    Utils.loadFile(dirname + '/data/.settings')
+      .then(function(data) {
+        console.log('settings data', angular.fromJson(data));
+      }, function(reason) {
+        console.log('error', reason.message);
+      });
 
     /*
      * TODO: persist settings to file
