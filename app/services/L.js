@@ -2,7 +2,7 @@
 'use strict';
 
 angular
-  .module('app')
+  .app
   .factory('L', ['$locale', '$http',
     function($locale, $http) {
       var i18n, promise,

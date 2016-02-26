@@ -83,17 +83,23 @@
     ];
 
     // shows data
-    fs.readFile(dirname + '/shows.json', 'utf8', function(err, data) {
-      if(err) {
-        $scope.err = err.message;
-        console.log('error', err.message);
-        console.log('using dummy data');
-      }
-
-      console.log('data', data);
-      $scope.shows = angular.fromJson(data) || dummy;
-      $scope.$apply();
-    });
+    Utils.loadFile(dirname + '/shows.json')
+      .then(function(data) {
+        // success
+        console.log('data', data);
+        $scope.shows = angular.fromJson(data) || dummy;
+      }, function(reason) {
+        // failed
+        $scope.err = reason.message;
+        console.log('error', reason.message);
+        console.log('using dummy data :)');
+        $scope.shows = dummy;
+      })
+      .finally(function() {
+        if(!$scope.$$phase) {
+          $scope.$apply();
+        }
+      });
 
     // all console.log calls are removed when packaging; cool huh? :D
     console.log(developMode = true);
