@@ -1,1 +1,61 @@
-<h1>settings page</h1>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Interface Language
+  </div>
+  <div class="panel-body">
+    <div class="input-group">
+      <span class="input-group-addon">
+        Pick Language
+      </span>
+      <select class="form-control"
+        ng-model="addShow.airsOn"
+        ng-options="value as value for value in days">
+      </select>
+    </div>
+  </div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Torrent Trackers
+  </div>
+  <div class="panel-body trackers-list">
+    <!-- trackers list -->
+    <h4 ng-if="trackers.length">Pick a default tracker to use</h4>
+    <ul class="list-group">
+      <li class="list-group-item"
+        ng-repeat="tracker in trackers track by $index">
+        <div class="row">
+          <div class="col-xs-8">
+            <label>
+              <input type="radio" name="tracker" ng-checked="tracker.isDefault">
+              {{ tracker.url }}
+            </label>
+          </div>
+          <div class="col-xs-4 text-right">
+            <button class="btn btn-xs btn-danger"
+              ng-click="deleteTracker(tracker)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <h4>Add a tracker to the list</h4>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-plus"></i>
+          </span>
+          <input type="url" class="form-control"
+            placeholder="Add other tracker url"
+            ng-model="otherTracker.url"
+            ng-enter="addTracker(otherTracker.url)">
+          <span class="input-group-addon" ng-if="otherTracker.url">
+            press <code>ENTER</code> to save
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
