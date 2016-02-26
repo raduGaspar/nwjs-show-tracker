@@ -28,7 +28,9 @@
           <div class="col-xs-8">
             <label>
               <input type="radio" name="tracker"
-                ng-model="selected.tracker" ng-value="tracker">
+                ng-model="selected.tracker"
+                ng-change="toggleSelection($index, selected.tracker)"
+                ng-value="tracker">
               {{ tracker.url }}
             </label>
           </div>

@@ -1,12 +1,12 @@
 {
-  language: "en",
-  trackers: [
+  "language": "en",
+  "selectedTracker": 0,
+  "trackers": [
     {
-      url: "http://kat.cr/usearch/",
-      isDefault: true
+      "url": "http://kat.cr/usearch/"
     },
     {
-      url: "http://filelist.ro/browse.php?search="
+      "url": "http://filelist.ro/browse.php?search="
     }
   ]
 }

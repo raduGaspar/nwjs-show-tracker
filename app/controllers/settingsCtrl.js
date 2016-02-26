@@ -33,10 +33,11 @@
     };
     $scope.deleteTracker = function(tracker) {
       $scope.trackers.splice($scope.trackers.indexOf(tracker), 1);
+      // TODO: if you delete a selected tracker, select the first one
+      // TODO: add logic to restore defaults (default tracker and selection)
     };
-
-    $scope.$watch('selected', function(newVal, oldVal) {
-      console.log(newVal);
-    }, true);
+    $scope.toggleSelection = function(idx, tracker) {
+      console.log(idx, tracker);
+    };
   }
 }());
