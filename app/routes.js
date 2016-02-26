@@ -12,16 +12,21 @@
   function AppConfig($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
-      .state('index', {
+      .state('shows', {
         url: '/',
         templateUrl: 'app/partials/main.html',
         controller: 'MainCtrl'
+      })
+      .state('settings', {
+        url: '/settings',
+        templateUrl: 'app/partials/settings.html',
+        controller: 'SettingsCtrl'
       });
   }
 
   function AppRun($rootScope, $state) {
-    $rootScope.$on('$stateChangeStart', function(event, toState, fromState, fromParams) {
-
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+      $state.current = toState;
     });
   }
 }());

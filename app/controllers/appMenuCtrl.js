@@ -5,34 +5,35 @@
     .app
     .controller('AppMenuCtrl', AppMenuCtrl);
 
-  AppMenuCtrl.$inject = ['$scope'];
+  AppMenuCtrl.$inject = ['$scope', '$state'];
 
-  function AppMenuCtrl($scope) {
+  function AppMenuCtrl($scope, $state) {
     console.log('Hello from AppMenuCtrl!');
 
     var gui = require('nw.gui'),
       win = gui.Window.get(),
       menu = [
         {
-          label: 'Shows',
-          submenu: [
-            { label: 'Add' },
-            { label: 'Manage' }
-          ]
-        },
-        {
-          label: 'Tags',
-          submenu: [
-            { label: 'Add' },
-            { label: 'Manage' }
-          ]
+          label: 'Shows'
         },
         {
           label: 'Settings'
+        },
+        {
+          label: 'Help',
+          submenu: [
+            { label: 'Shortcuts' },
+            { label: 'About' }
+          ]
         }
       ],
       onClick = function() {
-        console.log('clicked', this.label);
+        console.log('clicked', this.label, $state.current.name);
+        var toState = this.label.split(' ')[0].toLowerCase();
+        if($state.current.name !== toState) {
+          $state.go(toState);
+          $scope.$apply();
+        }
       },
       initMenu = function() {
         var appMenu = new gui.Menu({ 'type': 'menubar' }),
