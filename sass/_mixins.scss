@@ -1,0 +1,34 @@
+@mixin scrollbars($size, $radius, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+  ::-webkit-scrollbar {
+    width:  $size;
+    height: $size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: $radius;
+    background: $foreground-color;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: $radius;
+    background: $background-color;
+  }
+}
+
+@mixin wrapper($size) {
+  position: fixed;
+  top: $size;
+  left: $size;
+  right: $size;
+  bottom: $size;
+  padding: 0 $size;
+  overflow: auto;
+}
+
+@mixin vh-center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}

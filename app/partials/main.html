@@ -85,7 +85,7 @@
               <i class="fa fa-download"></i>
             </button>
           </div>
-          <div class="col-xs-12" ng-if="showTags">
+          <div class="col-xs-12" ng-if="showTags && show.tags.length">
             <span class="tags label label-primary" ng-repeat="tag in show.tags">{{ tag.text }}</span>
           </div>
         </div>

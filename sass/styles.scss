@@ -1,13 +1,9 @@
-@mixin vh-center() {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  transform: translate(-50%, -50%);
-}
+@import "mixins";
+
+@include scrollbars(8px, 4px, #aaa);
 
 .show-tracker {
-  margin: 10px;
+  @include wrapper(5px);
 
   .panel-heading {
     .input-group, .label {
