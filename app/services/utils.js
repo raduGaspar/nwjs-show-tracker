@@ -12,7 +12,14 @@
       fs = require('fs'),
       path = require('path'),
       dirname = path.dirname(),
-      win = gui.Window.get();
+      win = gui.Window.get(),
+      Datastore = require('nedb'),
+      db = {};
+
+    db.settings = new Datastore({
+      autoload: true,
+      filename: path.join(gui.App.dataPath, 'settings.db')
+    });
 
     return {
       getGlobals: function() {
@@ -31,6 +38,9 @@
             resolve(data);
           });
         });
+      },
+      getDb: function(name) {
+        return db[name] ? db[name] : db;
       }
     };
   }

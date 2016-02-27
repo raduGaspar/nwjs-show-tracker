@@ -68,7 +68,8 @@
 
     <!-- tv show list -->
     <ul class="list-group">
-      <li class="list-group-item" ng-repeat="show in filtered = (shows | filter: addShow.name) track by $index">
+      <li class="list-group-item animate"
+        ng-repeat="show in filtered = (shows | filter: addShow.name) track by $index">
         <div class="row">
           <div class="col-xs-4">{{ show.name }}</div>
           <div class="col-xs-2">{{ getEpisodeToView(show) }}</div>

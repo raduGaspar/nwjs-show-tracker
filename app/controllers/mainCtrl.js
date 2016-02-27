@@ -9,6 +9,12 @@
 
   function MainCtrl($scope, $document, Utils) {
     console.log('Hello from MainCtrl!');
+    /*
+     * TODO:
+     * 1. use a DB instead of JSON
+     * 2. allow shows export/import to/from JSON
+     * 3. pagination (maybe lazy loading) & filtering
+     */
     var developMode,
       fileSaveTimeout,
       globals = Utils.getGlobals(),
