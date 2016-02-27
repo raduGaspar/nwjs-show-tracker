@@ -16,6 +16,22 @@
         { url: 'http://kat.cr/usearch/' },
         { url: 'http://filelist.ro/browse.php?search=' }
       ],
+      updateSelectedTracker = function(tracker) {
+        console.log('updateSelectedTracker', tracker);
+        if(!tracker) {
+          var selectedTracker = Utils.store('tracker');
+          if(!selectedTracker) {
+            Utils.store('tracker', $scope.trackers[0]._id);
+            $scope.selected.tracker = $scope.trackers[0];
+          } else {
+            console.log('we have a tracker', selectedTracker);
+            $scope.selected.tracker = Utils.findById($scope.trackers, selectedTracker);
+          }
+        } else {
+          Utils.store('tracker', tracker._id);
+          $scope.selected.tracker = Utils.findById($scope.trackers, tracker._id);
+        }
+      },
       updateView = function(data) {
         if(data) {
           if(data.length !== undefined) {
@@ -24,6 +40,8 @@
             $scope.trackers.push(data);
           }
         }
+
+        updateSelectedTracker();
 
         if(!$scope.$$phase) {
           $scope.$apply();
@@ -37,6 +55,8 @@
         });
       },
       restoreDefaults = function() {
+        localStorage.removeItem('tracker');
+
         // delete all entries
         db.remove({}, { multi: true }, function(err, numRemoved) {
           if(err) { console.log(err); }
@@ -47,6 +67,7 @@
         });
       };
 
+    console.log('current tracker', Utils.store('tracker'));
     // find all records
     db.find({}, function(err, docs) {
       if(err) { console.log(err); }
@@ -62,6 +83,7 @@
     });
 
     $scope.otherTracker = {};
+    $scope.selected = {};
     $scope.restoreDefaults = restoreDefaults;
     $scope.addTracker = function(url) {
       if(!url) { return; }
@@ -74,24 +96,19 @@
     };
     $scope.deleteTracker = function(tracker) {
       console.log('delete tracker', tracker);
+      // TODO:
+      // 1. if you delete a selected tracker, select the first one
+      // 2. prevent deletion of all trackers
       db.remove({ _id: tracker._id }, {}, function(err, numRemoved) {
         if(err) { console.log(err); }
         $scope.trackers.splice($scope.trackers.indexOf(tracker), 1);
+        if(Utils.store('tracker') === tracker._id) {
+          // remove localstorage tracker
+          localStorage.removeItem('tracker');
+        }
         updateView();
       });
     };
-    /*$scope.trackers = defaults;
-    $scope.selected = {
-      tracker: $scope.trackers[0]
-    };
-    /*
-    $scope.deleteTracker = function(tracker) {
-      $scope.trackers.splice($scope.trackers.indexOf(tracker), 1);
-      // TODO: if you delete a selected tracker, select the first one
-      // TODO: add logic to restore defaults (default tracker and selection)
-    };
-    $scope.toggleSelection = function(idx, tracker) {
-      console.log(idx, tracker);
-    };*/
+    $scope.toggleSelection = updateSelectedTracker;
   }
 }());

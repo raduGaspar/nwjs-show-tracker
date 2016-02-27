@@ -29,13 +29,14 @@
             <label>
               <input type="radio" name="tracker"
                 ng-model="selected.tracker"
-                ng-change="toggleSelection($index, selected.tracker)"
+                ng-change="toggleSelection(selected.tracker)"
                 ng-value="tracker">
               {{ tracker.url }}
             </label>
           </div>
           <div class="col-xs-4 text-right">
             <button class="btn btn-xs btn-danger"
+              ng-if="trackers.length > 1"
               ng-click="deleteTracker(tracker)">
               <i class="fa fa-trash"></i>
             </button>
