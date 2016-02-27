@@ -31,6 +31,11 @@
           win: win
         }
       },
+      onError: function(err) {
+        if(err) {
+          console.log('err', err);
+        }
+      },
       loadFile: function(path) {
         return $q(function(resolve, reject) {
           fs.readFile(path, 'utf8', function(err, data) {

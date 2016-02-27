@@ -39,12 +39,7 @@
         fs.writeFile(
           dirname + '/shows.json',
           angular.toJson($scope.shows),
-          function(err) {
-            if(err) {
-              $scope.err = err;
-              console.log('error', err);
-            }
-          }
+          Utils.onError
         );
       },
       days = [
@@ -96,7 +91,7 @@
         $scope.shows = angular.fromJson(data) || dummy;
       }, function(reason) {
         // failed
-        $scope.err = reason.message;
+        Utils.onError(reason);
         console.log('error', reason.message);
         console.log('using dummy data :)');
         $scope.shows = dummy;
