@@ -18,6 +18,7 @@
     var developMode,
       fileSaveTimeout,
       globals = Utils.getGlobals(),
+      days = Utils.defaults.weekdays,
       gui = globals.gui,
       fs = globals.fs,
       path = globals.path,
@@ -42,10 +43,6 @@
           Utils.onError
         );
       },
-      days = [
-        'Sunday', 'Monday', 'Tuesday', 'Wednesday',
-        'Thursday', 'Friday', 'Saturday'
-      ],
       // dummy shows data
       dummy = [
       {

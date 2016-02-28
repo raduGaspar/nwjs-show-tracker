@@ -5,20 +5,19 @@
     .app
     .controller('SettingsCtrl', SettingsCtrl);
 
-  SettingsCtrl.$inject = ['$scope', 'Utils'];
+  SettingsCtrl.$inject = ['$scope', 'Utils', 'DB'];
 
-  function SettingsCtrl($scope, Utils) {
+  function SettingsCtrl($scope, Utils, DB) {
     console.log('Hello from SettingsCtrl!');
     var globals = Utils.getGlobals(),
       dirname = globals.dirname,
-      db = Utils.getDb('settings'),
-      defaults = [
-        { url: 'http://kat.cr/usearch/' },
-        { url: 'http://filelist.ro/browse.php?search=' }
-      ],
+      db = DB.getDb('settings'),
       toggleSelection = function(tracker) {
         console.log('toggleSelection', tracker);
-        if(!tracker) {
+        if(tracker) {
+          Utils.store('tracker', tracker._id);
+          $scope.selected.tracker = Utils.findById($scope.trackers, tracker._id);
+        } else {
           var selectedTracker = Utils.store('tracker');
           if(!selectedTracker) {
             console.log('select first tracker in list');
@@ -28,9 +27,6 @@
             console.log('we have a tracker', selectedTracker);
             $scope.selected.tracker = Utils.findById($scope.trackers, selectedTracker);
           }
-        } else {
-          Utils.store('tracker', tracker._id);
-          $scope.selected.tracker = Utils.findById($scope.trackers, tracker._id);
         }
       },
       updateView = function(data) {
@@ -48,40 +44,19 @@
           $scope.$apply();
         }
       },
-      insertDefaults = function() {
-        db.insert(defaults, function(err, newDocs) {
-          Utils.onError(err);
+      restoreDefaults = function() {
+        DB.reset(db).then(function(newDocs) {
           console.log('newDocs', newDocs);
           updateView(newDocs);
-        });
-      },
-      restoreDefaults = function() {
-        localStorage.removeItem('tracker');
-
-        // delete all entries
-        db.remove({}, { multi: true }, function(err, numRemoved) {
-          Utils.onError(err);
-          console.log('removed', numRemoved);
-
-          // restore defaults
-          insertDefaults();
-        });
+        }, Utils.onError);
       };
 
     console.log('current tracker', Utils.store('tracker'));
-    // find all records
-    db.find({}, function(err, docs) {
-      Utils.onError(err);
 
-      if(!docs.length) {
-        // no data is available; insert defaults
-        console.log('no data found, inserting defaults');
-        insertDefaults();
-      } else {
-        console.log('data in db', docs);
-        updateView(docs);
-      }
-    });
+    // find all records and restore defaults if no data is found
+    DB.find(db, {}).then(function(docs) {
+      docs.length ? updateView(docs) : restoreDefaults();
+    }, Utils.onError);
 
     $scope.otherTracker = {
       url: 'http://'
@@ -91,27 +66,24 @@
     $scope.toggleSelection = toggleSelection;
     $scope.addTracker = function(url) {
       if(!url) { return; }
-      db.insert({ url: url }, function(err, newTracker) {
-        Utils.onError(err);
-        console.log('newTracker', newTracker);
+
+      DB.insert(db, { url: url }).then(function(newTracker) {
         $scope.otherTracker.url = 'http://';
         updateView(newTracker);
-      });
+      }, Utils.onError);
     };
     $scope.deleteTracker = function(tracker) {
       console.log('delete tracker', tracker);
       // TODO:
       // 1. if you delete a selected tracker, select the first one
-      // 2. prevent deletion of all trackers
-      db.remove({ _id: tracker._id }, {}, function(err, numRemoved) {
-        Utils.onError(err);
+      DB.delete(db, { _id: tracker._id }).then(function(numRemoved) {
         $scope.trackers.splice($scope.trackers.indexOf(tracker), 1);
         if(Utils.store('tracker') === tracker._id) {
           // remove localstorage tracker
           localStorage.removeItem('tracker');
         }
         updateView();
-      });
+      }, Utils.onError);
     };
   }
 }());

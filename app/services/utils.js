@@ -12,14 +12,7 @@
       fs = require('fs'),
       path = require('path'),
       dirname = path.dirname(),
-      win = gui.Window.get(),
-      Datastore = require('nedb'),
-      db = {};
-
-    db.settings = new Datastore({
-      autoload: true,
-      filename: path.join(gui.App.dataPath, 'settings.db')
-    });
+      win = gui.Window.get();
 
     return {
       getGlobals: function() {
@@ -30,6 +23,12 @@
           dirname: dirname,
           win: win
         }
+      },
+      defaults: {
+        weekdays: [
+          'Sunday', 'Monday', 'Tuesday', 'Wednesday',
+          'Thursday', 'Friday', 'Saturday'
+        ]
       },
       onError: function(err) {
         if(err) {
@@ -43,9 +42,6 @@
             resolve(data);
           });
         });
-      },
-      getDb: function(name) {
-        return db[name] ? db[name] : db;
       },
       store: function(key, val) {
         if(key && val) {

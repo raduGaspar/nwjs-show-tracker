@@ -8,6 +8,12 @@ $gapSize: 10px;
 .show-tracker {
   @include wrapper(5px);
 
+  .panel {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   .panel-heading {
     .input-group, .label {
       margin-top: 10px;
