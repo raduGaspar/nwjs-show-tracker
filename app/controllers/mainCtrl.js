@@ -5,9 +5,9 @@
     .app
     .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope', '$document', 'Utils'];
+  MainCtrl.$inject = ['$scope', '$document', 'Utils', 'DB'];
 
-  function MainCtrl($scope, $document, Utils) {
+  function MainCtrl($scope, $document, Utils, DB) {
     console.log('Hello from MainCtrl!');
     /*
      * TODO:
@@ -18,6 +18,7 @@
     var developMode,
       fileSaveTimeout,
       globals = Utils.getGlobals(),
+      db = DB.getDb('shows'),
       getEpisodeToView = function(show) {
         var ep = show.seasons[show.seasons.length-1].ep,
           se = show.seasons.length;
@@ -73,6 +74,10 @@
         ]
       }
     ];
+
+    DB.find(db, {}).then(function(data) {
+      console.log('db shows data', data);
+    }, Utils.onError);
 
     // shows data
     Utils.loadFile(globals.dirname + '/shows.json')
