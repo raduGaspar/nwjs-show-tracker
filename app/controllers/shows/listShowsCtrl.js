@@ -31,33 +31,11 @@
 
         return se+ep;
       },
-      pendingShowsListUpdate = function() {
-        clearTimeout(fileSaveTimeout);
-        fileSaveTimeout = setTimeout(updateShowsList, 3000);
-      },
-      updateShowsList = function() {
-        globals.fs.writeFile(
-          globals.dirname + '/shows.json',
-          angular.toJson($scope.shows),
-          Utils.onError
-        );
+      doUpdate = function(show) {
+        DB.update(db, { _id: show._id}, show).then(function(data) {
+          console.log(data);
+        }, Utils.onError);
       };
-
-    // get all shows
-    DB.find(db, {}).then(function(docs) {
-      console.log('db shows data', docs);
-      $scope.shows = docs;
-      scopeUpdate();
-    }, Utils.onError);
-
-    $scope.addShow = function() {
-      var toState = 'shows.add';
-      if($state.current.name !== toState) {
-        console.log('addShow');
-        $state.go(toState);
-        scopeUpdate();
-      }
-    };
 
     $scope.showData = {
       name: undefined
@@ -65,38 +43,53 @@
 
     $scope.getEpisodeToView = getEpisodeToView;
 
-    // $scope.downloadTorrent = function(show) {
-    //   var next = getEpisodeToView(show),
-    //     searchFor = show.name + ' ' + next;
-    //   console.log(searchFor);
-    //   globals.gui.Shell.openExternal(
-    //     'http://kat.cr/usearch/' +
-    //     encodeURI(searchFor)
-    //   );
-    // };
-    // $scope.prevEpisode = function(show) {
-    //   var season = show.seasons[show.seasons.length-1];
-    //   if(season.ep > 1) {
-    //     season.ep--;
-    //   } else {
-    //     if(show.seasons.length > 1) {
-    //       show.seasons.pop();
-    //     }
-    //   }
+    $scope.addShow = function() {
+      console.log('addShow');
+      $state.go('shows.add');
+      scopeUpdate();
+    };
 
-    //   pendingShowsListUpdate();
-    // };
-    // $scope.nextEpisode = function(show) {
-    //   var season = show.seasons[show.seasons.length-1];
-    //   if($scope.pressedKey === 18) {
-    //     show.seasons.push({ ep: 1 });
-    //   } else {
-    //     season.ep++;
-    //   }
+    $scope.nextEpisode = function(show) {
+      console.log('increase episode', show);
+      var season = show.seasons[show.seasons.length-1];
+      if($scope.pressedKey === 18) {
+        show.seasons.push({ ep: 1 });
+      } else {
+        season.ep++;
+      }
 
-    //   pendingShowsListUpdate();
-    // };
+      doUpdate(show);
+    };
 
-    // // TODO: add show should be a different view with its own controller
+    $scope.prevEpisode = function(show) {
+      console.log('decrease episode', show);
+      var season = show.seasons[show.seasons.length-1];
+      if(season.ep > 1) {
+        season.ep--;
+      } else {
+        if(show.seasons.length > 1) {
+          show.seasons.pop();
+        }
+      }
+
+      doUpdate(show);
+    };
+
+    $scope.downloadTorrent = function(show) {
+      var next = getEpisodeToView(show),
+        searchFor = show.name + ' ' + next;
+      console.log(searchFor);
+      globals.gui.Shell.openExternal(
+        'http://kat.cr/usearch/' +
+        encodeURI(searchFor)
+      );
+    };
+
+    // get all shows
+    DB.find(db, {}).then(function(docs) {
+      console.log('db shows data', docs);
+      $scope.shows = docs;
+      scopeUpdate();
+    }, Utils.onError);
   }
 }());

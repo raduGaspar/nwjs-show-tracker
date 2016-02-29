@@ -43,6 +43,19 @@
           });
         });
       },
+      doUpdate = function(db, query, update, opts) {
+        if(!db || !query || !update) { return; }
+        opts = opts || {};
+
+        return $q(function(resolve, reject) {
+          db.update(query, update, opts, function(err, numReplaced) {
+            console.log('updated record', arguments);
+            if(err) { reject(err); }
+
+            resolve(numReplaced)
+          });
+        });
+      },
       doInsert = function(db, data) {
         if(!db || !data) { return; }
 
@@ -82,6 +95,7 @@
       },
       find: doFind,
       insert: doInsert,
+      update: doUpdate,
       delete: doDelete,
       reset: doReset
     };
