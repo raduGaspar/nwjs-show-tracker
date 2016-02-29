@@ -32,7 +32,7 @@
         return se+ep;
       },
       doUpdate = function(show) {
-        DB.update(db, { _id: show._id}, show).then(function(data) {
+        DB.update(db, { _id: show._id }, show).then(function(data) {
           console.log(data);
         }, Utils.onError);
       };
