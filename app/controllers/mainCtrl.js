@@ -18,12 +18,6 @@
     var developMode,
       fileSaveTimeout,
       globals = Utils.getGlobals(),
-      days = Utils.defaults.weekdays,
-      gui = globals.gui,
-      fs = globals.fs,
-      path = globals.path,
-      dirname = globals.dirname,
-      win = globals.win,
       getEpisodeToView = function(show) {
         var ep = show.seasons[show.seasons.length-1].ep,
           se = show.seasons.length;
@@ -37,8 +31,8 @@
         fileSaveTimeout = setTimeout(updateShowsList, 3000);
       },
       updateShowsList = function() {
-        fs.writeFile(
-          dirname + '/shows.json',
+        globals.fs.writeFile(
+          globals.dirname + '/shows.json',
           angular.toJson($scope.shows),
           Utils.onError
         );
@@ -81,7 +75,7 @@
     ];
 
     // shows data
-    Utils.loadFile(dirname + '/shows.json')
+    Utils.loadFile(globals.dirname + '/shows.json')
       .then(function(data) {
         // success
         console.log('data', data);
@@ -103,16 +97,19 @@
     console.log(developMode = true);
 
     if(developMode) {
-      win.showDevTools();
+      globals.win.showDevTools();
     }
 
-    $scope.days = days;
+    $scope.days = Utils.defaults.weekdays;
     $scope.getEpisodeToView = getEpisodeToView;
     $scope.downloadTorrent = function(show) {
       var next = getEpisodeToView(show),
         searchFor = show.name + ' ' + next;
       console.log(searchFor);
-      gui.Shell.openExternal('http://kat.cr/usearch/' + encodeURI(searchFor));
+      globals.gui.Shell.openExternal(
+        'http://kat.cr/usearch/' +
+        encodeURI(searchFor)
+      );
     };
     $scope.prevEpisode = function(show) {
       var season = show.seasons[show.seasons.length-1];
@@ -136,9 +133,11 @@
 
       pendingShowsListUpdate();
     };
+
+    // TODO: add show should be a different view with its own controller
     $scope.addShow = {
       name: undefined,
-      airsOn: days[new Date().getDay()],
+      airsOn: Utils.defaults.weekdays[new Date().getDay()],
       season: 1,
       episode: 1
     };
