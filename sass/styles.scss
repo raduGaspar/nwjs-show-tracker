@@ -39,6 +39,14 @@ $gapSize: 10px;
     }
   }
 
+  .list-group-item {
+    &.active, &.active:hover, &.active:focus {
+      background: #dedede;
+      border-color: #dedede;
+      color: #000;
+    }
+  }
+
   // helpers
   .gap { margin: $gapSize; }
   .gap-top { margin-top: $gapSize; }

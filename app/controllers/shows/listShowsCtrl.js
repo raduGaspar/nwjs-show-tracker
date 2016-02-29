@@ -42,6 +42,11 @@
     };
 
     $scope.getEpisodeToView = getEpisodeToView;
+    $scope.selectedShow;
+
+    $scope.selectShow = function(show) {
+      $scope.selectedShow = show;
+    };
 
     $scope.addShow = function() {
       console.log('addShow');
@@ -59,6 +64,7 @@
       }
 
       doUpdate(show);
+      return false;
     };
 
     $scope.prevEpisode = function(show) {
@@ -73,6 +79,7 @@
       }
 
       doUpdate(show);
+      return false;
     };
 
     $scope.downloadTorrent = function(show) {

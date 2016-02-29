@@ -36,6 +36,8 @@
     <!-- tv show list -->
     <ul class="list-group">
       <li class="list-group-item animate"
+        ng-class="{active: show._id === selectedShow._id}"
+        ng-click="selectShow(show)"
         ng-repeat="show in filtered = (shows | filter: showData.name) track by $index">
         <div class="row">
           <div class="col-xs-6">{{ getEpisodeToView(show) }}&nbsp;{{ show.name }}</div>
