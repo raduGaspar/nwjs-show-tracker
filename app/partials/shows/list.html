@@ -19,8 +19,10 @@
           ng-click="addShow()">Add Show</button>
       </span>
     </div>
-    <p class="label label-default" ng-if="!pressedKey || pressedKey !== 18">Press and hold <code>ALT</code> to increase the season number</p>
-    <p class="label label-danger" ng-if="pressedKey === 18">You can now increase the show season number.</p>
+    <div ng-if="shows.length">
+      <p class="label label-default" ng-if="!pressedKey || pressedKey !== 18">Press and hold <code>ALT</code> to increase the season number</p>
+      <p class="label label-danger" ng-if="pressedKey === 18">You can now increase the show season number.</p>
+    </div>
   </div>
   <div class="panel-body">
     <div class="alert alert-info" role="alert" ng-if="!shows.length">

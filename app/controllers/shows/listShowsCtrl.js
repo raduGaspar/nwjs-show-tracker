@@ -63,8 +63,8 @@
       name: undefined
     };
 
+    $scope.getEpisodeToView = getEpisodeToView;
 
-    // $scope.getEpisodeToView = getEpisodeToView;
     // $scope.downloadTorrent = function(show) {
     //   var next = getEpisodeToView(show),
     //     searchFor = show.name + ' ' + next;
@@ -98,29 +98,5 @@
     // };
 
     // // TODO: add show should be a different view with its own controller
-
-    // $scope.saveShow = function(model) {
-    //   var data = angular.copy(model),
-    //     startSeason = data.season;
-    //   data.seasons = [];
-
-    //   // create an entry for every season
-    //   for(var i=0; i<startSeason; i++) {
-    //     data.seasons.push({ ep: 1 });
-    //   }
-    //   data.seasons[startSeason-1].ep = parseInt(data.episode);
-
-    //   delete data.season;
-    //   delete data.episode;
-
-    //   console.log('show details', data);
-
-    //   $scope.shows.push(data);
-
-    //   // save to JSON
-    //   pendingShowsListUpdate();
-
-    //   // TODO: reset model
-    // };
   }
 }());
