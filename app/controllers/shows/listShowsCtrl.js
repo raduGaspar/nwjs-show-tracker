@@ -85,6 +85,13 @@
       );
     };
 
+    $scope.deleteShow = function(show, idx) {
+      DB.delete(db, show).then(function(data) {
+        console.log('deleted show', data, show);
+        $scope.shows.splice(idx, 1);
+      });
+    };
+
     // get all shows
     DB.find(db, {}).then(function(docs) {
       console.log('db shows data', docs);
