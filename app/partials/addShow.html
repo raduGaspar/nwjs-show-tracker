@@ -1,0 +1,47 @@
+<!-- add show fields -->
+<div class="add-show">
+  <h4>The show <code>{{showData.name}}</code> is not in your list; add it now!</h4>
+  <div class="input-group">
+    <span class="input-group-addon">
+      Show Name
+    </span>
+    <input type="text" class="form-control" ng-model="showData.name">
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">
+      Air Day
+    </span>
+    <select class="form-control"
+      ng-model="showData.airsOn"
+      ng-options="value as value for value in days">
+    </select>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="input-group">
+        <span class="input-group-addon">
+          Season
+        </span>
+        <input type="text" class="form-control" ng-model="showData.season" valid-number>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="input-group">
+        <span class="input-group-addon">
+          Episode
+        </span>
+        <input type="text" class="form-control" ng-model="showData.episode" valid-number>
+      </div>
+    </div>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">
+      Tags
+    </span>
+    <tags-input ng-model="showData.tags"></tags-input>
+  </div>
+  <div class="text-right">
+    <button class="btn btn-success" ng-click="doSave(showData)">Save Show</button>
+    <button class="btn btn-danger" ng-click="doCancel()">Cancel</button>
+  </div>
+</div>

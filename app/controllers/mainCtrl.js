@@ -5,9 +5,9 @@
     .app
     .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope', '$document', 'Utils', 'DB'];
+  MainCtrl.$inject = ['$scope', '$state', '$document', 'Utils', 'DB'];
 
-  function MainCtrl($scope, $document, Utils, DB) {
+  function MainCtrl($scope, $state, $document, Utils, DB) {
     console.log('Hello from MainCtrl!');
     /*
      * TODO:
@@ -19,6 +19,11 @@
       fileSaveTimeout,
       globals = Utils.getGlobals(),
       db = DB.getDb('shows'),
+      scopeUpdate = function() {
+        if(!$scope.$$phase) {
+          $scope.$apply();
+        }
+      },
       getEpisodeToView = function(show) {
         var ep = show.seasons[show.seasons.length-1].ep,
           se = show.seasons.length;
@@ -37,138 +42,87 @@
           angular.toJson($scope.shows),
           Utils.onError
         );
-      },
-      // dummy shows data
-      dummy = [
-      {
-        name: 'The Flash',
-        airsOn: 'Wednesday',
-        seasons: [
-          {
-            ep: 15
-          }
-        ]
-      },
-      {
-        name: 'Game of Thrones',
-        airsOn: 'Monday',
-        seasons: [
-          {
-            ep: 10
-          },
-          {
-            ep: 10
-          },
-          {
-            ep: 10
-          },
-          {
-            ep: 10
-          },
-          {
-            ep: 10
-          },
-          {
-            ep: 2
-          }
-        ]
-      }
-    ];
+      };
 
-    DB.find(db, {}).then(function(data) {
-      console.log('db shows data', data);
+    // get all shows
+    DB.find(db, {}).then(function(docs) {
+      console.log('db shows data', docs);
+      $scope.shows = docs;
+      scopeUpdate();
     }, Utils.onError);
 
-    // shows data
-    Utils.loadFile(globals.dirname + '/shows.json')
-      .then(function(data) {
-        // success
-        console.log('data', data);
-        $scope.shows = angular.fromJson(data) || dummy;
-      }, function(reason) {
-        // failed
-        Utils.onError(reason);
-        console.log('error', reason.message);
-        console.log('using dummy data :)');
-        $scope.shows = dummy;
-      })
-      .finally(function() {
-        if(!$scope.$$phase) {
-          $scope.$apply();
-        }
-      });
-
-    // all console.log calls are removed when packaging; cool huh? :D
-    console.log(developMode = true);
-
-    if(developMode) {
-      globals.win.showDevTools();
-    }
-
-    $scope.days = Utils.defaults.weekdays;
-    $scope.getEpisodeToView = getEpisodeToView;
-    $scope.downloadTorrent = function(show) {
-      var next = getEpisodeToView(show),
-        searchFor = show.name + ' ' + next;
-      console.log(searchFor);
-      globals.gui.Shell.openExternal(
-        'http://kat.cr/usearch/' +
-        encodeURI(searchFor)
-      );
-    };
-    $scope.prevEpisode = function(show) {
-      var season = show.seasons[show.seasons.length-1];
-      if(season.ep > 1) {
-        season.ep--;
-      } else {
-        if(show.seasons.length > 1) {
-          show.seasons.pop();
-        }
+    $scope.addShow = function() {
+      var toState = 'shows.add';
+      if($state.current.name !== toState) {
+        console.log('addShow');
+        $state.go(toState);
+        scopeUpdate();
       }
-
-      pendingShowsListUpdate();
-    };
-    $scope.nextEpisode = function(show) {
-      var season = show.seasons[show.seasons.length-1];
-      if($scope.pressedKey === 18) {
-        show.seasons.push({ ep: 1 });
-      } else {
-        season.ep++;
-      }
-
-      pendingShowsListUpdate();
     };
 
-    // TODO: add show should be a different view with its own controller
-    $scope.addShow = {
-      name: undefined,
-      airsOn: Utils.defaults.weekdays[new Date().getDay()],
-      season: 1,
-      episode: 1
+    $scope.showData = {
+      name: undefined
     };
-    $scope.saveShow = function(model) {
-      var data = angular.copy(model),
-        startSeason = data.season;
-      data.seasons = [];
 
-      // create an entry for every season
-      for(var i=0; i<startSeason; i++) {
-        data.seasons.push({ ep: 1 });
-      }
-      data.seasons[startSeason-1].ep = parseInt(data.episode);
 
-      delete data.season;
-      delete data.episode;
+    // $scope.getEpisodeToView = getEpisodeToView;
+    // $scope.downloadTorrent = function(show) {
+    //   var next = getEpisodeToView(show),
+    //     searchFor = show.name + ' ' + next;
+    //   console.log(searchFor);
+    //   globals.gui.Shell.openExternal(
+    //     'http://kat.cr/usearch/' +
+    //     encodeURI(searchFor)
+    //   );
+    // };
+    // $scope.prevEpisode = function(show) {
+    //   var season = show.seasons[show.seasons.length-1];
+    //   if(season.ep > 1) {
+    //     season.ep--;
+    //   } else {
+    //     if(show.seasons.length > 1) {
+    //       show.seasons.pop();
+    //     }
+    //   }
 
-      console.log('show details', data);
+    //   pendingShowsListUpdate();
+    // };
+    // $scope.nextEpisode = function(show) {
+    //   var season = show.seasons[show.seasons.length-1];
+    //   if($scope.pressedKey === 18) {
+    //     show.seasons.push({ ep: 1 });
+    //   } else {
+    //     season.ep++;
+    //   }
 
-      $scope.shows.push(data);
+    //   pendingShowsListUpdate();
+    // };
 
-      // save to JSON
-      pendingShowsListUpdate();
+    // // TODO: add show should be a different view with its own controller
 
-      // TODO: reset model
-    };
+    // $scope.saveShow = function(model) {
+    //   var data = angular.copy(model),
+    //     startSeason = data.season;
+    //   data.seasons = [];
+
+    //   // create an entry for every season
+    //   for(var i=0; i<startSeason; i++) {
+    //     data.seasons.push({ ep: 1 });
+    //   }
+    //   data.seasons[startSeason-1].ep = parseInt(data.episode);
+
+    //   delete data.season;
+    //   delete data.episode;
+
+    //   console.log('show details', data);
+
+    //   $scope.shows.push(data);
+
+    //   // save to JSON
+    //   pendingShowsListUpdate();
+
+    //   // TODO: reset model
+    // };
 
     // keyboard events
     $document.bind('keydown', function(e) {
@@ -179,5 +133,12 @@
       $scope.pressedKey = null;
       $scope.$apply();
     });
+
+    // all console.log calls are removed when packaging; cool huh? :D
+    console.log(developMode = true);
+
+    if(developMode) {
+      globals.win.showDevTools();
+    }
   }
 }());

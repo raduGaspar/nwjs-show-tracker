@@ -17,6 +17,11 @@
         templateUrl: 'app/partials/main.html',
         controller: 'MainCtrl'
       })
+      .state('shows.add', {
+        url: '/add',
+        templateUrl: 'app/partials/addShow.html',
+        controller: 'AddShowCtrl'
+      })
       .state('settings', {
         url: '/settings',
         templateUrl: 'app/partials/settings.html',
