@@ -33,7 +33,7 @@
 
       console.log('save show', model);
       var data = angular.copy(model),
-        startSeason = data.season;
+        startSeason = data.onlyEps ? 1 : data.season;
       data.seasons = [];
 
       // create an entry for every season

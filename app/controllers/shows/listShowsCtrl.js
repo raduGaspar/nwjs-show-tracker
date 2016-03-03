@@ -26,10 +26,10 @@
       getEpisodeToView = function(show) {
         var ep = show.seasons[show.seasons.length-1].ep,
           se = show.seasons.length;
-        ep = 'e' + (ep < 10 ? '0' + ep : ep);
-        se = 's' + (se < 10 ? '0' + se : se);
+        ep = ep < 10 ? '0' + ep : ep;
+        se = se < 10 ? '0' + se : se;
 
-        return se+ep;
+        return show.onlyEps ? ep : 's' + se + 'e' + ep;
       },
       doUpdate = function(show) {
         DB.update(db, { _id: show._id }, show).then(function(data) {
@@ -57,7 +57,7 @@
     $scope.nextEpisode = function(show) {
       console.log('increase episode', show);
       var season = show.seasons[show.seasons.length-1];
-      if($scope.pressedKey === 18) {
+      if($scope.pressedKey === 18 && !show.onlyEps) {
         show.seasons.push({ ep: 1 });
       } else {
         season.ep++;
