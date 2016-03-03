@@ -21,16 +21,23 @@
           ng-options="value as value for value in days">
         </select>
       </div>
+      <div class="input-group">
+        <label>
+          <input type="checkbox" ng-model="showData.onlyEps"></input>
+          disable seasons
+        </label>
+      </div>
       <div class="row">
-        <div class="col-xs-6">
+        <div ng-class="!showData.onlyEps ? 'col-xs-6' : 'hide'">
           <div class="input-group">
             <span class="input-group-addon">
               Season
             </span>
-            <input type="text" class="form-control" ng-model="showData.season" valid-number>
+            <input type="text" class="form-control"
+              ng-model="showData.season" valid-number>
           </div>
         </div>
-        <div class="col-xs-6">
+        <div ng-class="!showData.onlyEps ? 'col-xs-6' : 'col-xs-12'">
           <div class="input-group">
             <span class="input-group-addon">
               Episode
