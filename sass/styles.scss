@@ -4,6 +4,7 @@
 
 // vars
 $gapSize: 10px;
+$actionsWidth: 73px;
 
 .show-tracker {
   @include wrapper(5px);
@@ -48,7 +49,9 @@ $gapSize: 10px;
   }
 
   .slide-list {
-    overflow: hidden;
+    .list-group-item {
+      overflow: hidden;
+    }
 
     .row {
       @include transition(all, 0.2s, linear);
@@ -57,14 +60,14 @@ $gapSize: 10px;
       left: 0;
 
       &.animate {
-        left: -73px;
+        left: -$actionsWidth;
       }
     }
 
     .actions {
       @include transition(all, 0.2s, linear);
       background: #ddd;
-      right: -80px;
+      right: -$actionsWidth;
       position: absolute;
       top: 0;
       bottom: 0;
