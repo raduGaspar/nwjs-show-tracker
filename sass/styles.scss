@@ -57,7 +57,6 @@ $gapSize: 10px;
       left: 0;
 
       &.animate {
-        @include transition(all, 0.2s, linear);
         left: -73px;
       }
     }
@@ -72,7 +71,6 @@ $gapSize: 10px;
       padding: inherit;
 
       &.animate {
-        @include transition(all, 0.2s, linear);
         right: 0;
       }
     }
