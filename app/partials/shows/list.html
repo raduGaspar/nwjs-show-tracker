@@ -7,10 +7,6 @@
           <input type="checkbox" ng-model="showTags"></input>
           show tags
         </label>
-        <label>
-          <input type="checkbox" ng-model="showActions"></input>
-          show actions
-        </label>
       </div>
     </div>
     <div class="input-group">
@@ -42,8 +38,9 @@
       <li class="list-group-item animate"
         ng-class="{active: show._id === selectedShow._id}"
         ng-click="selectShow(show)"
-        ng-repeat="show in filtered = (shows | filter: showData.name) track by $index">
-        <div class="row" ng-class="{ animate: showActions }">
+        ng-repeat="show in filtered = (shows | filter: showData.name) track by $index"
+        ng-init="openActions=false">
+        <div class="row" ng-class="{ animate: openActions }">
           <div class="col-xs-6">{{ getEpisodeToView(show) }}&nbsp;{{ show.name }}</div>
           <div class="col-xs-2">{{ show.airsOn }}</div>
           <div class="col-xs-4 text-right">
@@ -58,13 +55,18 @@
                 ng-click="downloadTorrent(show)">
                 <i class="fa fa-download"></i>
               </button>
+              <button class="btn btn-xs btn-default"
+                ng-click="openActions = !openActions">
+                <i class="fa fa-bars"></i>
+              </button>
             </div>
           </div>
+
           <div class="col-xs-12" ng-if="showTags && show.tags.length">
             <span class="tags label label-primary" ng-repeat="tag in show.tags">{{ tag.text }}</span>
           </div>
         </div>
-        <div class="actions" ng-class="{ animate: showActions }">
+        <div class="actions" ng-class="{ animate: openActions }">
           <div class="btn-group" role="group">
             <button class="btn btn-xs btn-default" ng-click="editShow(show, $index)">
               <i class="fa fa-pencil"></i>

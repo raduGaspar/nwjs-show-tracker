@@ -6,8 +6,16 @@
 $gapSize: 10px;
 $actionsWidth: 73px;
 
+* {
+  -webkit-user-select: none;
+}
+
 .show-tracker {
   @include wrapper(5px);
+
+  .btn:focus {
+    outline: none;
+  }
 
   .panel {
     &:last-child {
@@ -42,7 +50,7 @@ $actionsWidth: 73px;
 
   .list-group-item {
     &.active, &.active:hover, &.active:focus {
-      background: #dedede;
+      background: transparent; // #dedede;
       border-color: #dedede;
       color: #000;
     }
@@ -66,12 +74,16 @@ $actionsWidth: 73px;
 
     .actions {
       @include transition(all, 0.2s, linear);
-      background: #ddd;
+      // box-shadow: inset 3px 0px 10px -5px rgba(0, 0, 0, 0.5);
+      background: #f0f0f0;
+      border-left: 1px solid #ddd;
       right: -$actionsWidth;
       position: absolute;
+      padding: inherit;
       top: 0;
       bottom: 0;
-      padding: inherit;
+      display: flex;
+      align-items: center;
 
       &.animate {
         right: 0;
