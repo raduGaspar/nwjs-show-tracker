@@ -5,9 +5,9 @@
     .app
     .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope', '$document', 'Utils'];
+  MainCtrl.$inject = ['$scope', '$document', 'Utils', 'SettingsServ'];
 
-  function MainCtrl($scope, $document, Utils) {
+  function MainCtrl($scope, $document, Utils, SettingsServ) {
     console.log('Hello from MainCtrl!');
 
     var developMode,
@@ -22,6 +22,11 @@
       $scope.pressedKey = null;
       $scope.$apply();
     });
+
+    $scope.settings = SettingsServ.get();
+    $scope.$watch('settings', function(newVal, oldVal) {
+      console.log('settings changed', newVal);
+    }, true);
 
     // all console.log calls are removed when packaging; cool huh? :D
     console.log(developMode = true);

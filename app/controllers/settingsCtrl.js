@@ -5,9 +5,9 @@
     .app
     .controller('SettingsCtrl', SettingsCtrl);
 
-  SettingsCtrl.$inject = ['$scope', 'Utils', 'DB'];
+  SettingsCtrl.$inject = ['$scope', 'Utils', 'DB', 'SettingsServ'];
 
-  function SettingsCtrl($scope, Utils, DB) {
+  function SettingsCtrl($scope, Utils, DB, SettingsServ) {
     console.log('Hello from SettingsCtrl!');
     var globals = Utils.getGlobals(),
       dirname = globals.dirname,
@@ -43,26 +43,20 @@
         if(!$scope.$$phase) {
           $scope.$apply();
         }
-      },
-      restoreDefaults = function() {
-        DB.reset(db).then(function(newDocs) {
-          console.log('newDocs', newDocs);
-          updateView(newDocs);
-        }, Utils.onError);
       };
 
     console.log('current tracker', Utils.store('tracker'));
 
     // find all records and restore defaults if no data is found
     DB.find(db, {}).then(function(docs) {
-      docs.length ? updateView(docs) : restoreDefaults();
+      docs.length ? updateView(docs) : SettingsServ.reset();
     }, Utils.onError);
 
     $scope.otherTracker = {
       url: 'http://'
     };
     $scope.selected = {};
-    $scope.restoreDefaults = restoreDefaults;
+    $scope.restoreDefaults = SettingsServ.reset;
     $scope.toggleSelection = toggleSelection;
     $scope.addTracker = function(url) {
       if(!url) { return; }

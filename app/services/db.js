@@ -14,12 +14,6 @@
       Datastore = require('nedb'),
       db = {},
       dbs = ['settings', 'shows'],
-      defaults = {
-        trackers: [
-          { url: 'http://kat.cr/usearch/' },
-          { url: 'http://filelist.ro/browse.php?search=' }
-        ]
-      },
       doDelete = function(db, data, opts) {
         opts = opts || {};
 
@@ -77,12 +71,6 @@
           }
         });
       },
-      doReset = function(db) {
-        // don't use $q.all; no need for the nbr. of deleted records
-        return doDelete(db, {}, { multi: true }).then(function() {
-          return doInsert(db, defaults.trackers);
-        });
-      },
       init = function() {
         for(var i=0; i<dbs.length; i++) {
           var currentDb = dbs[i];
@@ -104,8 +92,7 @@
       find: doFind,
       insert: doInsert,
       update: doUpdate,
-      delete: doDelete,
-      reset: doReset
+      delete: doDelete
     };
   }
 }());

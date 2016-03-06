@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="libs/components-font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
+<body ng-controller="MainCtrl">
   <div ng-controller="AppMenuCtrl"></div>
   <div class="show-tracker">
     <div ui-view></div>
@@ -35,6 +35,7 @@
   <!-- services -->
   <script type="text/javascript" src="app/services/utils.js"></script>
   <script type="text/javascript" src="app/services/db.js"></script>
+  <script type="text/javascript" src="app/services/settings.js"></script>
 
   <!-- controllers -->
   <script type="text/javascript" src="app/controllers/appMenuCtrl.js"></script>

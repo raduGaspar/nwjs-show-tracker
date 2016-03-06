@@ -1,14 +1,6 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <div class="row">
-      <div class="col-xs-6">TV Show Tracker</div>
-      <div class="col-xs-6 text-right">
-        <label>
-          <input type="checkbox" ng-model="showTags"></input>
-          show tags
-        </label>
-      </div>
-    </div>
+    TV Show Tracker
     <div class="input-group">
       <span class="input-group-addon">
         <i class="fa fa-filter"></i>
@@ -62,7 +54,7 @@
             </div>
           </div>
 
-          <div class="col-xs-12" ng-if="showTags && show.tags.length">
+          <div class="col-xs-12" ng-if="settings.showTags && show.tags.length">
             <span class="tags label label-primary" ng-repeat="tag in show.tags">{{ tag.text }}</span>
           </div>
         </div>

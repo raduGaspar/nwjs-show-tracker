@@ -19,8 +19,7 @@
       .state('shows', {
         abstract: true,
         url: '/shows',
-        templateUrl: 'app/partials/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'app/partials/main.html'
       })
       .state('shows.list', {
         url: '/list',
