@@ -24,24 +24,23 @@
   </div>
   <div class="panel-body trackers-list">
     <!-- trackers list -->
-    <h4 ng-if="trackers.length">Pick a default tracker to use</h4>
+    <h4>Pick a default tracker to use</h4>
     <ul class="list-group">
       <li class="list-group-item animate"
-        ng-repeat="tracker in trackers track by $index">
+        ng-repeat="tracker in settings.trackers.list track by $index">
         <div class="row">
           <div class="col-xs-8">
             <label>
               <input type="radio" name="tracker"
-                ng-model="selected.tracker"
-                ng-change="toggleSelection(selected.tracker)"
-                ng-value="tracker">
+                ng-model="settings.trackers.selected"
+                ng-value="$index">
               {{ tracker.url }}
             </label>
           </div>
           <div class="col-xs-4 text-right">
             <button class="btn btn-xs btn-danger"
-              ng-if="trackers.length > 1"
-              ng-click="deleteTracker(tracker)">
+              ng-if="settings.trackers.list.length > 1"
+              ng-click="deleteTracker(tracker, $index)">
               <i class="fa fa-trash"></i>
             </button>
           </div>
@@ -57,9 +56,9 @@
           </span>
           <input type="url" class="form-control"
             placeholder="Add other tracker url"
-            ng-model="otherTracker.url"
-            ng-enter="addTracker(otherTracker.url)">
-          <span class="input-group-addon" ng-if="otherTracker.url">
+            ng-model="trackerName.url"
+            ng-enter="addTracker(trackerName.url)">
+          <span class="input-group-addon" ng-if="trackerName.url">
             press <code>ENTER</code> to save
           </span>
         </div>
