@@ -38,6 +38,15 @@
       reset = function() {
         purge().then(seed, Utils.onError);
       },
+      // save current settings to DB
+      save = function() {
+        // TODO: fix this to gain access to settings._id
+        return DB.update(settingsDb, { _id: settings._id }, {
+          settings: angular.copy(settings)
+        }, function(res) {
+          console.log('SettingsServ update success', res);
+        }, Utils.onError);
+      },
       // delete all settings
       purge = function() {
         return DB.delete(settingsDb, {}, { multiple: true }).then(function(res) {
@@ -57,6 +66,7 @@
       get: function() {
         return settings;
       },
+      save: save,
       reset: reset
     };
   }
