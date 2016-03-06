@@ -47,12 +47,13 @@
 
     // purge();
 
-    DB.find(settingsDb, {}).then(function(res) {
+    var promise = DB.find(settingsDb, {}).then(function(res) {
       console.log('SettingsServ settings', res);
       res.length ? apply(res[0].settings) : seed();
     }, Utils.onError);
 
     return {
+      promise: promise,
       get: function() {
         return settings;
       },

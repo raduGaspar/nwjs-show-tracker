@@ -9,19 +9,27 @@
 
   function SettingsCtrl($scope, SettingsServ) {
     console.log('Hello from SettingsCtrl!');
+    var trackers,
+      pre = 'http://',
+      init = function() {
+        $scope.trackerName = { url: pre };
+        $scope.restoreDefaults = SettingsServ.reset;
+        $scope.addTracker = function(url) {
+          if(!url) { return; }
+          trackers.list.push({ url: url });
+          $scope.trackerName.url = pre;
+        };
+        $scope.deleteTracker = function(idx) {
+          trackers.list.splice(idx, 1);
+          if(idx <= trackers.selected) {
+            trackers.selected--;
+          }
+        };
+      };
 
-    $scope.trackerName = { url: 'http://' };
-    $scope.restoreDefaults = SettingsServ.reset;
-    $scope.addTracker = function(url) {
-      if(!url) { return; }
-      $scope.settings.trackers.list.push({ url: url });
-      $scope.trackerName.url = 'http://';
-    };
-    $scope.deleteTracker = function(tracker, idx) {
-      $scope.settings.trackers.list.splice(idx, 1);
-      if($scope.settings.trackers.selected > $scope.settings.trackers.list.length - 1) {
-        $scope.settings.trackers.selected = 0;
-      }
-    };
+    SettingsServ.promise.then(function() {
+      trackers = SettingsServ.get().trackers;
+      init();
+    });
   }
 }());
