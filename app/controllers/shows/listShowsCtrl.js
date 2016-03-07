@@ -32,9 +32,10 @@
         return show.onlyEps ? ep : 's' + se + 'e' + ep;
       },
       doUpdate = function(show) {
-        DB.update(showsDb, { _id: show._id }, show).then(function(data) {
-          console.log(data);
-        }, Utils.onError);
+        DB.update(showsDb, { _id: show._id }, angular.copy(show))
+          .then(function(data) {
+            console.log(data);
+          }, Utils.onError);
       },
       init = function() {
         settings = SettingsServ.get();
