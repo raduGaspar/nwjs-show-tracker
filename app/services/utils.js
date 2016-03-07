@@ -5,9 +5,9 @@
     .app
     .factory('Utils', Utils);
 
-  Utils.$inject = ['$q'];
+  Utils.$inject = ['$q', 'ngNotify'];
 
-  function Utils($q) {
+  function Utils($q, ngNotify) {
     var gui = require('nw.gui'),
       fs = require('fs'),
       path = require('path'),
@@ -33,6 +33,12 @@
       onError: function(err) {
         if(err) {
           console.log('err', err);
+          ngNotify.set(err.message || 'Error Occured', {
+            position: 'top',
+            type: 'error',
+            sticky: true,
+            duration: 2000
+          });
         }
       },
       loadFile: function(path) {

@@ -5,6 +5,7 @@
     .module('showtracker', [
       'ui.router',
       'ngAnimate',
-      'ngTagsInput'
+      'ngTagsInput',
+      'ngNotify'
     ]);
 }());
