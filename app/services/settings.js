@@ -20,18 +20,21 @@
           ]
         }
       },
+      sid = null,
       settings = {},
       // insert default settings into DB
       seed = function() {
         return DB.insert(settingsDb, { settings: defaults }).then(function(res) {
           console.log('SettingsServ inserted', res.settings);
-          apply(res.settings);
+          apply(res);
         }, Utils.onError);
       },
       // apply loaded settings
       apply = function(res) {
-        for(var i in res) {
-          settings[i] = res[i];
+        console.log(res);
+        sid = res._id;
+        for(var i in res.settings) {
+          settings[i] = res.settings[i];
         }
       },
       // reset settings to default
@@ -40,10 +43,11 @@
       },
       // save current settings to DB
       save = function() {
-        // TODO: fix this to gain access to settings._id
-        return DB.update(settingsDb, { _id: settings._id }, {
+        if(!sid) { return; }
+
+        return DB.update(settingsDb, { _id: sid }, {
           settings: angular.copy(settings)
-        }, function(res) {
+        }).then(function(res) {
           console.log('SettingsServ update success', res);
         }, Utils.onError);
       },
@@ -58,7 +62,7 @@
 
     var promise = DB.find(settingsDb, {}).then(function(res) {
       console.log('SettingsServ settings', res);
-      res.length ? apply(res[0].settings) : seed();
+      res.length ? apply(res[0]) : seed();
     }, Utils.onError);
 
     return {

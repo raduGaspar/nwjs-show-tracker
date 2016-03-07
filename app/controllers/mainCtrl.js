@@ -26,6 +26,9 @@
     $scope.settings = SettingsServ.get();
     $scope.$watch('settings', function(newVal, oldVal) {
       console.log('settings changed', newVal);
+      if(newVal) {
+        SettingsServ.save();
+      }
     }, true);
 
     // all console.log calls are removed when packaging; cool huh? :D
