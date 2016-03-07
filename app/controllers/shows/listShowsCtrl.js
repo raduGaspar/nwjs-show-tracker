@@ -82,7 +82,7 @@
       return false;
     };
 
-    $scope.downloadTorrent = function(show) {
+    $scope.searchTorrent = function(show) {
       var next = getEpisodeToView(show),
         searchFor = show.name + ' ' + next;
       console.log(searchFor);
