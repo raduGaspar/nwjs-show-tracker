@@ -20,8 +20,9 @@
           $scope.trackerName.url = pre;
         };
         $scope.deleteTracker = function(idx) {
+          console.log(trackers);
           trackers.list.splice(idx, 1);
-          if(idx <= trackers.selected) {
+          if(idx && idx <= trackers.selected) {
             trackers.selected--;
           }
         };
