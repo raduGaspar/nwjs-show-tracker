@@ -33,8 +33,8 @@
       },
       doUpdate = function(show) {
         DB.update(showsDb, { _id: show._id }, angular.copy(show))
-          .then(function(data) {
-            console.log(data);
+          .then(function(res) {
+            console.log('show update success', res);
           }, Utils.onError);
       },
       init = function() {
