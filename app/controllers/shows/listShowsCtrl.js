@@ -11,11 +11,9 @@
     console.log('Hello from ListShowsCtrl!');
     /*
      * TODO:
-     * 1. use a DB instead of JSON
-     * 2. allow shows export/import to/from JSON
-     * 3. pagination (maybe lazy loading) & filtering
+     * 1. allow shows export/import to/from JSON
+     * 2. pagination (maybe lazy loading) & filtering
      */
-
 
     var settings,
       globals = Utils.getGlobals(),
@@ -43,7 +41,6 @@
 
         $scope.showData = { name: undefined };
         $scope.getEpisodeToView = getEpisodeToView;
-        $scope.selectedShow;
 
         $scope.selectShow = function(show) {
           $scope.selectedShow = show;
