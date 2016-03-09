@@ -5,9 +5,9 @@
     .app
     .controller('SettingsCtrl', SettingsCtrl);
 
-  SettingsCtrl.$inject = ['$scope', 'SettingsServ'];
+  SettingsCtrl.$inject = ['$scope', 'SettingsServ', 'DB', 'Utils'];
 
-  function SettingsCtrl($scope, SettingsServ) {
+  function SettingsCtrl($scope, SettingsServ, DB, Utils) {
     console.log('Hello from SettingsCtrl!');
     var trackers,
       pre = 'http://',
@@ -28,6 +28,17 @@
               trackers.selected--;
             }
           }
+        };
+        $scope.doExport = function(input) {
+          DB.export().then(function(res) {
+            var json = angular.toJson(Utils.cleanIds(res));
+            console.log('export res', json);
+            console.log('save to', input.files[0].path);
+          });
+        };
+        $scope.doImport = function(input) {
+          DB.import();
+          console.log('open from', input.files[0].path);
         };
       };
 

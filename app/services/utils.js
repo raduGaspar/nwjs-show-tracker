@@ -41,35 +41,20 @@
           });
         }
       },
-      loadFile: function(path) {
-        return $q(function(resolve, reject) {
-          fs.readFile(path, 'utf8', function(err, data) {
-            if(err) { reject(err); }
-            resolve(data);
-          });
-        });
-      },
-      store: function(key, val) {
-        if(key && val) {
-          return localStorage.setItem(key, angular.toJson(val));
-        } else if(key) {
-          return angular.fromJson(localStorage.getItem(key));
-        } else {
-          console.log('a key must be specified');
-        }
-      },
-      findById: function(set, id) {
-        if(!set.length) { return null; }
-        var len = set.length,
-            i = 0;
-
-        for(i; i<len; i++) {
-          if(set[i]._id === id) {
-            return set[i];
+      cleanIds: function(arr) {
+        function doClean(set) {
+          if(set.length) {
+            for(var i=0; i<set.length; i++) {
+              doClean(set[i]);
+            }
+          } else {
+            delete set._id;
           }
         }
 
-        return null;
+        doClean(arr);
+
+        return arr;
       }
     };
   }

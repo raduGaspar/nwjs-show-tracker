@@ -34,7 +34,7 @@
           if(!db || !data) {
             reject({ message: 'required parameters missing' });
           } else {
-            db.find({}, function(err, docs) {
+            db.find(data, function(err, docs) {
               if(err) { reject(err); }
 
               resolve(docs);
@@ -71,6 +71,17 @@
           }
         });
       },
+      doImport = function(json) {
+        console.log('DB import');
+      },
+      doExport = function() {
+        console.log('DB export');
+        var all = [];
+        for(var i=0; i<dbs.length; i++) {
+          all.push(doFind(db[dbs[i]], {}));
+        }
+        return $q.all(all);
+      },
       init = function() {
         for(var i=0; i<dbs.length; i++) {
           var currentDb = dbs[i];
@@ -92,7 +103,9 @@
       find: doFind,
       insert: doInsert,
       update: doUpdate,
-      delete: doDelete
+      delete: doDelete,
+      import: doImport,
+      export: doExport
     };
   }
 }());
