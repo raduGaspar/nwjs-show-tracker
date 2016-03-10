@@ -3,56 +3,54 @@
 
   angular
     .app
-    .factory('L', ['$locale', '$http',
-      function($locale, $http) {
-        // TODO: refactor this to read the i18n folder for lang files
-        var i18n, promise,
-          locales = ['en', 'ro'],
-          loadLocale = function(locale) {
-            locale = locale || $locale.id;
-            locale = locale.toLowerCase();
+    .factory('L', L);
 
-            var allowedLocale = locales.indexOf(locale) > -1,
-              useLocale = allowedLocale ? locale : locales[0];
+  L.$inject = ['Utils'];
 
-            promise = $http.get('i18n/lang-' + useLocale + '.json')
-              .then(function(res) {
-                i18n = res.data;
-              });
-          };
+  function L(Utils) {
+    // TODO: refactor this to read the i18n folder for lang files
+    var i18n, promise,
+      globals = Utils.getGlobals(),
+      dirname = globals.dirname,
+      loadLocale = function(locale) {
+        locale = locale || 'en.json';
 
-        // load locale json
-        if(!i18n) {
-          loadLocale(locales[0]);
+        promise = Utils.readFile(dirname + '/i18n/' + locale)
+          .then(function(res) {
+            i18n = angular.fromJson(res);
+            console.log('lang', i18n);
+          });
+      };
+
+    // search for available language files
+    Utils.readDir(dirname + '/i18n').then(function(files) {
+      loadLocale();
+    }, Utils.onError);
+
+    function dotSelector(obj, str) {
+      var path = str.split('.'),
+        pathLen = path.length,
+        i = 0,
+        key;
+      for (i; i<pathLen; i++) {
+        key = path[i];
+        if (obj && key in obj) {
+          obj = obj[key];
         } else {
-          console.log('locale json already loaded');
+          return;
         }
-
-        function dotSelector(obj, str) {
-          var path = str.split('.'),
-            pathLen = path.length,
-            i = 0,
-            key;
-          for (i; i < pathLen; i++) {
-            var key = path[i];
-            if (key in obj) {
-              obj = obj[key];
-            } else {
-              return;
-            }
-          }
-          return obj;
-        }
-
-        function translate(key, args) {
-          return dotSelector(i18n, key);
-        }
-
-        return {
-          promise: promise,
-          translate: translate,
-          loadLocale: loadLocale
-        };
       }
-    ]);
+      return obj;
+    }
+
+    function translate(key, args) {
+      return dotSelector(i18n, key);
+    }
+
+    return {
+      promise: promise,
+      translate: translate,
+      loadLocale: loadLocale
+    };
+  };
 }());

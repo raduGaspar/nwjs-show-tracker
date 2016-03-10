@@ -57,6 +57,14 @@
           });
         });
       },
+      readDir: function(path) {
+        return $q(function(resolve, reject) {
+          fs.readdir(path, function(err, files) {
+            if(err) { reject(err); }
+            resolve(files);
+          })
+        })
+      },
       cleanIds: function(arr) {
         function doClean(set) {
           if(set.length) {

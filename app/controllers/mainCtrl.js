@@ -5,9 +5,9 @@
     .app
     .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope', '$document', 'Utils', 'SettingsServ'];
+  MainCtrl.$inject = ['$scope', '$document', 'L', 'Utils', 'SettingsServ'];
 
-  function MainCtrl($scope, $document, Utils, SettingsServ) {
+  function MainCtrl($scope, $document, L, Utils, SettingsServ) {
     console.log('Hello from MainCtrl!');
 
     var developMode,
@@ -24,6 +24,7 @@
     });
 
     $scope.settings = SettingsServ.get();
+    $scope.L = L.translate;
     $scope.$watch('settings', function(newVal, oldVal) {
       console.log('settings changed', newVal);
       if(newVal) {

@@ -1,0 +1,39 @@
+{
+  "menu": {
+    "shows": "Shows",
+    "settings": "Settings",
+    "help": "Help"
+  },
+  "shows": {
+
+  },
+  "settings": {
+    "panels": {
+      "general": "General",
+      "trackers": "Torrent Trackers",
+      "restore": "Restore Defaults"
+    },
+    "titles": {
+      "trackerList": "Pick a default tracker to use",
+      "trackerAdd": "Add a tracker to the list"
+    },
+    "buttons": {
+      "export": "Export Data",
+      "import": "Import Data",
+      "restore": "Restore Defaults"
+    },
+    "warnings": {
+      "general": "Exporting will save all Settings and Shows. On import all current Settings and Shows will be deleted!",
+      "restore": "Restoring the defaults will remove all current trackers and custom settings! Your Shows won't be affected."
+    },
+    "labels": {
+      "showTags": "Display TV-Show Tags",
+      "pickLanguage": "Pick Language",
+      "trackerAdd": "press ENTER to save",
+      "trackerAddPlaceholder": "Add another tracker url"
+    }
+  },
+  "alerts": {
+    "warning": "Warning!"
+  }
+}
