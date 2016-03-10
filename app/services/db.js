@@ -71,8 +71,16 @@
           }
         });
       },
-      doImport = function(json) {
-        console.log('DB import');
+      doImport = function(data) {
+        console.log('DB import', data);
+        var all = [];
+        for(var i=0; i<dbs.length; i++) {
+          all.push(
+            doDelete(db[dbs[i]], {}, { multi: true }),
+            doInsert(db[dbs[i]], data[i])
+          )
+        }
+        return $q.all(all);
       },
       doExport = function() {
         console.log('DB export');

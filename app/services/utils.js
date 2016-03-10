@@ -41,6 +41,22 @@
           });
         }
       },
+      writeFile: function(path, data) {
+        return $q(function(resolve, reject) {
+          fs.writeFile(path, data, function(err) {
+            if (err) { reject(err); }
+            resolve(path);
+          });
+        });
+      },
+      readFile: function(path) {
+        return $q(function(resolve, reject) {
+          fs.readFile(path, 'utf8', function(err, data) {
+            if(err) { reject(err); }
+            resolve(data);
+          });
+        });
+      },
       cleanIds: function(arr) {
         function doClean(set) {
           if(set.length) {

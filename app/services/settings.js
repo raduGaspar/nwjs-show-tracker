@@ -53,7 +53,7 @@
       },
       // delete all settings
       purge = function() {
-        return DB.delete(settingsDb, {}, { multiple: true }).then(function(res) {
+        return DB.delete(settingsDb, {}, { multi: true }).then(function(res) {
           console.log('SettingsServ deleted', res);
         }, Utils.onError);
       };
