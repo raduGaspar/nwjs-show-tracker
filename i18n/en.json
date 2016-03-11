@@ -23,13 +23,13 @@
       "restore": "Restore Defaults"
     },
     "warnings": {
-      "general": "Exporting will save all ${this.menu.settings} and ${this.menu.shows}. On import all current ${this.menu.settings} and ${this.menu.shows} will be deleted!",
-      "restore": "Restoring the defaults will remove all current trackers and custom settings! Your ${this.menu.shows} won't be affected."
+      "general": "Exporting will save all <code>${this.menu.settings}</code> and <code>${this.menu.shows}</code>. On import all current <code>${this.menu.settings}</code> and <code>${this.menu.shows}</code> will be deleted!",
+      "restore": "Restoring the defaults will remove all current trackers and custom settings! Your <code>${this.menu.shows}</code> won't be affected."
     },
     "labels": {
       "showTags": "Display TV-Show Tags",
       "pickLanguage": "Pick Language",
-      "trackerAdd": "press ${key} to save",
+      "trackerAdd": "press <code>${key}</code> to save",
       "trackerAddPlaceholder": "Add another tracker url"
     }
   },

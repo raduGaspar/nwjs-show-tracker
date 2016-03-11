@@ -50,7 +50,7 @@
             .replace('}', ''),
             reg = new RegExp('\\'+localVars[lv], 'g');
 
-          obj = obj.replace(reg, dotSelector(i18n, short));
+          obj = obj.replace(reg, dotSelector(i18n, short) || '');
         }
       }
 
