@@ -27,6 +27,8 @@
     Utils.readDir(dirname + '/i18n').then(function(files) {
       console.log('files', files);
       languages.available = files;
+
+      // TODO: this should be based on user settings (in DB)
       languages.picked = files[0];
       loadLocale(files[0]);
     }, Utils.onError);

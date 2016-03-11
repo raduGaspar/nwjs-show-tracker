@@ -10,7 +10,7 @@
   function SettingsServ(DB, Utils) {
     var settingsDb = DB.getDb('settings'),
       defaults = {
-        language: 'en',
+        language: 'en.json',
         showTags: true,
         trackers: {
           selected: 0,
