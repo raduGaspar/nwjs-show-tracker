@@ -13,14 +13,14 @@
         <div class="checkbox">
           <label>
             <input type="checkbox" ng-model="settings.showTags"></input>
-            Display TV-Show Tags
+            {{ L('settings.labels.showTags') }}
           </label>
         </div>
       </li>
       <li class="list-group-item">
         <div class="input-group">
           <span class="input-group-addon">
-            Pick Language
+            {{ L('settings.labels.pickLanguage') }}
           </span>
           <select class="form-control"
             ng-model="addShow.airsOn"
@@ -30,20 +30,21 @@
       </li>
       <li class="list-group-item">
         <div class="alert alert-warning" role="alert">
-          <p><strong>Warning!</strong></p>
-          <p>Exporting will save all <code>Settings</code> and <code>Shows</code>.</p>
-          <p class="gap-bottom">Importing data will delete all current <code>Settings</code> and <code>Shows</code>!</p>
+          <p class="gap-bottom">
+            <strong>{{ L('alerts.warning') }}</strong>&nbsp;
+            <span ng-bind-html="L('settings.warnings.general') | unsafe"></span>
+          </p>
           <div class="btn-group btn-group-justified" role="group">
             <div class="btn-group" role="group">
               <button type="button" class="btn btn-default" bind-to=".db-export">
                 <i class="glyphicon glyphicon-export"></i>
-                Export Data
+                {{ L('settings.buttons.export') }}
               </button>
             </div>
             <div class="btn-group" role="group">
               <button type="button" class="btn btn-danger" bind-to=".db-import">
                 <i class="glyphicon glyphicon-import"></i>
-                Import Data
+                {{ L('settings.buttons.import') }}
               </button>
             </div>
           </div>
@@ -54,11 +55,11 @@
 </div>
 <div class="panel panel-primary">
   <div class="panel-heading">
-    Torrent Trackers
+    {{ L('settings.panels.trackers') }}
   </div>
   <div class="panel-body trackers-list">
     <!-- trackers list -->
-    <h4>Pick a default tracker to use</h4>
+    <h4>{{ L('settings.titles.trackerList') }}</h4>
     <ul class="list-group">
       <li class="list-group-item animate"
         ng-repeat="tracker in settings.trackers.list track by $index">
@@ -81,7 +82,7 @@
         </div>
       </li>
     </ul>
-    <h4>Add a tracker to the list</h4>
+    <h4>{{ L('settings.titles.trackerAdd') }}</h4>
     <ul class="list-group">
       <li class="list-group-item">
         <div class="input-group">
@@ -92,8 +93,10 @@
             placeholder="Add another tracker url"
             ng-model="trackerName.url"
             ng-enter="addTracker(trackerName.url)">
-          <span class="input-group-addon" ng-if="trackerName.url">
-            press <code>ENTER</code> to save
+          <span class="input-group-addon" ng-if="trackerName.url"
+            ng-bind-html="L('settings.labels.trackerAdd', {
+              key: '<code>ENTER</code>'
+            }) | unsafe">
           </span>
         </div>
       </li>
@@ -102,19 +105,20 @@
 </div>
 <div class="panel panel-primary">
   <div class="panel-heading">
-    Restore defaults
+    {{ L('settings.panels.restore') }}
   </div>
   <div class="panel-body">
     <div class="alert alert-warning" role="alert">
       <p class="gap-bottom">
-        <strong>Warning!</strong>&nbsp;Restoring the defaults will remove all current trackers and custom settings! Your <code>Shows</code> won't be affected.
+        <strong>{{ L('alerts.warning') }}</strong>&nbsp;
+        <span ng-bind-html="L('settings.warnings.restore') | unsafe"></span>
       </p>
       <div class="btn-group btn-group-justified" role="group">
         <div class="btn-group" role="group">
           <button class="btn btn-sm btn-danger"
             ng-click="restoreDefaults()">
             <i class="fa fa-refresh"></i>
-            Restore Defaults
+            {{ L('settings.buttons.restore') }}
           </button>
         </div>
       </div>

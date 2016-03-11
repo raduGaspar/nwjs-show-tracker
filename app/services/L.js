@@ -27,7 +27,7 @@
       loadLocale();
     }, Utils.onError);
 
-    function dotSelector(obj, str) {
+    function dotSelector(obj, str, args) {
       var path = str.split('.'),
         pathLen = path.length,
         i = 0,
@@ -40,11 +40,34 @@
           return;
         }
       }
+
+      // replace dynamic variables which point to objects inside the file
+      var localVars = obj.match(/\${this.(.*?)}/g) || [];
+      if(localVars.length) {
+        for(var lv=0; lv<localVars.length; lv++) {
+          var short = localVars[lv]
+            .replace('${this.', '')
+            .replace('}', ''),
+            reg = new RegExp('\\'+localVars[lv], 'g');
+
+          obj = obj.replace(reg, dotSelector(i18n, short));
+        }
+      }
+
+      // replace dynamic variables with provided values
+      if(args) {
+        var k, reg;
+        for(k in args) {
+          reg = new RegExp('\\${'+k+'}', 'g');
+          obj = obj.replace(reg, args[k]);
+        }
+      }
+
       return obj;
     }
 
     function translate(key, args) {
-      return dotSelector(i18n, key);
+      return dotSelector(i18n, key, args);
     }
 
     return {
