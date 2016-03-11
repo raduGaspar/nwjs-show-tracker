@@ -177,9 +177,9 @@ gulp.task('default', [
   'css',
   'js',
   'indexHtml',
-  // 'i18n',
+  'i18n',
   'fonts',
-  // 'nodeDeps',
+  'nodeDeps',
   // 'images',
   'partials',
   'packageFile'
