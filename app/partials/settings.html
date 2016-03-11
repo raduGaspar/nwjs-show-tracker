@@ -23,9 +23,9 @@
             {{ L('settings.descriptors.pickLanguage') }}
           </span>
           <select class="form-control"
-            ng-model="languages.picked"
+            ng-model="settings.language"
             ng-options="value as value for value in languages.available"
-            ng-change="changeLanguage(languages.picked)">
+            ng-change="changeLanguage(settings.language)">
           </select>
         </div>
       </li>

@@ -5,10 +5,9 @@
     .app
     .factory('L', L);
 
-  L.$inject = ['Utils'];
+  L.$inject = ['Utils', 'SettingsServ'];
 
-  function L(Utils) {
-    // TODO: refactor this to read the i18n folder for lang files
+  function L(Utils, SettingsServ) {
     var i18n, promise, languages = {},
       globals = Utils.getGlobals(),
       dirname = globals.dirname,
@@ -24,14 +23,16 @@
       };
 
     // search for available language files
-    Utils.readDir(dirname + '/i18n').then(function(files) {
-      console.log('files', files);
-      languages.available = files;
+    Utils.readDir(dirname + '/i18n')
+      .then(function(files) {
+        console.log('files', files);
+        languages.available = files;
 
-      // TODO: this should be based on user settings (in DB)
-      languages.picked = files[0];
-      loadLocale(files[0]);
-    }, Utils.onError);
+        return SettingsServ.promise;
+      }, Utils.onError)
+      .then(function() {
+        loadLocale(SettingsServ.get().language);
+      });
 
     function dotSelector(obj, str, args) {
       var path = str.split('.'),
