@@ -1,20 +1,20 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    TV Show Tracker
+    {{ L('shows.panels.list') }}
   </div>
   <div class="panel-body">
     <!-- add show fields -->
     <div class="add-show">
-      <h4>Add show details</h4>
+      <h4>{{ L('shows.titles.addShow') }}</h4>
       <div class="input-group">
         <span class="input-group-addon">
-          Show Name
+          {{ L('shows.descriptors.showName') }}
         </span>
         <input type="text" class="form-control" ng-model="showData.name">
       </div>
       <div class="input-group">
         <span class="input-group-addon">
-          Air Day
+          {{ L('shows.descriptors.airDay') }}
         </span>
         <select class="form-control"
           ng-model="showData.airsOn"
@@ -24,14 +24,14 @@
       <div class="input-group">
         <label>
           <input type="checkbox" ng-model="showData.onlyEps"></input>
-          disable seasons
+          {{ L('shows.labels.disableSeasons') }}
         </label>
       </div>
       <div class="row">
         <div ng-class="!showData.onlyEps ? 'col-xs-6' : 'hide'">
           <div class="input-group">
             <span class="input-group-addon">
-              Season
+              {{ L('shows.descriptors.season') }}
             </span>
             <input type="text" class="form-control"
               ng-model="showData.season" valid-number>
@@ -40,21 +40,27 @@
         <div ng-class="!showData.onlyEps ? 'col-xs-6' : 'col-xs-12'">
           <div class="input-group">
             <span class="input-group-addon">
-              Episode
+              {{ L('shows.descriptors.episode') }}
             </span>
-            <input type="text" class="form-control" ng-model="showData.episode" valid-number>
+            <input type="text" class="form-control"
+              ng-model="showData.episode" valid-number>
           </div>
         </div>
       </div>
       <div class="input-group">
         <span class="input-group-addon">
-          Tags
+          {{ L('shows.descriptors.tags') }}
         </span>
-        <tags-input ng-model="showData.tags"></tags-input>
+        <tags-input ng-model="showData.tags"
+          placeholder="{{ L('shows.placeholders.addTags') }}"></tags-input>
       </div>
       <div class="text-right">
-        <button class="btn btn-success" ng-click="doSave(showData)">Save Show</button>
-        <button class="btn btn-danger" ng-click="doCancel()">Cancel</button>
+        <button class="btn btn-success" ng-click="doSave(showData)">
+          {{ L('shows.buttons.save') }}
+        </button>
+        <button class="btn btn-danger" ng-click="doCancel()">
+          {{ L('shows.buttons.cancel') }}
+        </button>
       </div>
     </div>
   </div>

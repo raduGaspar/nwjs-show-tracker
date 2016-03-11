@@ -26,7 +26,14 @@
     },
     "placeholders": {
       "addShow": "Filter or add show",
-      "addTags": "Add a tag"
+      "addTags": "Add show tags: comedy, adventure, etc."
+    },
+    "descriptors": {
+      "showName": "Show Name",
+      "airDay": "Air Day",
+      "season": "Season",
+      "episode": "Episode",
+      "tags": "Tags"
     }
   },
   "settings": {
@@ -50,11 +57,13 @@
     },
     "labels": {
       "showTags": "Display TV-Show Tags",
-      "pickLanguage": "Pick Language",
       "trackerAdd": "press <code>${key}</code> to save"
     },
     "placeholders": {
       "trackerAdd": "Add another tracker url"
+    },
+    "descriptors": {
+      "pickLanguage": "Pick Language"
     }
   },
   "alerts": {
