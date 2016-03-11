@@ -1,76 +1,76 @@
 {
   "menu": {
-    "shows": "",
-    "settings": "",
-    "help": ""
+    "shows": "Seriale",
+    "settings": "Setari",
+    "help": "Ajutor"
   },
   "shows": {
     "panels": {
-      "list": ""
+      "list": "TV Show Tracker"
     },
     "titles": {
-      "addShow": ""
+      "addShow": "Adauga detalii serial"
     },
     "buttons": {
-      "add": "",
-      "save": "",
-      "cancel": ""
+      "add": "Adauga Serial",
+      "save": "Salveaza Serial",
+      "cancel": "Anuleaza"
     },
     "warnings": {
-      "increaseSeason": "",
-      "noShows": ""
+      "increaseSeason": "Acum poti mari sezonul serialului",
+      "noShows": "Nu exista seriale. Click pe butonul <code>${this.shows.buttons.add}</code> aflat in dreapta inputului de filtre sau pe butonul de mai jos pentru a incepe"
     },
     "labels": {
-      "increaseSeason": "",
-      "disableSeasons": ""
+      "increaseSeason": "Apasa tasta <code>${key}</code> pentru a mari numarul sezonului",
+      "disableSeasons": "dezactivare sezoane"
     },
     "placeholders": {
-      "addShow": "",
-      "addTags": ""
+      "addShow": "Filtreaza sau adauga seriale",
+      "addTags": "Adauga taguri pentru serial: comedie, adventura, etc."
     },
     "descriptors": {
-      "showName": "",
-      "airDay": "",
-      "season": "",
-      "episode": "",
-      "tags": ""
+      "showName": "Nume",
+      "airDay": "Apare",
+      "season": "Sezon",
+      "episode": "Episod",
+      "tags": "Taguri"
     }
   },
   "settings": {
     "panels": {
-      "general": "",
-      "trackers": "",
-      "restore": ""
+      "general": "Generale",
+      "trackers": "Trackere Torrent",
+      "restore": "Revenire la setarile implicite"
     },
     "titles": {
-      "trackerList": "",
-      "trackerAdd": ""
+      "trackerList": "Alege un tracker implicit",
+      "trackerAdd": "Adauga un tracker nou"
     },
     "buttons": {
-      "export": "",
-      "import": "",
-      "restore": ""
+      "export": "Exporta Datele",
+      "import": "Importa Datele",
+      "restore": "Resetare"
     },
     "warnings": {
-      "general": "",
-      "restore": ""
+      "general": "Exportarea va salva tot din <code>${this.menu.settings}</code> si <code>${this.menu.shows}</code>. La import tot ce se afla in <code>${this.menu.settings}</code> si <code>${this.menu.shows}</code> va fi sters!",
+      "restore": "Restaurarea la setarile implicite va sterge toate trackerele si setarile personale! Datele despre <code>${this.menu.shows}</code> nu vor fi afectate."
     },
     "labels": {
-      "showTags": "",
-      "trackerAdd": ""
+      "showTags": "Afiseaza Tagurile Serialelor",
+      "trackerAdd": "apasa <code>${key}</code> pentru a salva"
     },
     "placeholders": {
-      "trackerAdd": ""
+      "trackerAdd": "Adauga un tracker url"
     },
     "descriptors": {
-      "pickLanguage": ""
+      "pickLanguage": "Alege Limba"
     }
   },
   "alerts": {
-    "warning": "",
-    "info": ""
+    "warning": "Atentie!",
+    "info": "Informare!"
   },
   "labels": {
-    "search": ""
+    "search": "Cauta"
   }
 }
