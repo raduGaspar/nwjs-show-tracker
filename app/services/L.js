@@ -9,10 +9,11 @@
 
   function L(Utils) {
     // TODO: refactor this to read the i18n folder for lang files
-    var i18n, promise,
+    var i18n, promise, languages = {},
       globals = Utils.getGlobals(),
       dirname = globals.dirname,
       loadLocale = function(locale) {
+        console.log('changing language to', locale);
         locale = locale || 'en.json';
 
         promise = Utils.readFile(dirname + '/i18n/' + locale)
@@ -24,7 +25,10 @@
 
     // search for available language files
     Utils.readDir(dirname + '/i18n').then(function(files) {
-      loadLocale();
+      console.log('files', files);
+      languages.available = files;
+      languages.picked = files[0];
+      loadLocale(files[0]);
     }, Utils.onError);
 
     function dotSelector(obj, str, args) {
@@ -72,6 +76,7 @@
 
     return {
       promise: promise,
+      languages: languages,
       translate: translate,
       loadLocale: loadLocale
     };

@@ -5,9 +5,9 @@
     .app
     .controller('SettingsCtrl', SettingsCtrl);
 
-  SettingsCtrl.$inject = ['$scope', '$window', 'SettingsServ', 'DB', 'Utils'];
+  SettingsCtrl.$inject = ['$scope', '$window', 'SettingsServ', 'DB', 'Utils', 'L'];
 
-  function SettingsCtrl($scope, $window, SettingsServ, DB, Utils) {
+  function SettingsCtrl($scope, $window, SettingsServ, DB, Utils, L) {
     console.log('Hello from SettingsCtrl!');
     var trackers,
       pre = 'http://',
@@ -52,6 +52,8 @@
               $window.location.reload();
             }, Utils.onError);
         };
+        $scope.languages = L.languages;
+        $scope.changeLanguage = L.loadLocale;
       };
 
     SettingsServ.promise.then(function() {

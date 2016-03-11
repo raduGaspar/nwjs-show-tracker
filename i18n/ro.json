@@ -1,0 +1,76 @@
+{
+  "menu": {
+    "shows": "",
+    "settings": "",
+    "help": ""
+  },
+  "shows": {
+    "panels": {
+      "list": ""
+    },
+    "titles": {
+      "addShow": ""
+    },
+    "buttons": {
+      "add": "",
+      "save": "",
+      "cancel": ""
+    },
+    "warnings": {
+      "increaseSeason": "",
+      "noShows": ""
+    },
+    "labels": {
+      "increaseSeason": "",
+      "disableSeasons": ""
+    },
+    "placeholders": {
+      "addShow": "",
+      "addTags": ""
+    },
+    "descriptors": {
+      "showName": "",
+      "airDay": "",
+      "season": "",
+      "episode": "",
+      "tags": ""
+    }
+  },
+  "settings": {
+    "panels": {
+      "general": "",
+      "trackers": "",
+      "restore": ""
+    },
+    "titles": {
+      "trackerList": "",
+      "trackerAdd": ""
+    },
+    "buttons": {
+      "export": "",
+      "import": "",
+      "restore": ""
+    },
+    "warnings": {
+      "general": "",
+      "restore": ""
+    },
+    "labels": {
+      "showTags": "",
+      "trackerAdd": ""
+    },
+    "placeholders": {
+      "trackerAdd": ""
+    },
+    "descriptors": {
+      "pickLanguage": ""
+    }
+  },
+  "alerts": {
+    "warning": "",
+    "info": ""
+  },
+  "labels": {
+    "search": ""
+  }
+}

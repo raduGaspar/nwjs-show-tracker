@@ -23,8 +23,9 @@
             {{ L('settings.descriptors.pickLanguage') }}
           </span>
           <select class="form-control"
-            ng-model="addShow.airsOn"
-            ng-options="value as value for value in days">
+            ng-model="languages.picked"
+            ng-options="value as value for value in languages.available"
+            ng-change="changeLanguage(languages.picked)">
           </select>
         </div>
       </li>
