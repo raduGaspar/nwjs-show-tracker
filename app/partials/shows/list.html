@@ -1,28 +1,28 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    TV Show Tracker
+    {{ L('shows.panels.list') }}
     <div class="input-group">
       <span class="input-group-addon">
         <i class="fa fa-filter"></i>
       </span>
-      <input type="text" class="form-control" placeholder="Filter or add show" ng-model="showData.name">
+      <input type="text" class="form-control" placeholder="{{ L('shows.placeholders.addShow') }}" ng-model="showData.name">
       <span class="input-group-btn">
         <button class="btn btn-default"
-          ng-click="addShow()">Add Show</button>
+          ng-click="addShow()">{{ L('shows.buttons.add') }}</button>
       </span>
     </div>
     <div ng-if="shows.length">
-      <p class="label label-default" ng-if="!pressedKey || pressedKey !== 18">Press and hold <code>ALT</code> to increase the season number</p>
-      <p class="label label-danger" ng-if="pressedKey === 18">You can now increase the show season number.</p>
+      <p class="label label-default" ng-if="!pressedKey || pressedKey !== 18" ng-bind-html="L('shows.labels.increaseSeason', { key: 'ALT'}) | unsafe"></p>
+      <p class="label label-danger" ng-if="pressedKey === 18">{{ L('shows.warnings.increaseSeason') }}</p>
     </div>
   </div>
   <div class="panel-body">
     <div class="alert alert-info" role="alert" ng-if="!shows.length">
       <p class="gap-bottom">
-        <strong>Info!</strong>&nbsp;No shows available. Click on the <code>Add Show</code> button next to the filters input above or on the one below to get started.
+        <strong>{{ L('alerts.info') }}</strong>&nbsp;<span ng-bind-html="L('shows.warnings.noShows') | unsafe"></span>
       </p>
       <button class="btn btn-sm btn-primary"
-        ng-click="addShow()">Add Show</button>
+        ng-click="addShow()">{{ L('shows.buttons.add') }}</button>
     </div>
 
     <!-- tv show list -->
@@ -43,7 +43,7 @@
               <button class="btn btn-xs btn-default" ng-click="prevEpisode(show)">
                 <i class="fa fa-arrow-down"></i>
               </button>
-              <button class="btn btn-xs btn-success" title="search"
+              <button class="btn btn-xs btn-success" title="{{ L('labels.search') }}"
                 ng-click="searchTorrent(show)">
                 <i class="fa fa-search"></i>
               </button>

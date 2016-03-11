@@ -5,7 +5,29 @@
     "help": "Help"
   },
   "shows": {
-
+    "panels": {
+      "list": "TV Show Tracker"
+    },
+    "titles": {
+      "addShow": "Add show details"
+    },
+    "buttons": {
+      "add": "Add Show",
+      "save": "Save Show",
+      "cancel": "cancel"
+    },
+    "warnings": {
+      "increaseSeason": "You can now increase the show season number",
+      "noShows": "No shows available. Click on the <code>${this.shows.buttons.add}</code> button next to the filters input above or on the one bellow to get started"
+    },
+    "labels": {
+      "increaseSeason": "Press and hold <code>${key}</code> to increase the season number",
+      "disableSeasons": "disable seasons"
+    },
+    "placeholders": {
+      "addShow": "Filter or add show",
+      "addTags": "Add a tag"
+    }
   },
   "settings": {
     "panels": {
@@ -29,11 +51,17 @@
     "labels": {
       "showTags": "Display TV-Show Tags",
       "pickLanguage": "Pick Language",
-      "trackerAdd": "press <code>${key}</code> to save",
-      "trackerAddPlaceholder": "Add another tracker url"
+      "trackerAdd": "press <code>${key}</code> to save"
+    },
+    "placeholders": {
+      "trackerAdd": "Add another tracker url"
     }
   },
   "alerts": {
-    "warning": "Warning!"
+    "warning": "Warning!",
+    "info": "Info!"
+  },
+  "labels": {
+    "search": "Search"
   }
 }

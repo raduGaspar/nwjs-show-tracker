@@ -92,7 +92,7 @@
         };
 
         $scope.deleteShow = function(show, idx) {
-          DB.delete(showsDb, show).then(function(data) {
+          DB.delete(showsDb, { _id: show._id }).then(function(data) {
             console.log('deleted show', data, show);
             $scope.shows.splice(idx, 1);
           });

@@ -90,7 +90,7 @@
             <i class="fa fa-plus"></i>
           </span>
           <input type="url" class="form-control"
-            placeholder="Add another tracker url"
+            placeholder="{{ L('settings.placeholders.trackerAdd') }}"
             ng-model="trackerName.url"
             ng-enter="addTracker(trackerName.url)">
           <span class="input-group-addon" ng-if="trackerName.url"
