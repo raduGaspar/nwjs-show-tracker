@@ -30,9 +30,19 @@
           'Thursday', 'Friday', 'Saturday'
         ]
       },
+      onSuccess: function(data) {
+        if(data) {
+          console.log('Utils.onSuccess', data);
+          ngNotify.set(data.message || 'Action was successfull!', {
+            position: 'top',
+            type: 'success',
+            duration: 2000
+          });
+        }
+      },
       onError: function(err) {
         if(err) {
-          console.log('err', err);
+          console.log('Utils.onError', err);
           ngNotify.set(err.message || 'Error Occured', {
             position: 'top',
             type: 'error',
