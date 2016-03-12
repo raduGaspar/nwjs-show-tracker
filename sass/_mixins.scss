@@ -19,7 +19,7 @@
 
 @mixin wrapper($size) {
   position: fixed;
-  top: $size;
+  top: 30+$size;
   left: $size;
   right: $size;
   bottom: $size;

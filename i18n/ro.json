@@ -1,8 +1,7 @@
 {
   "menu": {
     "shows": "Seriale",
-    "settings": "Setari",
-    "help": "Ajutor"
+    "settings": "Setari"
   },
   "shows": {
     "panels": {

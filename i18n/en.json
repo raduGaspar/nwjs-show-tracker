@@ -1,8 +1,7 @@
 {
   "menu": {
     "shows": "Shows",
-    "settings": "Settings",
-    "help": "Help"
+    "settings": "Settings"
   },
   "shows": {
     "panels": {

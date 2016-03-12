@@ -99,6 +99,39 @@ $actionsWidth: 73px;
   .gap-left { margin-left: $gapSize; }
 }
 
+// application menu
+.app-menu {
+  font-family: sans-serif;
+  font-size: 13px;
+  padding: 0;
+  border-bottom: 2px solid #eee;
+  padding: 0 5px;
+
+  li {
+    display: inline-block;
+    margin: 0 4px;
+    position: relative;
+
+    a {
+      color: inherit;
+      cursor: default;
+      text-decoration: none;
+      padding: 3px 5px;
+      display: inline-block;
+    }
+
+    &:hover:after {
+      position: absolute;
+      height: 2px;
+      content: '';
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      background: #337ab7;
+    }
+  }
+}
+
 // animations
 .animate {
   &.ng-move,
