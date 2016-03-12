@@ -10,6 +10,7 @@
   function AppMenuCtrl($scope, $state, Utils) {
     console.log('Hello from AppMenuCtrl!');
 
+    // TODO: add logic for menu translation
     var globals = Utils.getGlobals(),
       gui = globals.gui,
       win = globals.win,
