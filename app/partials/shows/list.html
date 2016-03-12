@@ -34,7 +34,7 @@
         ng-init="openActions=false">
         <div class="row" ng-class="{ animate: openActions }">
           <div class="col-xs-6">{{ getEpisodeToView(show) }}&nbsp;{{ show.name }}</div>
-          <div class="col-xs-2">{{ show.airsOn }}</div>
+          <div class="col-xs-2">{{ L('weekdays')[show.airsOn] }}</div>
           <div class="col-xs-4 text-right">
             <div class="btn-group" role="group">
               <button class="btn btn-xs btn-default" ng-click="nextEpisode(show)">

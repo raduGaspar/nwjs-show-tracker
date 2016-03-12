@@ -72,5 +72,6 @@
   },
   "labels": {
     "search": "Cauta"
-  }
+  },
+  "weekdays": ["Duminica", "Luni", "Marti", "Miercuri", "Joi", "Vineri", "Sambata"]
 }

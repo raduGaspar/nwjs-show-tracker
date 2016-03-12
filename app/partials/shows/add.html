@@ -18,7 +18,8 @@
         </span>
         <select class="form-control"
           ng-model="showData.airsOn"
-          ng-options="value as value for value in days">
+          ng-options="idx*1 as day for (idx, day) in L('weekdays')">
+          <!-- idx*1 converts idx to number -->
         </select>
       </div>
       <div class="input-group">

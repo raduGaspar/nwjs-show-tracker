@@ -21,10 +21,9 @@
         scopeUpdate();
       };
 
-    $scope.days = Utils.defaults.weekdays;
     $scope.showData = {
       name: undefined,
-      airsOn: Utils.defaults.weekdays[new Date().getDay()],
+      airsOn: new Date().getDay(),
       season: 1,
       episode: 1
     };

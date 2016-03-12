@@ -49,24 +49,26 @@
       }
 
       // replace dynamic variables which point to objects inside the file
-      var localVars = obj.match(/\${this.(.*?)}/g) || [];
-      if(localVars.length) {
-        for(var lv=0; lv<localVars.length; lv++) {
-          var short = localVars[lv]
-            .replace('${this.', '')
-            .replace('}', ''),
-            reg = new RegExp('\\'+localVars[lv], 'g');
+      if(typeof obj === 'string') {
+        var localVars = obj.match(/\${this.(.*?)}/g) || [];
+        if(localVars.length) {
+          for(var lv=0; lv<localVars.length; lv++) {
+            var short = localVars[lv]
+              .replace('${this.', '')
+              .replace('}', ''),
+              reg = new RegExp('\\'+localVars[lv], 'g');
 
-          obj = obj.replace(reg, dotSelector(i18n, short) || '');
+            obj = obj.replace(reg, dotSelector(i18n, short) || '');
+          }
         }
-      }
 
-      // replace dynamic variables with provided values
-      if(args) {
-        var k, reg;
-        for(k in args) {
-          reg = new RegExp('\\${'+k+'}', 'g');
-          obj = obj.replace(reg, args[k]);
+        // replace dynamic variables with provided values
+        if(args) {
+          var k, reg;
+          for(k in args) {
+            reg = new RegExp('\\${'+k+'}', 'g');
+            obj = obj.replace(reg, args[k]);
+          }
         }
       }
 

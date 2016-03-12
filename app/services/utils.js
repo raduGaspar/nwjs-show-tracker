@@ -24,12 +24,6 @@
           win: win
         }
       },
-      defaults: {
-        weekdays: [
-          'Sunday', 'Monday', 'Tuesday', 'Wednesday',
-          'Thursday', 'Friday', 'Saturday'
-        ]
-      },
       onSuccess: function(data) {
         if(data) {
           console.log('Utils.onSuccess', data);
