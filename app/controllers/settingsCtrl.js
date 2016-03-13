@@ -39,7 +39,7 @@
               .then(function(file) {
                 console.log('file saved to', file);
                 Utils.onSuccess({
-                  message: 'Data exported successfully to ' + file
+                  message: L.translate('alerts.dataExport', { file: file })
                 });
 
                 // required for saving a file with the same name

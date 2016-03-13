@@ -67,7 +67,9 @@
   },
   "alerts": {
     "warning": "Warning!",
-    "info": "Info!"
+    "info": "Info!",
+    "dataExport": "Data exported successfully to ${file}",
+    "dbReject": "One or more parameters are missing"
   },
   "labels": {
     "search": "Search"

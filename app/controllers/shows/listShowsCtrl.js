@@ -98,6 +98,10 @@
           });
         };
 
+        $scope.editShow = function(show, idx) {
+          console.log('edit', show);
+        };
+
         // get all shows
         DB.find(showsDb, {}).then(function(docs) {
           console.log('showsDb shows data', docs);

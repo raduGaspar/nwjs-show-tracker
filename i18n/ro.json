@@ -67,7 +67,9 @@
   },
   "alerts": {
     "warning": "Atentie!",
-    "info": "Informare!"
+    "info": "Informare!",
+    "dataExport": "Fisierul a fost salvat cu succes in ${file}",
+    "dbReject": "Lipseste unul sau mai multi parametri"
   },
   "labels": {
     "search": "Cauta"
