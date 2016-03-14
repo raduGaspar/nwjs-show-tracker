@@ -102,6 +102,12 @@
           console.log('edit', show);
         };
 
+        $scope.today = function() {
+          return new Date().getDay();
+        };
+
+        $scope.showTodayOnly = true;
+
         // get all shows
         DB.find(showsDb, {}).then(function(docs) {
           console.log('showsDb shows data', docs);
