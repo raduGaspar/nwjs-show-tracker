@@ -15,6 +15,9 @@
     $urlRouterProvider.when('/shows', '/shows/list');
     $urlRouterProvider.otherwise('/shows/list');
 
+    // TODO: add resolve logic for L, DB, SettingsServ (?)
+    // TODO: reduce overall deps (?)
+
     $stateProvider
       .state('shows', {
         abstract: true,

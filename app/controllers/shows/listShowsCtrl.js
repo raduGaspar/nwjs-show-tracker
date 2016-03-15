@@ -11,8 +11,7 @@
     console.log('Hello from ListShowsCtrl!');
     /*
      * TODO:
-     * 1. allow shows export/import to/from JSON
-     * 2. pagination (maybe lazy loading) & filtering
+     * 1. pagination (maybe lazy loading) & filtering
      */
 
     var settings,
