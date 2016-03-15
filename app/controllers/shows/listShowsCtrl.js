@@ -105,6 +105,9 @@
         $scope.deleteShow = function(show, idx) {
           DB.delete(showsDb, { _id: show._id }).then(function(data) {
             console.log('deleted show', data, show);
+            // TODO: Fix delete; not always correct
+            // currently deleting index in filtered array
+            // expected: delete index in unfiltered array
             $scope.shows.splice(idx, 1);
           });
         };

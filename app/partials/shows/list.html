@@ -26,7 +26,7 @@
     </div>
 
     <!-- tv show list -->
-    <div class="tabbed-list">
+    <div class="tabbed-list" ng-if="shows.length">
       <ul class="nav nav-tabs">
         <li role="presentation" ng-class="{active: showTodayOnly}">
           <a href="#" ng-click="showTodayOnly = true">{{ L('labels.today') }}</a>
