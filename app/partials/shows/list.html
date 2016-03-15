@@ -29,10 +29,10 @@
     <div class="tabbed-list">
       <ul class="nav nav-tabs">
         <li role="presentation" ng-class="{active: showTodayOnly}">
-          <a href="#" ng-click="showTodayOnly = true">Today</a>
+          <a href="#" ng-click="showTodayOnly = true">{{ L('labels.today') }}</a>
         </li>
         <li role="presentation" ng-class="{active: !showTodayOnly}">
-          <a href="#" ng-click="showTodayOnly = false">All</a>
+          <a href="#" ng-click="showTodayOnly = false">{{ L('labels.all') }}</a>
         </li>
       </ul>
 

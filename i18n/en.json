@@ -72,7 +72,9 @@
     "dbReject": "One or more parameters are missing"
   },
   "labels": {
-    "search": "Search"
+    "search": "Search",
+    "all": "All",
+    "today": "Today"
   },
   "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 }

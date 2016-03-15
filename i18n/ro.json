@@ -72,7 +72,9 @@
     "dbReject": "Lipseste unul sau mai multi parametri"
   },
   "labels": {
-    "search": "Cauta"
+    "search": "Cauta",
+    "all": "Toate",
+    "today": "Azi"
   },
   "weekdays": ["Duminica", "Luni", "Marti", "Miercuri", "Joi", "Vineri", "Sambata"]
 }
