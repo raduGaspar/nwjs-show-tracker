@@ -15,7 +15,7 @@
         console.log('changing language to', locale);
         locale = locale || 'en.json';
 
-        promise = Utils.readFile(dirname + '/i18n/' + locale)
+        return Utils.readFile(dirname + '/i18n/' + locale)
           .then(function(res) {
             i18n = angular.fromJson(res);
             console.log('lang', i18n);
@@ -23,7 +23,7 @@
       };
 
     // search for available language files
-    Utils.readDir(dirname + '/i18n')
+    promise = Utils.readDir(dirname + '/i18n')
       .then(function(files) {
         console.log('files', files);
         languages.available = files;
@@ -31,7 +31,7 @@
         return SettingsServ.promise;
       }, Utils.onError)
       .then(function() {
-        loadLocale(SettingsServ.get().language);
+        return loadLocale(SettingsServ.get().language);
       });
 
     function dotSelector(obj, str, args) {

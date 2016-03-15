@@ -5,9 +5,9 @@
     .app
     .controller('ListShowsCtrl', ListShowsCtrl);
 
-  ListShowsCtrl.$inject = ['$scope', '$state', '$document', 'Utils', 'DB', 'SettingsServ'];
+  ListShowsCtrl.$inject = ['$scope', '$state', '$document', 'Utils', 'DB', 'L', 'SettingsServ'];
 
-  function ListShowsCtrl($scope, $state, $document, Utils, DB, SettingsServ) {
+  function ListShowsCtrl($scope, $state, $document, Utils, DB, L, SettingsServ) {
     console.log('Hello from ListShowsCtrl!');
     /*
      * TODO:
@@ -32,7 +32,10 @@
         return show.onlyEps ? ep : 's' + se + 'e' + ep;
       },
       doUpdate = function(show) {
-        DB.update(showsDb, { _id: show._id }, angular.copy(show))
+        var showCopy = angular.copy(show);
+        delete showCopy.temp; // don't store any of the temporary values
+
+        DB.update(showsDb, { _id: show._id }, showCopy)
           .then(function(res) {
             console.log('show update success', res);
           }, Utils.onError);
@@ -120,11 +123,21 @@
         // get all shows
         DB.find(showsDb, {}).then(function(docs) {
           console.log('showsDb shows data', docs);
+          // create a temporary object to hold all translatable values
+          // this will allow filtering by day name based on current translation
+          for(var i=0; i<docs.length; i++) {
+            docs[i].temp = docs[i].temp || {};
+            docs[i].temp.day = L.translate('weekdays')[docs[i].airsOn];
+          }
           $scope.shows = docs;
           scopeUpdate();
         }, Utils.onError);
       };
 
-    SettingsServ.promise.then(init, Utils.onError);
+    SettingsServ.promise
+      .then(function() {
+        return L.promise;
+      }, Utils.onError)
+      .then(init, Utils.onError);
   }
 }());
