@@ -44,7 +44,7 @@
             shows
             | filter: showData.name
             | filter: { airsOn: showTodayOnly ? today() : undefined }
-          ) track by $index">
+          ) track by show._id">
           <div class="row"
             ng-class="{ animate: activeShowActions._id === show._id }">
             <div class="col-xs-6">
