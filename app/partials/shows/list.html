@@ -44,41 +44,52 @@
             shows
             | filter: showData.name
             | filter: { airsOn: showTodayOnly ? today() : undefined }
-          ) track by $index"
-          ng-init="openActions=false">
-          <div class="row" ng-class="{ animate: openActions }">
-            <div class="col-xs-6">{{ getEpisodeToView(show) }}&nbsp;{{ show.name }}</div>
-            <div class="col-xs-2">{{ L('weekdays')[show.airsOn] }}</div>
+          ) track by $index">
+          <div class="row"
+            ng-class="{ animate: activeShowActions._id === show._id }">
+            <div class="col-xs-6">
+              {{ getEpisodeToView(show) }}&nbsp;{{ show.name }}
+            </div>
+            <div class="col-xs-2">
+              {{ L('weekdays')[show.airsOn] }}
+            </div>
             <div class="col-xs-4 text-right">
               <div class="btn-group" role="group">
-                <button class="btn btn-xs btn-default" ng-click="nextEpisode(show)">
+                <button class="btn btn-xs btn-default"
+                  ng-click="nextEpisode(show)">
                   <i class="fa fa-arrow-up"></i>
                 </button>
-                <button class="btn btn-xs btn-default" ng-click="prevEpisode(show)">
+                <button class="btn btn-xs btn-default"
+                  ng-click="prevEpisode(show)">
                   <i class="fa fa-arrow-down"></i>
                 </button>
-                <button class="btn btn-xs btn-success" title="{{ L('labels.search') }}"
+                <button class="btn btn-xs btn-success"
+                  title="{{ L('labels.search') }}"
                   ng-click="searchTorrent(show)">
                   <i class="fa fa-search"></i>
                 </button>
                 <button class="btn btn-xs btn-default"
-                  ng-click="openActions = !openActions">
+                  ng-click="showActions(show)">
                   <i class="fa fa-bars"></i>
                 </button>
               </div>
             </div>
 
             <div class="col-xs-12" ng-if="settings.showTags && show.tags.length">
-              <span class="tags label label-primary" ng-repeat="tag in show.tags">{{ tag.text }}</span>
+              <span class="tags label label-primary"
+                ng-repeat="tag in show.tags">{{ tag.text }}</span>
             </div>
           </div>
-          <div class="actions" ng-class="{ animate: openActions }">
+          <div class="actions"
+            ng-class="{ animate: activeShowActions._id === show._id }">
             <div class="btn-group" role="group">
-              <button class="btn btn-xs btn-default" ng-click="editShow(show, $index)">
-                <i class="fa fa-pencil"></i>
-              </button>
-              <button class="btn btn-xs btn-danger" ng-click="deleteShow(show, $index)">
+              <button class="btn btn-xs btn-danger"
+                ng-click="deleteShow(show, $index)">
                 <i class="fa fa-trash"></i>
+              </button>
+              <button class="btn btn-xs btn-default"
+                ng-click="editShow(show, $index)">
+                <i class="fa fa-pencil"></i>
               </button>
             </div>
           </div>

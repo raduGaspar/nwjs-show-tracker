@@ -47,6 +47,15 @@
           $scope.selectedShow = show;
         };
 
+        $scope.showActions = function(show) {
+          var ssa = $scope.activeShowActions;
+          if(ssa && ssa._id === show._id) {
+            $scope.activeShowActions = null;
+          } else {
+            $scope.activeShowActions = show;
+          }
+        };
+
         $scope.addShow = function() {
           console.log('addShow');
           $state.go('shows.add');
