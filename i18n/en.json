@@ -13,6 +13,7 @@
     "buttons": {
       "add": "Add Show",
       "save": "Save Show",
+      "edit": "Save Changes",
       "cancel": "cancel"
     },
     "warnings": {

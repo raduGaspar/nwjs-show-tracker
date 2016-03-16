@@ -5,12 +5,13 @@
     .app
     .controller('AddShowCtrl', AddShowCtrl);
 
-  AddShowCtrl.$inject = ['$scope', '$state', 'Utils', 'DB'];
+  AddShowCtrl.$inject = ['$scope', '$state', 'Utils', 'DB', 'ShowsServ'];
 
-  function AddShowCtrl($scope, $state, Utils, DB) {
+  function AddShowCtrl($scope, $state, Utils, DB, ShowsServ) {
     console.log('Hello from AddShowCtrl!');
     var globals = Utils.getGlobals(),
       db = DB.getDb('shows'),
+      editingShow = ShowsServ.getSelected(),
       scopeUpdate = function() {
         if(!$scope.$$phase) {
           $scope.$apply();
@@ -19,9 +20,20 @@
       gotoShows = function() {
         $state.go('shows.list');
         scopeUpdate();
+      },
+      doClose = function() {
+        ShowsServ.setSelected(null);
+        gotoShows();
       };
 
-    $scope.showData = {
+    if(editingShow) {
+      var seasons = editingShow.seasons.length;
+      editingShow.season = seasons;
+      editingShow.episode = editingShow.seasons[seasons-1].ep;
+    }
+
+    $scope.editingShow = editingShow;
+    $scope.showData = editingShow || {
       name: undefined,
       airsOn: new Date().getDay(),
       season: 1,
@@ -44,14 +56,18 @@
       delete data.season;
       delete data.episode;
 
-      DB.insert(db, data).then(function(newShow) {
-        console.log('new show added', newShow);
-        gotoShows();
-      }, Utils.onError);
+      if(editingShow) {
+        DB.update(db, { _id: data._id }, data).then(function(res) {
+          console.log('show updated', res);
+          doClose();
+        });
+      } else {
+        DB.insert(db, data).then(function(newShow) {
+          console.log('new show added', newShow);
+          doClose();
+        }, Utils.onError);
+      }
     };
-    $scope.doCancel = function() {
-      console.log('cancel save');
-      gotoShows();
-    };
+    $scope.doCancel = doClose;
   }
 }());

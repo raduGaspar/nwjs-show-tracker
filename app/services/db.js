@@ -21,6 +21,10 @@
           if(!db || !data) {
             reject({ message: 'required parameters missing' });
           } else {
+            // remove all temporary values
+            if(data['_temp']) {
+              delete data['_temp'];
+            }
             db.remove(data, opts, function(err, numRemoved) {
               if(err) { reject(err); }
 
@@ -34,6 +38,10 @@
           if(!db || !data) {
             reject({ message: 'required parameters missing' });
           } else {
+            // remove all temporary values
+            if(data['_temp']) {
+              delete data['_temp'];
+            }
             db.find(data, function(err, docs) {
               if(err) { reject(err); }
 
@@ -49,6 +57,10 @@
           if(!db || !query || !update) {
             reject({ message: 'required parameters missing' });
           } else {
+            // remove all temporary values
+            if(update['_temp']) {
+              delete update['_temp'];
+            }
             db.update(query, update, opts, function(err, numReplaced) {
               console.log('updated record', arguments);
               if(err) { reject(err); }
@@ -63,6 +75,9 @@
           if(!db || !data) {
             reject({ message: 'required parameters missing' });
           } else {
+            if(data['_temp']) {
+              delete data['_temp'];
+            }
             db.insert(data, function(err, newDocs) {
               if(err) { reject(err); }
 

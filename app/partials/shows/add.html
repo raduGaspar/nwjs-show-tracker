@@ -56,8 +56,13 @@
           placeholder="{{ L('shows.placeholders.addTags') }}"></tags-input>
       </div>
       <div class="text-right">
-        <button class="btn btn-success" ng-click="doSave(showData)">
+        <button class="btn btn-success" ng-if="!editingShow"
+          ng-click="doSave(showData)">
           {{ L('shows.buttons.save') }}
+        </button>
+        <button class="btn btn-success" ng-if="editingShow"
+          ng-click="doSave(showData)">
+          {{ L('shows.buttons.edit') }}
         </button>
         <button class="btn btn-danger" ng-click="doCancel()">
           {{ L('shows.buttons.cancel') }}

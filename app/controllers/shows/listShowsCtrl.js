@@ -5,14 +5,13 @@
     .app
     .controller('ListShowsCtrl', ListShowsCtrl);
 
-  ListShowsCtrl.$inject = ['$scope', '$state', '$document', 'Utils', 'DB', 'L', 'SettingsServ'];
+  ListShowsCtrl.$inject = [
+    '$scope', '$state', '$document', 'Utils',
+    'DB', 'L', 'SettingsServ', 'ShowsServ'
+  ];
 
-  function ListShowsCtrl($scope, $state, $document, Utils, DB, L, SettingsServ) {
+  function ListShowsCtrl($scope, $state, $document, Utils, DB, L, SettingsServ, ShowsServ) {
     console.log('Hello from ListShowsCtrl!');
-    /*
-     * TODO:
-     * 1. pagination (maybe lazy loading) & filtering
-     */
 
     var settings,
       globals = Utils.getGlobals(),
@@ -32,7 +31,6 @@
       },
       doUpdate = function(show) {
         var showCopy = angular.copy(show);
-        delete showCopy.temp; // don't store any of the temporary values
 
         DB.update(showsDb, { _id: show._id }, showCopy)
           .then(function(res) {
@@ -102,18 +100,17 @@
           );
         };
 
-        $scope.deleteShow = function(show, idx) {
+        $scope.deleteShow = function(show) {
           DB.delete(showsDb, { _id: show._id }).then(function(data) {
             console.log('deleted show', data, show);
-            // TODO: Fix delete; not always correct
-            // currently deleting index in filtered array
-            // expected: delete index in unfiltered array
-            $scope.shows.splice(idx, 1);
+            $scope.shows.splice($scope.shows.indexOf(show), 1);
           });
         };
 
-        $scope.editShow = function(show, idx) {
+        $scope.editShow = function(show) {
           console.log('edit', show);
+          ShowsServ.setSelected(show);
+          $state.go('shows.add');
         };
 
         $scope.today = function() {
@@ -127,9 +124,10 @@
           console.log('showsDb shows data', docs);
           // create a temporary object to hold all translatable values
           // this will allow filtering by day name based on current translation
+          // it will not be stored in the DB
           for(var i=0; i<docs.length; i++) {
-            docs[i].temp = docs[i].temp || {};
-            docs[i].temp.day = L.translate('weekdays')[docs[i].airsOn];
+            docs[i]['_temp'] = docs[i]['_temp'] || {};
+            docs[i]['_temp'].day = L.translate('weekdays')[docs[i].airsOn];
           }
           $scope.shows = docs;
           scopeUpdate();

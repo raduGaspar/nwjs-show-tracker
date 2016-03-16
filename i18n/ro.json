@@ -13,6 +13,7 @@
     "buttons": {
       "add": "Adauga Serial",
       "save": "Salveaza Serial",
+      "edit": "Salveaza Modificarile",
       "cancel": "Anuleaza"
     },
     "warnings": {
