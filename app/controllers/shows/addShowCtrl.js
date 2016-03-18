@@ -5,10 +5,22 @@
     .app
     .controller('AddShowCtrl', AddShowCtrl);
 
-  AddShowCtrl.$inject = ['$scope', '$state', 'Utils', 'DB', 'ShowsServ'];
+  AddShowCtrl.$inject = ['$scope', '$state', 'hotkeys', 'Utils', 'DB', 'ShowsServ'];
 
-  function AddShowCtrl($scope, $state, Utils, DB, ShowsServ) {
+  function AddShowCtrl($scope, $state, hotkeys, Utils, DB, ShowsServ) {
     console.log('Hello from AddShowCtrl!');
+
+    hotkeys
+      .bindTo($scope)
+      .add({
+        combo: 'ctrl+q',
+        description: 'Quit',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function() {
+          gotoShows();
+        }
+      })
+
     var globals = Utils.getGlobals(),
       db = DB.getDb('shows'),
       editingShow = ShowsServ.getSelected(),

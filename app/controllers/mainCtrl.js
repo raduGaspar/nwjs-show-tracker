@@ -14,8 +14,8 @@
     hotkeys
       .bindTo($scope) // this scope is shared by all sub-views, so it's ok
       .add({
-        combo: 'ctrl++',
-        description: L.translate('shortcuts.addShow'),
+        combo: 'ctrl+n',
+        description: 'Add Show', // This won't work: L.translate('shortcuts.addShow')
         allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
         callback: function() {
           $state.go('main.add');
@@ -37,6 +37,10 @@
           $state.go('main.list');
         }
       });
+
+    $scope.$watch('L.translate', function(n, o) {
+      console.log('ahem');
+    }, true);
 
     var developMode,
       globals = Utils.getGlobals();
