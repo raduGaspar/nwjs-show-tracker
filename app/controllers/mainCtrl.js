@@ -38,10 +38,6 @@
         }
       });
 
-    $scope.$watch('L.translate', function(n, o) {
-      console.log('ahem');
-    }, true);
-
     var developMode,
       globals = Utils.getGlobals();
 
