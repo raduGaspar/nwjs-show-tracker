@@ -5,9 +5,9 @@
     .app
     .controller('AddShowCtrl', AddShowCtrl);
 
-  AddShowCtrl.$inject = ['$scope', '$state', 'hotkeys', 'Utils', 'DB', 'ShowsServ'];
+  AddShowCtrl.$inject = ['$scope', '$state', '$http', '$timeout', 'hotkeys', 'Utils', 'DB', 'ShowsServ'];
 
-  function AddShowCtrl($scope, $state, hotkeys, Utils, DB, ShowsServ) {
+  function AddShowCtrl($scope, $state, $http, $timeout, hotkeys, Utils, DB, ShowsServ) {
     console.log('Hello from AddShowCtrl!');
 
     hotkeys
@@ -36,7 +36,9 @@
       doClose = function() {
         ShowsServ.setSelected(null);
         gotoShows();
-      };
+      },
+      searchDelay = 1000,
+      timeoutPromise;
 
     if(editingShow) {
       var seasons = editingShow.seasons.length;
@@ -81,5 +83,18 @@
       }
     };
     $scope.doCancel = doClose;
+    $scope.onChange = function(val) {
+      if(timeoutPromise) {
+        $timeout.cancel(timeoutPromise);
+      }
+      timeoutPromise = $timeout(function() {
+        $http({
+          method: 'GET',
+          url: 'http://www.omdbapi.com/?s=' + val
+        }).then(function(res) {
+          console.log('movies', res.data.Search);
+        });
+      }, searchDelay);
+    };
   }
 }());
