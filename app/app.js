@@ -11,6 +11,5 @@
     ])
     .config(['hotkeysProvider', function(hotkeysProvider) {
       hotkeysProvider.useNgRoute = false;
-      console.log('hotkeysProvider', hotkeysProvider);
     }]);
 }());
