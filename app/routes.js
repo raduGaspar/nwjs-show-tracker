@@ -15,13 +15,9 @@
     $urlRouterProvider.when('/main', '/main/list');
     $urlRouterProvider.otherwise('/main/list');
 
-    // TODO: add resolve logic for L, DB, SettingsServ (?)
-    // TODO: reduce overall deps (?)
-
     $stateProvider
       .state('main', {
         url: '/main',
-        abstract: true,
         controller: 'MainCtrl',
         templateUrl: 'app/partials/main.html',
         resolve: {
