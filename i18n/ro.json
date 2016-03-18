@@ -77,5 +77,8 @@
     "all": "Toate",
     "today": "Azi"
   },
+  "shortcuts": {
+    "addShow": "${this.shows.buttons.add}"
+  },
   "weekdays": ["Duminica", "Luni", "Marti", "Miercuri", "Joi", "Vineri", "Sambata"]
 }

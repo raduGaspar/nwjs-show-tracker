@@ -1,2 +1,10 @@
-<!-- for rendering nested views -->
-<div ui-view></div>
+<div ng-controller="AppMenuCtrl">
+  <ul class="app-menu">
+    <li ng-repeat="menu in L('menu')">
+      <a ui-sref="{{ links[$index] }}">{{ menu }}</a>
+    </li>
+  </ul>
+</div>
+<div class="show-tracker">
+  <div ui-view></div>
+</div>

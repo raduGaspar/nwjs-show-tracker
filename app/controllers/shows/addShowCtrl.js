@@ -18,7 +18,7 @@
         }
       },
       gotoShows = function() {
-        $state.go('shows.list');
+        $state.go('main.list');
         scopeUpdate();
       },
       doClose = function() {

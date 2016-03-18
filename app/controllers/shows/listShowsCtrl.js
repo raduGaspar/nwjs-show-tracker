@@ -84,7 +84,7 @@
 
         $scope.addShow = function() {
           console.log('addShow');
-          $state.go('shows.add');
+          $state.go('main.add');
           scopeUpdate();
         };
 
@@ -136,7 +136,7 @@
         $scope.editShow = function(show) {
           console.log('edit', show);
           ShowsServ.setSelected(show);
-          $state.go('shows.add');
+          $state.go('main.add');
         };
 
         $scope.today = function() {

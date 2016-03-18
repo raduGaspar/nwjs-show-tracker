@@ -10,31 +10,38 @@
   AppRun.$inject = ['$rootScope', '$state'];
 
   function AppConfig($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.when('', '/shows/list');
-    $urlRouterProvider.when('/', '/shows/list');
-    $urlRouterProvider.when('/shows', '/shows/list');
-    $urlRouterProvider.otherwise('/shows/list');
+    $urlRouterProvider.when('', '/main');
+    $urlRouterProvider.when('/', '/main');
+    $urlRouterProvider.when('/main', '/main/list');
+    $urlRouterProvider.otherwise('/main/list');
 
     // TODO: add resolve logic for L, DB, SettingsServ (?)
     // TODO: reduce overall deps (?)
 
     $stateProvider
-      .state('shows', {
+      .state('main', {
+        url: '/main',
         abstract: true,
-        url: '/shows',
-        templateUrl: 'app/partials/main.html'
+        controller: 'MainCtrl',
+        templateUrl: 'app/partials/main.html',
+        resolve: {
+          i18n: ['L', function(L) {
+            console.log('L loaded', L);
+            return L.promise;
+          }]
+        }
       })
-      .state('shows.list', {
+      .state('main.list', {
         url: '/list',
         templateUrl: 'app/partials/shows/list.html',
         controller: 'ListShowsCtrl'
       })
-      .state('shows.add', {
+      .state('main.add', {
         url: '/add',
         templateUrl: 'app/partials/shows/add.html',
         controller: 'AddShowCtrl'
       })
-      .state('settings', {
+      .state('main.settings', {
         url: '/settings',
         templateUrl: 'app/partials/settings.html',
         controller: 'SettingsCtrl'

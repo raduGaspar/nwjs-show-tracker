@@ -10,6 +10,6 @@
   function AppMenuCtrl($scope, $state) {
     console.log('Hello from AppMenuCtrl!');
 
-    $scope.links = ['shows.list', 'settings'];
+    $scope.links = ['main.list', 'main.settings'];
   }
 }());

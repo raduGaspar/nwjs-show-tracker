@@ -77,5 +77,8 @@
     "all": "All",
     "today": "Today"
   },
+  "shortcuts": {
+    "addShow": "${this.shows.buttons.add}"
+  },
   "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 }

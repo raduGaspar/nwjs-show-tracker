@@ -15,10 +15,10 @@
       .bindTo($scope) // this scope is shared by all sub-views, so it's ok
       .add({
         combo: 'ctrl++',
-        description: 'Add show',
+        description: L.translate('shortcuts.addShow'),
         allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
         callback: function() {
-          $state.go('shows.add');
+          $state.go('main.add');
         }
       })
       .add({
@@ -26,7 +26,7 @@
         description: 'Open settings',
         allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
         callback: function() {
-          $state.go('settings');
+          $state.go('main.settings');
         }
       })
       .add({
@@ -34,7 +34,7 @@
         description: 'Open shows list',
         allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
         callback: function() {
-          $state.go('shows.list');
+          $state.go('main.list');
         }
       });
 
