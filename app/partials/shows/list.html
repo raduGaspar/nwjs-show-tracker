@@ -5,7 +5,9 @@
       <span class="input-group-addon">
         <i class="fa fa-filter"></i>
       </span>
-      <input type="text" class="form-control" placeholder="{{ L('shows.placeholders.addShow') }}" ng-model="showData.name">
+      <input type="text" class="form-control filter"
+        placeholder="{{ L('shows.placeholders.addShow') }}"
+        ng-model="showData.name">
       <span class="input-group-btn">
         <button class="btn btn-default"
           ng-click="addShow()">{{ L('shows.buttons.add') }}</button>

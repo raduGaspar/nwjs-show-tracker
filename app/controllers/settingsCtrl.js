@@ -5,10 +5,28 @@
     .app
     .controller('SettingsCtrl', SettingsCtrl);
 
-  SettingsCtrl.$inject = ['$scope', '$window', 'SettingsServ', 'DB', 'Utils', 'L'];
+  SettingsCtrl.$inject = ['$scope', '$window', 'hotkeys', 'SettingsServ', 'DB', 'Utils', 'L'];
 
-  function SettingsCtrl($scope, $window, SettingsServ, DB, Utils, L) {
+  function SettingsCtrl($scope, $window, hotkeys, SettingsServ, DB, Utils, L) {
     console.log('Hello from SettingsCtrl!');
+
+    hotkeys
+      .bindTo($scope)
+      .add({
+        combo: 'ctrl+e',
+        description: 'Export all data',
+        callback: function() {
+          angular.element('.btn-export').trigger('click');
+        }
+      })
+      .add({
+        combo: 'ctrl+i',
+        description: 'Import data',
+        callback: function() {
+          angular.element('.btn-import').trigger('click');
+        }
+      });
+
     var trackers,
       pre = 'http://',
       init = function() {

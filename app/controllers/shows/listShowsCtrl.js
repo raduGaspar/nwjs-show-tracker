@@ -6,12 +6,38 @@
     .controller('ListShowsCtrl', ListShowsCtrl);
 
   ListShowsCtrl.$inject = [
-    '$scope', '$state', '$document', 'Utils',
+    '$scope', '$state', '$document', 'hotkeys', 'Utils',
     'DB', 'L', 'SettingsServ', 'ShowsServ'
   ];
 
-  function ListShowsCtrl($scope, $state, $document, Utils, DB, L, SettingsServ, ShowsServ) {
+  function ListShowsCtrl($scope, $state, $document, hotkeys, Utils, DB, L, SettingsServ, ShowsServ) {
     console.log('Hello from ListShowsCtrl!');
+
+    hotkeys
+      .bindTo($scope)
+      .add({
+        combo: 'ctrl+f',
+        description: 'Focus the filter input',
+        callback: function() {
+          angular.element('.filter').focus();
+        }
+      })
+      .add({
+        combo: 'esc',
+        description: 'Unfocus the filter input',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function() {
+          angular.element('.filter').blur();
+        }
+      })
+      .add({
+        combo: 'ctrl+tab',
+        description: 'Toggle between Today & All tabs',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function() {
+          $scope.showTodayOnly = !$scope.showTodayOnly;
+        }
+      });
 
     var settings,
       globals = Utils.getGlobals(),

@@ -5,10 +5,38 @@
     .app
     .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope', '$document', 'L', 'Utils', 'SettingsServ'];
+  MainCtrl.$inject = ['$scope', '$state', '$document', 'hotkeys', 'L', 'Utils', 'SettingsServ'];
 
-  function MainCtrl($scope, $document, L, Utils, SettingsServ) {
+  function MainCtrl($scope, $state, $document, hotkeys, L, Utils, SettingsServ) {
     console.log('Hello from MainCtrl!');
+
+    // global hotkeys
+    hotkeys
+      .bindTo($scope) // this scope is shared by all sub-views, so it's ok
+      .add({
+        combo: 'ctrl++',
+        description: 'Add show',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function() {
+          $state.go('shows.add');
+        }
+      })
+      .add({
+        combo: 'ctrl+o',
+        description: 'Open settings',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function() {
+          $state.go('settings');
+        }
+      })
+      .add({
+        combo: 'ctrl+l',
+        description: 'Open shows list',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function() {
+          $state.go('shows.list');
+        }
+      });
 
     var developMode,
       globals = Utils.getGlobals();

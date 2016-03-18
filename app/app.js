@@ -6,6 +6,11 @@
       'ui.router',
       'ngAnimate',
       'ngTagsInput',
-      'ngNotify'
-    ]);
+      'ngNotify',
+      'cfp.hotkeys'
+    ])
+    .config(['hotkeysProvider', function(hotkeysProvider) {
+      hotkeysProvider.useNgRoute = false;
+      console.log('hotkeysProvider', hotkeysProvider);
+    }]);
 }());

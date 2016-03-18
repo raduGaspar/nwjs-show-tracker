@@ -27,6 +27,7 @@
     "angular-animate": "~1.4.3",
     "angular-ui-router": "~0.2.18",
     "ng-tags-input": "~3.0.0",
-    "ng-notify": "~0.7.2"
+    "ng-notify": "~0.7.2",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.7.0"
   }
 }
