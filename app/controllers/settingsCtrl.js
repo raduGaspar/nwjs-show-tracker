@@ -15,6 +15,7 @@
       .add({
         combo: 'ctrl+e',
         description: 'Export all data',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
         callback: function() {
           angular.element('.btn-export').trigger('click');
         }
@@ -22,6 +23,7 @@
       .add({
         combo: 'ctrl+i',
         description: 'Import data',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
         callback: function() {
           angular.element('.btn-import').trigger('click');
         }
