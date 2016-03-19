@@ -18,7 +18,8 @@
     },
     "warnings": {
       "increaseSeason": "Acum poti mari sezonul serialului",
-      "noShows": "Nu exista seriale. Click pe butonul <code>${this.shows.buttons.add}</code> aflat in dreapta inputului de filtre sau pe butonul de mai jos pentru a incepe"
+      "noShows": "Nu exista seriale. Click pe butonul <code>${this.shows.buttons.add}</code> aflat in dreapta inputului de filtre sau pe butonul de mai jos pentru a incepe",
+      "noResults": "Nu exista rezultate"
     },
     "labels": {
       "increaseSeason": "Apasa tasta <code>${key}</code> pentru a mari numarul sezonului",

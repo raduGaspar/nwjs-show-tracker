@@ -1,0 +1,5 @@
+<a>
+  <img ng-if="match.label.Poster && match.label.Poster!=='N/A'"
+    ng-src="{{match.label.Poster}}" width="50">
+  <span ng-bind-html="match.label.Title | uibTypeaheadHighlight:query"></span>
+</a>

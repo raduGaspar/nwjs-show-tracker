@@ -18,7 +18,8 @@
     },
     "warnings": {
       "increaseSeason": "You can now increase the show season number",
-      "noShows": "No shows available. Click on the <code>${this.shows.buttons.add}</code> button next to the filters input above or on the one bellow to get started"
+      "noShows": "No shows available. Click on the <code>${this.shows.buttons.add}</code> button next to the filters input above or on the one bellow to get started",
+      "noResults": "No results available"
     },
     "labels": {
       "increaseSeason": "Press and hold <code>${key}</code> to increase the season number",

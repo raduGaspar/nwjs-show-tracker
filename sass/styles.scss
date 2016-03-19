@@ -17,6 +17,15 @@ $actionsWidth: 75px;
     outline: none;
   }
 
+  .autocomplete {
+    position: relative;
+    .dropdown-menu {
+      display: block;
+      overflow: auto;
+      right: 0;
+      max-height: 250px;
+    }
+  }
   .panel {
     &:last-child {
       margin-bottom: 0;

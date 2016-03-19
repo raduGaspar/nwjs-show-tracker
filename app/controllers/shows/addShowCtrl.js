@@ -36,9 +36,7 @@
       doClose = function() {
         ShowsServ.setSelected(null);
         gotoShows();
-      },
-      searchDelay = 1000,
-      timeoutPromise;
+      };
 
     if(editingShow) {
       var seasons = editingShow.seasons.length;
@@ -83,18 +81,21 @@
       }
     };
     $scope.doCancel = doClose;
-    $scope.onChange = function(val) {
-      if(timeoutPromise) {
-        $timeout.cancel(timeoutPromise);
-      }
-      timeoutPromise = $timeout(function() {
-        $http({
-          method: 'GET',
-          url: 'http://www.omdbapi.com/?s=' + val
-        }).then(function(res) {
-          console.log('movies', res.data.Search);
-        });
-      }, searchDelay);
+    $scope.movieSelected = function(item) {
+      console.log('movie selected', item);
+    };
+    $scope.getMovies = function(val) {
+      return $http.get('http://www.omdbapi.com/', {
+        params: {
+          s: val
+        }
+      }).then(function(res) {
+        // if(res.data.Search) {
+          return res.data.Search;/*.map(function(item) {
+            return item;
+          });*/
+        // }
+      });
     };
   }
 }());

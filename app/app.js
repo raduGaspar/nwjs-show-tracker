@@ -3,6 +3,7 @@
 
   angular.app = angular
     .module('showtracker', [
+      'ui.bootstrap',
       'ui.router',
       'ngAnimate',
       'ngTagsInput',
