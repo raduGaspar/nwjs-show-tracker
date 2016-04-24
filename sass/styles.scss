@@ -141,6 +141,11 @@ $actionsWidth: 75px;
   }
 }
 
+.badge {
+  background: #eee;
+  color: #555;
+}
+
 // animations
 .animate {
   &.ng-move,
