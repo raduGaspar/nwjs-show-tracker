@@ -83,6 +83,7 @@
     $scope.doCancel = doClose;
     $scope.movieSelected = function(item) {
       console.log('movie selected', item);
+      $scope.showData.name = item.Title;
     };
     $scope.getMovies = function(val) {
       return $http.get('http://www.omdbapi.com/', {
