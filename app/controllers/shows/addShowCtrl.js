@@ -37,6 +37,24 @@
       doClose = function() {
         ShowsServ.setSelected(null);
         gotoShows();
+      },
+      getShowDetails = function(show) {
+        return $http.get(urls.omdbapi, {
+          params: {
+            i: show.imdbID,
+            plot: 'short',
+            r: 'json'
+          }
+        }).then(function(res) {
+          var sd = $scope.showData,
+            genre = res.data.Genre;
+          console.log('show details', res.data);
+          // auto populate tags with show genre
+          if(genre) {
+            sd.tags = sd.tags || [];
+            sd.tags = sd.tags.concat(genre.split(', '));
+          }
+        }, Utils.onError);
       };
 
     if(editingShow) {
@@ -85,6 +103,7 @@
     $scope.movieSelected = function(item) {
       console.log('movie selected', item);
       $scope.showData.name = item.Title;
+      getShowDetails(item);
     };
     $scope.getMovies = function(val) {
       return $http.get(urls.omdbapi, {
@@ -93,7 +112,7 @@
         }
       }).then(function(res) {
         return res.data.Search;
-      });
+      }, Utils.onError);
     };
   }
 }());
