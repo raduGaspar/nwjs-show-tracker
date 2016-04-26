@@ -52,7 +52,10 @@
           // auto populate tags with show genre
           if(genre) {
             sd.tags = sd.tags || [];
-            sd.tags = sd.tags.concat(genre.split(', '));
+            var genreTags = genre.split(', ');
+            for(var i=0; i<genreTags.length; i++) {
+              sd.tags.push({ text: genreTags[i].toLowerCase() });
+            }
           }
         }, Utils.onError);
       };
