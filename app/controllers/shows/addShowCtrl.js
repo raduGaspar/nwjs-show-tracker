@@ -22,6 +22,7 @@
       })
 
     var globals = Utils.getGlobals(),
+      urls = globals.urls,
       db = DB.getDb('shows'),
       editingShow = ShowsServ.getSelected(),
       scopeUpdate = function() {
@@ -86,16 +87,12 @@
       $scope.showData.name = item.Title;
     };
     $scope.getMovies = function(val) {
-      return $http.get('http://www.omdbapi.com/', {
+      return $http.get(urls.omdbapi, {
         params: {
           s: val
         }
       }).then(function(res) {
-        // if(res.data.Search) {
-          return res.data.Search;/*.map(function(item) {
-            return item;
-          });*/
-        // }
+        return res.data.Search;
       });
     };
   }

@@ -12,7 +12,10 @@
       fs = require('fs'),
       path = require('path'),
       dirname = path.dirname(),
-      win = gui.Window.get();
+      win = gui.Window.get(),
+      urls = {
+        omdbapi: 'http://www.omdbapi.com/'
+      };
 
     return {
       getGlobals: function() {
@@ -21,7 +24,8 @@
           fs: fs,
           path: path,
           dirname: dirname,
-          win: win
+          win: win,
+          urls: urls
         }
       },
       onSuccess: function(data) {
