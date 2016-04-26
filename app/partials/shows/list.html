@@ -31,10 +31,16 @@
     <div class="tabbed-list" ng-if="shows.length">
       <ul class="nav nav-tabs">
         <li role="presentation" ng-class="{active: showTodayOnly}">
-          <a href="#" ng-click="showTodayOnly = true">{{ L('labels.today') }}</a>
+          <a href="#" ng-click="showTodayOnly = true">
+            {{ L('labels.today') }}
+            <span class="badge">{{ (shows | filter: { airsOn: today() }).length }}</span>
+          </a>
         </li>
         <li role="presentation" ng-class="{active: !showTodayOnly}">
-          <a href="#" ng-click="showTodayOnly = false">{{ L('labels.all') }}</a>
+          <a href="#" ng-click="showTodayOnly = false">
+            {{ L('labels.all') }}
+            <span class="badge">{{ shows.length }}</span>
+          </a>
         </li>
       </ul>
 
