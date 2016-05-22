@@ -10,17 +10,6 @@
   function AddShowCtrl($scope, $state, $http, $timeout, hotkeys, Utils, DB, ShowsServ) {
     console.log('Hello from AddShowCtrl!');
 
-    hotkeys
-      .bindTo($scope)
-      .add({
-        combo: 'ctrl+q',
-        description: 'Quit',
-        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
-        callback: function() {
-          gotoShows();
-        }
-      })
-
     var globals = Utils.getGlobals(),
       urls = globals.urls,
       db = DB.getDb('shows'),
@@ -85,7 +74,7 @@
       for(var i=0; i<startSeason; i++) {
         data.seasons.push({ ep: 1 });
       }
-      data.seasons[startSeason-1].ep = parseInt(data.episode);
+      data.seasons[startSeason-1].ep = +data.episode;
 
       delete data.season;
       delete data.episode;
@@ -117,5 +106,16 @@
         return res.data.Search;
       }, Utils.onError);
     };
+
+    hotkeys
+      .bindTo($scope)
+      .add({
+        combo: 'ctrl+q',
+        description: 'Quit',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function() {
+          gotoShows();
+        }
+      });
   }
 }());

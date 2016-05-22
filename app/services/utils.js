@@ -26,7 +26,7 @@
           dirname: dirname,
           win: win,
           urls: urls
-        }
+        };
       },
       onSuccess: function(data) {
         if(data) {
@@ -70,8 +70,8 @@
           fs.readdir(path, function(err, files) {
             if(err) { reject(err); }
             resolve(files);
-          })
-        })
+          });
+        });
       },
       cleanIds: function(arr) {
         function doClean(set) {

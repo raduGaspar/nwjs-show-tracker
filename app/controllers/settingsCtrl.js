@@ -71,8 +71,7 @@
       if(input.files.length) {
         Utils.readFile(input.files[0].path)
           .then(function(data) {
-            var data = angular.fromJson(data);
-            return DB.import(data);
+            return DB.import(angular.fromJson(data));
           }, Utils.onError)
           .then(function(res) {
             console.log('import result', res);

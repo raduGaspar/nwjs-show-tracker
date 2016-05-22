@@ -4,7 +4,7 @@
   "curly": true,
   "eqeqeq": true,
   "es3": true,
-  "forin": true,
+  "forin": false,
   "freeze": true,
   "immed": true,
   "indent": 4,

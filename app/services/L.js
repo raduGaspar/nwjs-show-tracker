@@ -38,6 +38,10 @@
       var path = str.split('.'),
         pathLen = path.length,
         i = 0,
+        shortStr,
+        localVars,
+        reg,
+        k,
         key;
       for (i; i<pathLen; i++) {
         key = path[i];
@@ -50,21 +54,20 @@
 
       // replace dynamic variables which point to objects inside the file
       if(typeof obj === 'string') {
-        var localVars = obj.match(/\${this.(.*?)}/g) || [];
+        localVars = obj.match(/\${this.(.*?)}/g) || [];
         if(localVars.length) {
           for(var lv=0; lv<localVars.length; lv++) {
-            var short = localVars[lv]
+            shortStr = localVars[lv]
               .replace('${this.', '')
-              .replace('}', ''),
-              reg = new RegExp('\\'+localVars[lv], 'g');
+              .replace('}', '');
 
-            obj = obj.replace(reg, dotSelector(i18n, short) || '');
+            reg = new RegExp('\\'+localVars[lv], 'g');
+            obj = obj.replace(reg, dotSelector(i18n, shortStr) || '');
           }
         }
 
         // replace dynamic variables with provided values
         if(args) {
-          var k, reg;
           for(k in args) {
             reg = new RegExp('\\${'+k+'}', 'g');
             obj = obj.replace(reg, args[k]);
@@ -85,5 +88,5 @@
       translate: translate,
       loadLocale: loadLocale
     };
-  };
+  }
 }());

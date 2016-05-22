@@ -22,11 +22,10 @@
       },
       sid = null,
       settings = {},
-      // insert default settings into DB
-      seed = function() {
-        return DB.insert(settingsDb, { settings: defaults }).then(function(res) {
-          console.log('SettingsServ inserted', res.settings);
-          apply(res);
+      // delete all settings
+      purge = function() {
+        return DB.delete(settingsDb, {}, { multi: true }).then(function(res) {
+          console.log('SettingsServ deleted', res);
         }, Utils.onError);
       },
       // apply loaded settings
@@ -36,6 +35,13 @@
         for(var i in res.settings) {
           settings[i] = res.settings[i];
         }
+      },
+      // insert default settings into DB
+      seed = function() {
+        return DB.insert(settingsDb, { settings: defaults }).then(function(res) {
+          console.log('SettingsServ inserted', res.settings);
+          apply(res);
+        }, Utils.onError);
       },
       // reset settings to default
       reset = function() {
@@ -50,19 +56,17 @@
         }).then(function(res) {
           console.log('SettingsServ update success', res);
         }, Utils.onError);
-      },
-      // delete all settings
-      purge = function() {
-        return DB.delete(settingsDb, {}, { multi: true }).then(function(res) {
-          console.log('SettingsServ deleted', res);
-        }, Utils.onError);
       };
 
     // purge();
 
     var promise = DB.find(settingsDb, {}).then(function(res) {
       console.log('SettingsServ settings', res);
-      res.length ? apply(res[0]) : seed();
+      if(res.length) {
+        apply(res[0]);
+      } else {
+        seed();
+      }
     }, Utils.onError);
 
     return {

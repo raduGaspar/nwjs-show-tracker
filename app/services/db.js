@@ -65,7 +65,7 @@
               console.log('updated record', arguments);
               if(err) { reject(err); }
 
-              resolve(numReplaced)
+              resolve(numReplaced);
             });
           }
         });
@@ -93,7 +93,7 @@
           all.push(
             doDelete(db[dbs[i]], {}, { multi: true }),
             doInsert(db[dbs[i]], data[i])
-          )
+          );
         }
         return $q.all(all);
       },
