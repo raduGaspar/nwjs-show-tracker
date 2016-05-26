@@ -4,7 +4,7 @@ A simple interface for tracking tv shows built with NW and AngularJS
 ## Latest Release: v1.0
 | Windows (x64) | Linux (x64) | Mac (x64) |
 | ------------- | ----------- | --------- |
-| [download](http://www.gotoandlearn.ro/apps/show-tracker/win64-v1.0.zip) | [download](http://www.gotoandlearn.ro/apps/show-tracker/linux64-v1.0.zip) | [download](http://www.gotoandlearn.ro/apps/show-tracker/osx64-v1.0.zip) |
+| [download](releases/download/v1.0/win64-v1.0.zip) | [download](releases/download/v1.0/linux64-v1.0.zip) | [download](releases/download/v1.0/osx64-v1.0.zip) |
 
 # Running
 Make sure you have NodeWebkit installed locally and added to your path
