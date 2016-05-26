@@ -1,6 +1,5 @@
 .sass-cache/
 *.log
-*.json
 dist
 node_modules
 libs
