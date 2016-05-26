@@ -3,6 +3,14 @@ A simple interface for tracking tv shows built with NW and AngularJS
 
 Download a packaged copy from the releases section!
 
+```sh
+# if you encounter problems running the release on linux
+# open a terminal
+# navigate to application folder and run
+chmod u+x show-tracker .
+./show-tracker
+```
+
 # Running
 Make sure you have NodeWebkit installed locally and added to your path
 ```sh
