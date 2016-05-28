@@ -18,7 +18,7 @@ nw.on('log', console.log);
 nw.build().then(function() {
   for(var i=0; i<opts.platforms.length; i++) {
     (function(platform) {
-      var zipName = platform + '-v' + pjson.version + '.zip';
+      var zipName = pjson.name + '-v' + pjson.version + '-' + platform + '.zip';
       var dest = opts.buildDir + pjson.name + '/';
       var source = dest + platform + '/';
       var output = fs.createWriteStream(dest+zipName);
