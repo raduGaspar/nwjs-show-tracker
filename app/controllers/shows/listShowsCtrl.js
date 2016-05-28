@@ -62,6 +62,11 @@
           .then(function(res) {
             console.log('show update success', res);
           }, Utils.onError);
+      },
+      addShow = function() {
+        console.log('addShow');
+        $state.go('main.add');
+        scopeUpdate();
       };
 
     $scope.getEpisodeToView = getEpisodeToView;
@@ -73,6 +78,7 @@
     $scope.omdbShowSelect = function(show) {
       // store show imdbID
       $scope.showData.imdbID = show.imdbID;
+      addShow();
     };
 
     $scope.showActions = function(show) {
@@ -84,11 +90,7 @@
       }
     };
 
-    $scope.addShow = function() {
-      console.log('addShow');
-      $state.go('main.add');
-      scopeUpdate();
-    };
+    $scope.addShow = addShow;
 
     $scope.doNext = function(show, increaseSeason) {
       console.log('increase episode', show);

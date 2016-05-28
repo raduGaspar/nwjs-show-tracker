@@ -101,6 +101,15 @@
         doClean(arr);
 
         return arr;
+      },
+      isUnique: function(set, key, value) {
+        for(var i=0; i<set.length; i++) {
+          if(set[i][key] === value) {
+            return false;
+          }
+        }
+
+        return true;
       }
     };
   }

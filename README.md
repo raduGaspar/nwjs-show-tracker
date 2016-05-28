@@ -36,8 +36,8 @@ The default targeted platforms are `win64`, `osx64` and `linux64`
 * [x] show version number in app title bar
 * [x] add filter area to tabs
 * [x] show selected tracker name on search button hover
+* [x] change current filter area to add show (remove add show button)
 * [ ] store which tab is currently selected (per session or maybe in db)
-* [ ] change current filter area to add show (remove add show button)
 * [ ] keep imdb information in db, maybe add a show link to imdb (before show name?)
 * [ ] package app with app-name-osVersion-versionNumber
 * [ ] replace episodes list with season list

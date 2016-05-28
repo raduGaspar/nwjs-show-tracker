@@ -44,7 +44,10 @@
             sd.tags = sd.tags || [];
             var genreTags = genre.split(', ');
             for(var i=0; i<genreTags.length; i++) {
-              sd.tags.push({ text: genreTags[i].toLowerCase() });
+              var tagName = genreTags[i].toLowerCase();
+              if(Utils.isUnique(sd.tags, 'text', tagName)) {
+                sd.tags.push({ text: tagName });
+              }
             }
           }
         }, Utils.onError);
