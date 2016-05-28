@@ -17,6 +17,6 @@
         replace: true,
         controller: 'OmdbCtrl',
         templateUrl: './app/partials/ngOmdb.html'
-      }
+      };
     });
 }());
