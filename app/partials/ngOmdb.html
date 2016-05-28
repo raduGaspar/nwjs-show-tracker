@@ -7,11 +7,12 @@
     ng-model="model" typeahead-loading="loadingMovies"
     typeahead-wait-ms="300"
     placeholder="{{ placeholder }}"
-    uib-typeahead="movie for movie in movies($viewValue)"
+    uib-typeahead="movie.Title as movie for movie in getMovies($viewValue)"
     typeahead-popup-template-url="./app/partials/shows/typeaheadPopup.html"
     typeahead-template-url="./app/partials/shows/typeaheadTemplate.html"
-    typeahead-on-select="onSelect($item)"
+    typeahead-on-select="movieSelected($item)"
     typeahead-no-results="noResults">
+
   <span class="input-group-addon text-center" ng-show="loadingMovies || noResults">
     <i ng-show="loadingMovies" class="glyphicon glyphicon-refresh"></i>
     <span ng-show="noResults">

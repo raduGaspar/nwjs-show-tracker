@@ -17,7 +17,7 @@
       "cancel": "cancel"
     },
     "warnings": {
-      "noShows": "No shows available. Click on the <code>${this.shows.buttons.add}</code> button next to the filters input above or on the one bellow to get started",
+      "noShows": "No shows available. Type a show name into the input above or click on the <code>${this.shows.buttons.add}</code> button bellow to get started",
       "noResults": "No results available"
     },
     "labels": {
@@ -25,7 +25,7 @@
       "disableSeasons": "disable seasons"
     },
     "placeholders": {
-      "addShow": "Add show",
+      "addShow": "Type show name and press <Enter>",
       "filterShow": "Filter shows",
       "addTags": "Add show tags: comedy, adventure, etc."
     },

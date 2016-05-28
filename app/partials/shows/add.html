@@ -8,10 +8,9 @@
       <h4>{{ L('shows.titles.addShow') }}</h4>
       <ng-omdb
         model="{{ showData.name }}"
-        placeholder="{{ L('shows.placeholders.addShow')  }}"
+        placeholder="{{ L('shows.placeholders.addShow') }}"
         title="{{ L('shows.descriptors.showName') }}"
-        movies="getMovies"
-        on-select="movieSelected"
+        on-select="onShowSelected"
         no-matches="{{ L('shows.warnings.noResults') }}"
       ></ng-omdb>
       <div class="input-group">

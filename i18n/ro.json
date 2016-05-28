@@ -17,7 +17,7 @@
       "cancel": "Anuleaza"
     },
     "warnings": {
-      "noShows": "Nu exista seriale. Click pe butonul <code>${this.shows.buttons.add}</code> aflat in dreapta inputului de filtre sau pe butonul de mai jos pentru a incepe",
+      "noShows": "Nu exista seriale. Tastati numele unui serial in casuta de mai sus sau click pe butonul <code>${this.shows.buttons.add}</code> de mai jos pentru a incepe",
       "noResults": "Nu exista rezultate"
     },
     "labels": {
@@ -25,7 +25,7 @@
       "disableSeasons": "dezactivare sezoane"
     },
     "placeholders": {
-      "addShow": "Adauga serial",
+      "addShow": "Tasteaza nume serial si apasa <Enter>",
       "filterShow": "Filtreaza seriale",
       "addTags": "Adauga taguri pentru serial: comedie, adventura, etc."
     },

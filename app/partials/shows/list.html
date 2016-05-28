@@ -1,17 +1,11 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
     {{ L('shows.panels.list') }}
-    <div class="input-group">
-      <span class="input-group-addon">
-        <i class="fa fa-plus"></i>
-      </span>
-      <input type="text" class="form-control"
-        placeholder="{{ L('shows.placeholders.addShow') }}">
-      <span class="input-group-btn">
-        <button class="btn btn-default"
-          ng-click="addShow()">{{ L('shows.buttons.add') }}</button>
-      </span>
-    </div>
+    <ng-omdb
+      icon="plus"
+      ng-enter="addShow()"
+      placeholder="{{ L('shows.placeholders.addShow') }}"
+    ></ng-omdb>
   </div>
   <div class="panel-body">
     <div class="alert alert-info" role="alert" ng-if="!shows.length">
@@ -47,7 +41,7 @@
             </span>
             <input type="text" class="form-control filter"
               placeholder="{{ L('shows.placeholders.filterShow') }}"
-              ng-model="showData.name" ng-auto-focus>
+              ng-model="showNameFilter" ng-auto-focus>
           </div>
         </li>
         <li class="list-group-item animate"
@@ -55,7 +49,7 @@
           ng-click="selectShow(show)"
           ng-repeat="show in filtered = (
             shows
-            | filter: showData.name
+            | filter: showNameFilter
             | filter: { airsOn: showTodayOnly ? today() : undefined }
           ) track by show._id">
           <div class="row"

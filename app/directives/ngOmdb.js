@@ -15,10 +15,8 @@
           onSelect: '='
         },
         replace: true,
-        templateUrl: './app/partials/ngOmdb.html',
-        compile: function(element, attrs) {
-          attrs.placeholder = attrs.placeholder || '';
-        }
+        controller: 'OmdbCtrl',
+        templateUrl: './app/partials/ngOmdb.html'
       }
     });
 }());

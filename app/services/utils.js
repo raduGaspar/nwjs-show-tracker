@@ -41,7 +41,16 @@
       onError: function(err) {
         if(err) {
           console.log('Utils.onError', err);
-          ngNotify.set(err.message || 'Error Occured', {
+          var message;
+          if(err.message) {
+            message = err.message;
+          } else if(err.config) {
+            message = 'Error Occured on ' + err.config.method + ': ' + err.config.url;
+          } else {
+            message = 'Unknown Error Occured :(';
+          }
+
+          ngNotify.set(message, {
             position: 'top',
             type: 'error',
             sticky: true,

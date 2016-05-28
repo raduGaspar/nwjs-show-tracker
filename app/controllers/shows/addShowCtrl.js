@@ -27,7 +27,9 @@
         ShowsServ.setSelected(null);
         gotoShows();
       },
-      getShowDetails = function(show) {
+      onShowSelected = function(show) {
+        $scope.showData.name = show.Title;
+
         return $http.get(urls.omdbapi, {
           params: {
             i: show.imdbID,
@@ -92,20 +94,7 @@
       }
     };
     $scope.doCancel = doClose;
-    $scope.movieSelected = function(item) {
-      console.log('movie selected', item);
-      $scope.showData.name = item.Title;
-      getShowDetails(item);
-    };
-    $scope.getMovies = function(val) {
-      return $http.get(urls.omdbapi, {
-        params: {
-          s: val
-        }
-      }).then(function(res) {
-        return res.data.Search;
-      }, Utils.onError);
-    };
+    $scope.onShowSelected = onShowSelected;
 
     hotkeys
       .bindTo($scope)
