@@ -186,3 +186,12 @@ $actionsWidth: 75px;
     transition-duration:0;
   }
 }
+
+.no-border > * {
+  @include border-radius(0);
+  border: 0 none;
+}
+
+.no-padding {
+  padding: 0;
+}

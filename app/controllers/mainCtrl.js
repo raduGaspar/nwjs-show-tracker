@@ -41,16 +41,6 @@
     var developMode,
       globals = Utils.getGlobals();
 
-    // keyboard events
-    $document.bind('keydown', function(e) {
-      $scope.pressedKey = e.which;
-      $scope.$apply();
-    });
-    $document.bind('keyup', function(e) {
-      $scope.pressedKey = null;
-      $scope.$apply();
-    });
-
     $scope.settings = SettingsServ.get();
     $scope.L = L.translate;
     $scope.$watch('settings', function(newVal, oldVal) {

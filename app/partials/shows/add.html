@@ -6,32 +6,14 @@
     <!-- add show fields -->
     <div class="add-show">
       <h4>{{ L('shows.titles.addShow') }}</h4>
-      <div class="input-group autocomplete">
-        <span class="input-group-addon">
-          {{ L('shows.descriptors.showName') }}
-        </span>
-        <input type="text" class="form-control" ng-auto-focus
-          ng-model="showData.name" typeahead-loading="loadingMovies"
-          typeahead-wait-ms="300"
-          uib-typeahead="movie for movie in getMovies($viewValue)"
-          typeahead-popup-template-url="./app/partials/shows/typeaheadPopup.html"
-          typeahead-template-url="./app/partials/shows/typeaheadTemplate.html"
-          typeahead-on-select="movieSelected($item)"
-          typeahead-no-results="noResults">
-        <span class="input-group-addon text-center" ng-show="loadingMovies || noResults">
-          <i ng-show="loadingMovies" class="glyphicon glyphicon-refresh"></i>
-          <span ng-show="noResults">
-            <i class="glyphicon glyphicon-remove"></i>
-            {{ L('shows.warnings.noResults') }}
-          </span>
-        </span>
-        <div class="list-group" ng-if="movies.length">
-          <a href="" class="list-group-item" ng-repeat="movie in movies">
-            <img ng-src="{{ movie.Poster }}" height="50px">
-            {{ movie.Year }} - {{ movie.Title }}
-          </a>
-        </div>
-      </div>
+      <ng-omdb
+        model="{{ showData.name }}"
+        placeholder="{{ L('shows.placeholders.addShow')  }}"
+        title="{{ L('shows.descriptors.showName') }}"
+        movies="getMovies"
+        on-select="movieSelected"
+        no-matches="{{ L('shows.warnings.noResults') }}"
+      ></ng-omdb>
       <div class="input-group">
         <span class="input-group-addon">
           {{ L('shows.descriptors.airDay') }}

@@ -86,10 +86,10 @@
       scopeUpdate();
     };
 
-    $scope.nextEpisode = function(show) {
+    $scope.doNext = function(show, increaseSeason) {
       console.log('increase episode', show);
       var season = show.seasons[show.seasons.length-1];
-      if($scope.pressedKey === 18 && !show.onlyEps) {
+      if(increaseSeason && !show.onlyEps) {
         show.seasons.push({ ep: 1 });
       } else {
         season.ep++;
@@ -99,7 +99,7 @@
       return false;
     };
 
-    $scope.prevEpisode = function(show) {
+    $scope.doPrev = function(show) {
       console.log('decrease episode', show);
       var season = show.seasons[show.seasons.length-1];
       if(season.ep > 1) {
