@@ -74,7 +74,7 @@
     "dbReject": "One or more parameters are missing"
   },
   "labels": {
-    "search": "Search",
+    "search": "Search ${url}",
     "all": "All",
     "today": "Today"
   },

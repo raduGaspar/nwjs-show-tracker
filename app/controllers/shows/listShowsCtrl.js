@@ -141,6 +141,7 @@
       return new Date().getDay();
     };
 
+    $scope.trackers = settings.trackers;
     $scope.showTodayOnly = true;
 
     // get all shows

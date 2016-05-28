@@ -74,7 +74,7 @@
     "dbReject": "Lipseste unul sau mai multi parametri"
   },
   "labels": {
-    "search": "Cauta",
+    "search": "Cauta ${url}",
     "all": "Toate",
     "today": "Azi"
   },
