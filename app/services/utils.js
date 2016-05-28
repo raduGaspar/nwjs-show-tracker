@@ -82,6 +82,11 @@
           });
         });
       },
+      emptyObject: function(obj) {
+        for (var i in obj) {
+          delete obj[i];
+        }
+      },
       cleanIds: function(arr) {
         function doClean(set) {
           if(set.length) {

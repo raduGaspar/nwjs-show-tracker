@@ -10,7 +10,7 @@
           placeholder: '@',
           title: '@',
           noMatches: '@',
-          model: '@',
+          model: '=',
           movies: '=',
           onSelect: '='
         },

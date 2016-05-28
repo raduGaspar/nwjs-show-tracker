@@ -64,7 +64,6 @@
           }, Utils.onError);
       };
 
-    $scope.showData = { name: undefined };
     $scope.getEpisodeToView = getEpisodeToView;
 
     $scope.selectShow = function(show) {

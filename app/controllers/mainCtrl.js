@@ -5,9 +5,9 @@
     .app
     .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope', '$state', '$document', 'hotkeys', 'L', 'Utils', 'SettingsServ'];
+  MainCtrl.$inject = ['$scope', '$state', 'hotkeys', 'L', 'Utils', 'SettingsServ'];
 
-  function MainCtrl($scope, $state, $document, hotkeys, L, Utils, SettingsServ) {
+  function MainCtrl($scope, $state, hotkeys, L, Utils, SettingsServ) {
     console.log('Hello from MainCtrl!');
 
     // global hotkeys
@@ -49,6 +49,9 @@
         SettingsServ.save();
       }
     }, true);
+
+    // show data store for show add feature in 'list' and 'add' screens
+    $scope.showData = {};
 
     // all console.log calls are removed when packaging; cool huh? :D
     console.log(developMode = true);

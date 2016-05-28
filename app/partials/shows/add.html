@@ -7,7 +7,7 @@
     <div class="add-show">
       <h4>{{ L('shows.titles.addShow') }}</h4>
       <ng-omdb
-        model="{{ showData.name }}"
+        model="showDetails.name"
         placeholder="{{ L('shows.placeholders.addShow') }}"
         title="{{ L('shows.descriptors.showName') }}"
         on-select="onShowSelected"
@@ -18,34 +18,34 @@
           {{ L('shows.descriptors.airDay') }}
         </span>
         <select class="form-control"
-          ng-model="showData.airsOn"
+          ng-model="showDetails.airsOn"
           ng-options="idx*1 as day for (idx, day) in L('weekdays')">
           <!-- idx*1 converts idx to number -->
         </select>
       </div>
       <div class="input-group">
         <label>
-          <input type="checkbox" ng-model="showData.onlyEps"></input>
+          <input type="checkbox" ng-model="showDetails.onlyEps"></input>
           {{ L('shows.labels.disableSeasons') }}
         </label>
       </div>
       <div class="row">
-        <div ng-class="!showData.onlyEps ? 'col-xs-6' : 'hide'">
+        <div ng-class="!showDetails.onlyEps ? 'col-xs-6' : 'hide'">
           <div class="input-group">
             <span class="input-group-addon">
               {{ L('shows.descriptors.season') }}
             </span>
             <input type="text" class="form-control"
-              ng-model="showData.season" valid-number>
+              ng-model="showDetails.season" valid-number>
           </div>
         </div>
-        <div ng-class="!showData.onlyEps ? 'col-xs-6' : 'col-xs-12'">
+        <div ng-class="!showDetails.onlyEps ? 'col-xs-6' : 'col-xs-12'">
           <div class="input-group">
             <span class="input-group-addon">
               {{ L('shows.descriptors.episode') }}
             </span>
             <input type="text" class="form-control"
-              ng-model="showData.episode" valid-number>
+              ng-model="showDetails.episode" valid-number>
           </div>
         </div>
       </div>
@@ -53,16 +53,16 @@
         <span class="input-group-addon">
           {{ L('shows.descriptors.tags') }}
         </span>
-        <tags-input ng-model="showData.tags"
+        <tags-input ng-model="showDetails.tags"
           placeholder="{{ L('shows.placeholders.addTags') }}"></tags-input>
       </div>
       <div class="text-right">
         <button class="btn btn-success" ng-if="!editingShow"
-          ng-click="doSave(showData)">
+          ng-click="doSave(showDetails)">
           {{ L('shows.buttons.save') }}
         </button>
         <button class="btn btn-success" ng-if="editingShow"
-          ng-click="doSave(showData)">
+          ng-click="doSave(showDetails)">
           {{ L('shows.buttons.edit') }}
         </button>
         <button class="btn btn-danger" ng-click="doCancel()">

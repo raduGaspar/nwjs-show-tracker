@@ -25,11 +25,10 @@
       },
       doClose = function() {
         ShowsServ.setSelected(null);
+        Utils.emptyObject($scope.showDetails);
         gotoShows();
       },
       onShowSelected = function(show) {
-        $scope.showData.name = show.Title;
-
         return $http.get(urls.omdbapi, {
           params: {
             i: show.imdbID,
@@ -58,12 +57,11 @@
     }
 
     $scope.editingShow = editingShow;
-    $scope.showData = editingShow || {
-      name: undefined,
+    $scope.showDetails = editingShow || angular.extend($scope.showData, {
       airsOn: new Date().getDay(),
       season: 1,
       episode: 1
-    };
+    });
     $scope.doSave = function(model) {
       if(!model.name) { return; }
 
