@@ -28,7 +28,7 @@
         Utils.emptyObject($scope.showDetails);
         gotoShows();
       },
-      onShowSelected = function(show) {
+      omdbShowSelect = function(show) {
         return $http.get(urls.omdbapi, {
           params: {
             i: show.imdbID,
@@ -36,7 +36,7 @@
             r: 'json'
           }
         }).then(function(res) {
-          var sd = $scope.showData,
+          var sd = $scope.showDetails,
             genre = res.data.Genre;
           console.log('show details', res.data);
           // auto populate tags with show genre
@@ -92,7 +92,12 @@
       }
     };
     $scope.doCancel = doClose;
-    $scope.onShowSelected = onShowSelected;
+    $scope.omdbShowSelect = omdbShowSelect;
+
+    // on screen load fetch data for show added from the list screen
+    if(!editingShow && $scope.showDetails.imdbID) {
+      omdbShowSelect($scope.showDetails);
+    }
 
     hotkeys
       .bindTo($scope)

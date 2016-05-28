@@ -1,6 +1,6 @@
 {
   "name": "show-tracker",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "A simple interface for tracking tv shows.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

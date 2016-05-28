@@ -70,6 +70,11 @@
       $scope.selectedShow = show;
     };
 
+    $scope.omdbShowSelect = function(show) {
+      // store show imdbID
+      $scope.showData.imdbID = show.imdbID;
+    };
+
     $scope.showActions = function(show) {
       var ssa = $scope.activeShowActions;
       if(ssa && ssa._id === show._id) {
