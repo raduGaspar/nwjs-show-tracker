@@ -31,6 +31,7 @@
     "min_height": 650
   },
   "devDependencies": {
+    "archiver": "^1.0.0",
     "gulp": "^3.9.0",
     "gulp-cheerio": "^0.6.2",
     "gulp-compass": "^2.1.0",
