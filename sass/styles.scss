@@ -1,10 +1,7 @@
+@import "variables";
 @import "mixins";
 
-@include scrollbars(8px, 4px, #aaa);
-
-// vars
-$gapSize: 10px;
-$actionsWidth: 75px;
+@include scrollbars(6px, 4px, #ddd);
 
 * {
   -webkit-user-select: none;
@@ -12,6 +9,10 @@ $actionsWidth: 75px;
 
 .show-tracker {
   @include wrapper(5px);
+
+  .alert {
+    margin-bottom: 0;
+  }
 
   .btn:focus {
     outline: none;
@@ -27,6 +28,9 @@ $actionsWidth: 75px;
     }
   }
   .panel {
+    .panel-body {
+      padding: $gapSize;
+    }
     &:last-child {
       margin-bottom: 0;
     }
@@ -34,13 +38,13 @@ $actionsWidth: 75px;
 
   .panel-heading {
     .input-group, .label {
-      margin-top: 10px;
+      margin-top: $gapSize;
     }
   }
 
   .add-show {
     .input-group {
-      margin-bottom: 10px;
+      margin-bottom: $gapSize;
     }
     .input-group-addon {
       min-width: 100px;
@@ -57,7 +61,13 @@ $actionsWidth: 75px;
     }
   }
 
+  .list-group {
+    margin-bottom: 0;
+  }
+
   .list-group-item {
+    padding: $gapSize;
+
     &.active, &.active:hover, &.active:focus {
       background: transparent; // #dedede;
       border-color: #dedede;
@@ -83,7 +93,6 @@ $actionsWidth: 75px;
 
     .actions {
       @include transition(all, 0.2s, linear);
-      // box-shadow: inset 3px 0px 10px -5px rgba(0, 0, 0, 0.5);
       background: #f0f0f0;
       border-left: 1px solid #ddd;
       right: -$actionsWidth;
@@ -193,5 +202,5 @@ $actionsWidth: 75px;
 }
 
 .no-padding {
-  padding: 0;
+  padding: 0 !important;
 }
