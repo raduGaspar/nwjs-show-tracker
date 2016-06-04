@@ -32,13 +32,7 @@ nw dist
 The default targeted platforms are `win64`, `osx64` and `linux64`
 
 ### Suggestions list
-* [x] increase season number by using right click instead of ALT key
-* [x] show version number in app title bar
-* [x] add filter area to tabs
-* [x] show selected tracker name on search button hover
-* [x] change current filter area to add show (remove add show button)
-* [x] package app with app-name-versionNumber-osVersion
-* [ ] store which tab is currently selected (per session or maybe in db)
+* [x] store which tab is currently selected in db
 * [ ] keep imdb information in db, maybe add a show link to imdb (before show name?)
 * [ ] replace episodes list with season list
 * [ ] add a season details view (like imdb) with inversed history (latest appears first)

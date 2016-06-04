@@ -35,7 +35,7 @@
         description: 'Toggle between Today & All tabs',
         allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
         callback: function() {
-          $scope.showTodayOnly = !$scope.showTodayOnly;
+          showToday(!$scope.showTodayOnly);
         }
       });
 
@@ -67,9 +67,17 @@
         console.log('addShow');
         $state.go('main.add');
         scopeUpdate();
+      },
+      showToday = function(bool) {
+        $scope.showTodayOnly = bool;
+        settings.showTodayOnly = bool;
       };
 
     $scope.getEpisodeToView = getEpisodeToView;
+    $scope.addShow = addShow;
+    $scope.showToday = showToday;
+    $scope.trackers = settings.trackers;
+    $scope.showTodayOnly = settings.showTodayOnly;
 
     $scope.selectShow = function(show) {
       $scope.selectedShow = show;
@@ -89,8 +97,6 @@
         $scope.activeShowActions = show;
       }
     };
-
-    $scope.addShow = addShow;
 
     $scope.doNext = function(show, increaseSeason) {
       console.log('increase episode', show);
@@ -146,9 +152,6 @@
     $scope.today = function() {
       return new Date().getDay();
     };
-
-    $scope.trackers = settings.trackers;
-    $scope.showTodayOnly = true;
 
     // get all shows
     DB.find(showsDb, {}).then(function(docs) {
