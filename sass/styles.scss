@@ -66,6 +66,7 @@
   }
 
   .list-group-item {
+    color: #000;
     padding: $gapSize;
 
     &.active, &.active:hover, &.active:focus {
