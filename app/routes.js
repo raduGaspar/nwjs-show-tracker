@@ -12,8 +12,8 @@
   function AppConfig($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.when('', '/main');
     $urlRouterProvider.when('/', '/main');
-    $urlRouterProvider.when('/main', '/main/list');
-    $urlRouterProvider.otherwise('/main/list');
+    $urlRouterProvider.when('/main', '/main/episodes');
+    $urlRouterProvider.otherwise('/main/episodes');
 
     $stateProvider
       .state('main', {
@@ -26,6 +26,11 @@
             return L.promise;
           }]
         }
+      })
+      .state('main.episodes', {
+        url: '/episodes',
+        templateUrl: 'app/partials/shows/episodes.html',
+        controller: 'EpisodesCtrl'
       })
       .state('main.list', {
         url: '/list',
