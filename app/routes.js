@@ -51,8 +51,9 @@
   }
 
   function AppRun($rootScope, $state) {
+    $rootScope.activeMenu = {};
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-      $state.current = toState;
+      $rootScope.activeMenu.current = toState;
     });
   }
 }());

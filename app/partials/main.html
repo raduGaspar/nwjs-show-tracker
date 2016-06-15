@@ -1,6 +1,6 @@
 <div ng-controller="AppMenuCtrl">
   <ul class="app-menu">
-    <li ng-repeat="menu in L('menu')">
+    <li ng-repeat="menu in L('menu')" ng-class="{'active': links[$index] === current.name }">
       <a ui-sref="{{ links[$index] }}">{{ menu }}</a>
     </li>
   </ul>
