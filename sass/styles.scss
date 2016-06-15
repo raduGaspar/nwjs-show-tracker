@@ -168,6 +168,32 @@
   }
 }
 
+// main list filter
+.form-grp {
+  display: flex;
+  align-items: center;
+  height: 7rem;
+  padding: 0 2rem;
+  border-bottom: 1px solid #f1edee;
+
+  &:before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #e0dfdd;
+    left: 3rem;
+  }
+
+  .form-ctrl {
+    flex: 1;
+    height: 3rem;
+    padding: 0 3rem;
+    border-radius: 2rem;
+    border: 1px solid #e5e1e2;
+    outline: 0 none;
+  }
+}
+
 .badge {
   background: #eee;
   color: #555;

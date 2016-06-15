@@ -1,37 +1,27 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    {{ L('shows.panels.list') }}
-    <ng-omdb
-      icon="plus"
-      ng-enter="addShow()"
-      model="showData.name"
-      placeholder="{{ L('shows.placeholders.addShow') }}"
-      on-select="omdbShowSelect"
-    ></ng-omdb>
-  </div>
-
-  <div class="episodes-list">
-    <ul>
-      <li ng-class="{'active': active}">
-        <div class="seen fa" ng-click="active = !active"></div>
-        <div class="details">
-          <div class="wrap">
-            <div class="series">
-              <div class="actions">
-                <button class="btn btn-xs btn-search">
-                  <i class="fa fa-search"></i>
-                </button>
-                <button class="btn btn-xs btn-search" title="Open in IMDB">
-                  <i class="fa fa-film"></i>
-                </button>
-              </div>
-              <p>Game of Thrones s04e08</p>
+<div class="form-grp fa fa-filter">
+  <input class="form-ctrl" placeholder="{{ L('shows.placeholders.filterShow') }}"></input>
+</div>
+<div class="episodes-list">
+  <ul>
+    <li ng-class="{'active': active}">
+      <div class="seen fa" ng-click="active = !active"></div>
+      <div class="details">
+        <div class="wrap">
+          <div class="series">
+            <div class="actions">
+              <button class="btn btn-xs btn-search">
+                <i class="fa fa-search"></i>
+              </button>
+              <button class="btn btn-xs btn-search" title="Open in IMDB">
+                <i class="fa fa-film"></i>
+              </button>
             </div>
-            <h2>The Mountain and the Viper <span class="release-date">01 Jun 2014</span></h2>
-            <p>Theon helps Ramsay seize Moat Cailin. The wildlings attack Mole's Town. Sansa comes up with a story to protect Lord Baelish. Daenerys finds out a secret about Ser Jorah. Oberyn Martell faces Ser Gregor Clegane.</p>
+            <p>Game of Thrones s04e08</p>
           </div>
+          <h2>The Mountain and the Viper <span class="release-date">01 Jun 2014</span></h2>
+          <p>Theon helps Ramsay seize Moat Cailin. The wildlings attack Mole's Town. Sansa comes up with a story to protect Lord Baelish. Daenerys finds out a secret about Ser Jorah. Oberyn Martell faces Ser Gregor Clegane.</p>
         </div>
-      </li>
-    </ul>
-  </div>
+      </div>
+    </li>
+  </ul>
 </div>
