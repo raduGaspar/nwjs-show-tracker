@@ -1,91 +1,88 @@
 <div class="form-grp fa fa-filter">
-  <input class="form-ctrl"
+  <input class="form-ctrl filter"
     placeholder="{{ L('shows.placeholders.filterShow') }}"
     ng-model="showNameFilter" ng-auto-focus></input>
   <button class="btn btn-add" ng-click="addShow()">
     <i class="fa fa-plus"></i>
   </button>
 </div>
-<div class="tabbed-list" ng-if="shows.length">
-  <ul class="nav nav-tabs">
-    <li role="presentation" ng-class="{active: showTodayOnly}">
-      <a href="" ng-click="showToday(true)">
-        {{ L('labels.today') }}
-        <span class="badge">{{ (shows | filter: { airsOn: today() }).length }}</span>
-      </a>
-    </li>
-    <li role="presentation" ng-class="{active: !showTodayOnly}">
-      <a href="" ng-click="showToday(false)">
-        {{ L('labels.all') }}
-        <span class="badge">{{ shows.length }}</span>
-      </a>
-    </li>
-  </ul>
-
-  <ul class="list-group slide-list scrollable">
-    <li class="list-group-item animate"
-      ng-class="{active: show._id === selectedShow._id}"
-      ng-click="selectShow(show)"
-      ng-repeat="show in filtered = (
-        shows
-        | filter: showNameFilter
-        | filter: { airsOn: showTodayOnly ? today() : undefined }
-      ) track by show._id">
-      <div class="row"
-        ng-class="{ animate: activeShowActions._id === show._id }">
-        <div class="col-xs-6">
-          {{ getEpisodeToView(show) }}&nbsp;{{ show.name }}
-        </div>
-        <div class="col-xs-2">
-          {{ L('weekdays')[show.airsOn] }}
-        </div>
-        <div class="col-xs-4 text-right">
-          <div class="btn-group" role="group">
-            <button class="btn btn-xs btn-default"
-              title="{{ L('shows.labels.increaseSeason') }}"
-              ng-click="doNext(show)"
-              ng-right-click="doNext(show, true)"
-            >
-              <i class="fa fa-arrow-up"></i>
-            </button>
-            <button class="btn btn-xs btn-default"
-              ng-click="doPrev(show)"
-            >
-              <i class="fa fa-arrow-down"></i>
-            </button>
-            <button class="btn btn-xs btn-success"
-              title="{{ L('labels.search', trackers.list[trackers.selected]) }}"
-              ng-click="searchTorrent(show)">
-              <i class="fa fa-search"></i>
-            </button>
-            <button class="btn btn-xs btn-default"
-              ng-click="showActions(show)">
-              <i class="fa fa-bars"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="col-xs-12" ng-if="settings.showTags && show.tags.length">
-          <span class="tags label label-primary"
-            ng-repeat="tag in show.tags">{{ tag.text }}</span>
-        </div>
+<ul class="tabs">
+  <li role="presentation" ng-class="{active: showTodayOnly}">
+    <a href="" ng-click="showToday(true)">
+      {{ L('labels.today') }}
+      <span class="badge">{{ (shows | filter: { airsOn: today() }).length }}</span>
+    </a>
+  </li>
+  <li role="presentation" ng-class="{active: !showTodayOnly}">
+    <a href="" ng-click="showToday(false)">
+      {{ L('labels.all') }}
+      <span class="badge">{{ shows.length }}</span>
+    </a>
+  </li>
+</ul>
+<ul class="list-group slide-list scrollable" ng-if="shows.length">
+  <li class="list-group-item animate"
+    ng-class="{active: show._id === selectedShow._id}"
+    ng-click="selectShow(show)"
+    ng-repeat="show in filtered = (
+      shows
+      | filter: showNameFilter
+      | filter: { airsOn: showTodayOnly ? today() : undefined }
+    ) track by show._id">
+    <div class="row"
+      ng-class="{ animate: activeShowActions._id === show._id }">
+      <div class="col-xs-6">
+        {{ getEpisodeToView(show) }}&nbsp;{{ show.name }}
       </div>
-      <div class="actions"
-        ng-class="{ animate: activeShowActions._id === show._id }">
+      <div class="col-xs-2">
+        {{ L('weekdays')[show.airsOn] }}
+      </div>
+      <div class="col-xs-4 text-right">
         <div class="btn-group" role="group">
-          <button class="btn btn-xs btn-danger"
-            ng-click="deleteShow(show)">
-            <i class="fa fa-trash"></i>
+          <button class="btn btn-xs btn-default"
+            title="{{ L('shows.labels.increaseSeason') }}"
+            ng-click="doNext(show)"
+            ng-right-click="doNext(show, true)"
+          >
+            <i class="fa fa-arrow-up"></i>
           </button>
           <button class="btn btn-xs btn-default"
-            ng-click="editShow(show)">
-            <i class="fa fa-pencil"></i>
+            ng-click="doPrev(show)"
+          >
+            <i class="fa fa-arrow-down"></i>
+          </button>
+          <button class="btn btn-xs btn-success"
+            title="{{ L('labels.search', trackers.list[trackers.selected]) }}"
+            ng-click="searchTorrent(show)">
+            <i class="fa fa-search"></i>
+          </button>
+          <button class="btn btn-xs btn-default"
+            ng-click="showActions(show)">
+            <i class="fa fa-bars"></i>
           </button>
         </div>
       </div>
-    </li>
-  </ul>
-</div>
+
+      <div class="col-xs-12" ng-if="settings.showTags && show.tags.length">
+        <span class="tags label label-primary"
+          ng-repeat="tag in show.tags">{{ tag.text }}</span>
+      </div>
+    </div>
+    <div class="actions"
+      ng-class="{ animate: activeShowActions._id === show._id }">
+      <div class="btn-group" role="group">
+        <button class="btn btn-xs btn-danger"
+          ng-click="deleteShow(show)">
+          <i class="fa fa-trash"></i>
+        </button>
+        <button class="btn btn-xs btn-default"
+          ng-click="editShow(show)">
+          <i class="fa fa-pencil"></i>
+        </button>
+      </div>
+    </div>
+  </li>
+</ul>
 
 <!-- <div class="panel panel-primary">
   <div class="panel-heading">
@@ -106,7 +103,5 @@
       <button class="btn btn-sm btn-primary"
         ng-click="addShow()">{{ L('shows.buttons.add') }}</button>
     </div>
-
-
   </div>
 </div> -->
