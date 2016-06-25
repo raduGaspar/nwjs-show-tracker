@@ -15,9 +15,31 @@
       win = gui.Window.get(),
       urls = {
         omdbapi: 'http://www.omdbapi.com/'
+      },
+      request = require('request'),
+      zlib = require('zlib'),
+      doGet = function(url) {
+        return new Promise(function(resolve, reject) {
+          request(url, { encoding: null }, function(err, response, body) {
+            if(err) {
+              reject(err);
+            }
+
+            if(response.headers['content-encoding'] === 'gzip') {
+              zlib.gunzip(body, function(err, dezipped) {
+                resolve(dezipped.toString());
+              });
+            } else {
+              resolve(body);
+            }
+          });
+        });
       };
 
     return {
+      req: {
+        doGet: doGet
+      },
       getGlobals: function() {
         return {
           gui: gui,
@@ -110,6 +132,49 @@
         }
 
         return true;
+      },
+      parseXMLString: function(str, nodeSelector) {
+        if(!str || !nodeSelector) return;
+
+        var result = {},
+        parser = new DOMParser(),
+        xmlDom = parser.parseFromString(str, 'text/xml'),
+        items = xmlDom.querySelectorAll(nodeSelector),
+        proc = function(arr, parent) {
+          for(var i=0; i<arr.length; i++) {
+            // pluralize name
+            var nname = arr[i].nodeName + 's';
+
+            if(arr[i].children.length > 1) {
+              var obj = {};
+              parent[nname] = parent[nname] || [];
+              parent[nname].push(obj);
+              proc(arr[i].children, obj);
+            } else {
+              var comboName = arr[i].nodeName.split(':'),
+                node = comboName[0],
+                leaf = comboName[1],
+                entryHtml = arr[i].innerHTML || arr[i].outerHTML;
+
+              // strip cdata
+              entryHtml = entryHtml
+                .replace('<![CDATA[', '')
+                .replace(']]>', '');
+
+              if(comboName.length > 1) {
+                parent[node] = parent[node] || {};
+                parent[node][leaf] = decodeURIComponent(entryHtml);
+              } else {
+                parent[arr[i].nodeName] = parent[arr[i].nodeName] || {};
+                parent[arr[i].nodeName] = decodeURIComponent(entryHtml);
+              }
+            }
+          }
+        };
+
+        proc(items, result);
+
+        return result;
       }
     };
   }
