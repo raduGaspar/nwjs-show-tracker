@@ -91,12 +91,12 @@
   <div class="modal-body">
     <p ng-if="fetching">Fetching data...</p>
     <p ng-if="!fetching && !items.length">:( nothing found</p>
-    <ul ng-if="!fetching && items.length">
+    <ul class="list" ng-if="!fetching && items.length">
       <li ng-repeat="item in items">
         <a href="{{ item.torrent.magnetURI }}">
           <i class="fa fa-download"></i>
+          {{ item.title }}
         </a>
-        {{ item.title }}
       </li>
     </ul>
   </div>

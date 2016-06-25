@@ -384,3 +384,17 @@
   flex-direction: column;
   height: 100vh;
 }
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid $borderColor;
+    &:last-child {
+      border: 0 none;
+    }
+  }
+}
