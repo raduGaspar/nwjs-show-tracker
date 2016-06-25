@@ -6,11 +6,11 @@
     .controller('ListShowsCtrl', ListShowsCtrl);
 
   ListShowsCtrl.$inject = [
-    '$scope', '$state', '$document', 'hotkeys', 'Utils',
+    '$scope', '$state', '$document', '$uibModal', 'hotkeys', 'Utils',
     'DB', 'L', 'SettingsServ', 'ShowsServ'
   ];
 
-  function ListShowsCtrl($scope, $state, $document, hotkeys, Utils, DB, L, SettingsServ, ShowsServ) {
+  function ListShowsCtrl($scope, $state, $document, $uibModal, hotkeys, Utils, DB, L, SettingsServ, ShowsServ) {
     console.log('Hello from ListShowsCtrl!');
 
     hotkeys
@@ -39,7 +39,8 @@
         }
       });
 
-    var settings = SettingsServ.get(),
+    var modalInstance,
+      settings = SettingsServ.get(),
       globals = Utils.getGlobals(),
       showsDb = DB.getDb('shows'),
       scopeUpdate = function() {
@@ -128,12 +129,28 @@
 
     $scope.searchTorrent = function(show) {
       var next = getEpisodeToView(show),
-        searchFor = show.name + ' ' + next;
-      console.log(searchFor);
-      globals.gui.Shell.openExternal(
-        settings.trackers.list[settings.trackers.selected].url +
-        encodeURI(searchFor)
-      );
+        searchFor = show.name + ' ' + next,
+        url = settings.trackers.list[settings.trackers.selected].url + searchFor + '/?rss=1';
+
+      modalInstance = $uibModal.open({
+        templateUrl: 'downloadList.html',
+        scope: $scope
+      });
+
+      $scope.items = null;
+      $scope.fetching = true;
+      Utils.req.doGet(url).then(function(res) {
+        $scope.fetching = false;
+        var xml = Utils.parseXMLString(res, 'item');
+        if(xml && xml.items) {
+          $scope.items = xml.items;
+        }
+        if(!$scope.$$phase) {
+          $scope.$apply();
+        }
+      }, function(err) {
+        $scope.fetching = false;
+      });
     };
 
     $scope.deleteShow = function(show) {

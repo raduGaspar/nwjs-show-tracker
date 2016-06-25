@@ -12,10 +12,13 @@
       'ngNotify',
       'cfp.hotkeys'
     ])
-    .config(['hotkeysProvider', function(hotkeysProvider) {
+    .config(['$compileProvider', 'hotkeysProvider', function($compileProvider, hotkeysProvider) {
+      $compileProvider.aHrefSanitizationWhitelist(/^\s*(magnet):/);
       hotkeysProvider.useNgRoute = false;
       console.log(hotkeysProvider);
     }]);
+
+
 
   // append app version number to the title
   document.title += ' v' + pjson.version;

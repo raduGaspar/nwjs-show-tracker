@@ -12,9 +12,10 @@
   function EpisodesCtrl($scope, Utils) {
     console.log('Hello from EpisodesCtrl!');
 
-    // var url = 'rss/url/here';
+    // var url = 'rss/feed/url/here';
     // Utils.req.doGet(url).then(function(res) {
-    //   console.log('parsedXML', Utils.parseXMLString(res, 'item'));
+    //   var xml = Utils.parseXMLString(res, 'item');
+    //   $scope.items = xml.items;
     // });
   }
 }());

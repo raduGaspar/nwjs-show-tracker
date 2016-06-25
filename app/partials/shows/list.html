@@ -84,24 +84,20 @@
   </li>
 </ul>
 
-<!-- <div class="panel panel-primary">
-  <div class="panel-heading">
-    {{ L('shows.panels.list') }}
-    <ng-omdb
-      icon="plus"
-      ng-enter="addShow()"
-      model="showData.name"
-      placeholder="{{ L('shows.placeholders.addShow') }}"
-      on-select="omdbShowSelect"
-    ></ng-omdb>
+<script type="text/ng-template" id="downloadList.html">
+  <div class="modal-header">
+    <h3 class="modal-title">Searching for show</h3>
   </div>
-  <div class="panel-body">
-    <div class="alert alert-info" role="alert" ng-if="!shows.length">
-      <p class="gap-bottom">
-        <strong>{{ L('alerts.info') }}</strong>&nbsp;<span ng-bind-html="L('shows.warnings.noShows') | unsafe"></span>
-      </p>
-      <button class="btn btn-sm btn-primary"
-        ng-click="addShow()">{{ L('shows.buttons.add') }}</button>
-    </div>
+  <div class="modal-body">
+    <p ng-if="fetching">Fetching data...</p>
+    <p ng-if="!fetching && !items.length">:( nothing found</p>
+    <ul ng-if="!fetching && items.length">
+      <li ng-repeat="item in items">
+        <a href="{{ item.torrent.magnetURI }}">
+          <i class="fa fa-download"></i>
+        </a>
+        {{ item.title }}
+      </li>
+    </ul>
   </div>
-</div> -->
+</script>
