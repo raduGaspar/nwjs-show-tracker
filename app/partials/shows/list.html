@@ -84,43 +84,4 @@
   </li>
 </ul>
 
-<script type="text/ng-template" id="downloadList.html">
-  <div class="modal-header">
-    <h3 class="modal-title">
-      {{ L('labels.searching') }}
-      <span class="search-for">{{ searchFor }}</span>
-    </h3>
-  </div>
-  <div class="modal-body">
-    <p class="text-center no-gap" ng-if="fetching">
-      <img src="assets/img/loading.gif">
-    </p>
-    <p class="text-center no-gap no-results" ng-if="!fetching && !items.length">
-      {{ L('labels.noResults') }}
-    </p>
-    <ul class="list" ng-if="!fetching && items.length">
-      <li ng-repeat="item in items | orderBy:'torrent.seeds':true">
-        <p class="no-gap">
-          <a href="{{ item.torrent.magnetURI }}">
-            <i class="fa fa-download"></i>
-            {{ item.title }}
-          </a>
-        </p>
-        <p class="no-gap">
-          category: {{ item.category }}
-        </p>
-        <p class="details no-gap">
-          <span class="size">
-            size: {{ formatBytes(item.torrent.contentLength) }}
-          </span>
-          <span class="seeds">
-            seed: {{ item.torrent.seeds }}
-          </span>
-          <span class="peers">
-            peers: {{ item.torrent.peers }}
-          </span>
-        </p>
-      </li>
-    </ul>
-  </div>
-</script>
+<ng-include src="'app/partials/modals/downloadList.html'"></ng-include>

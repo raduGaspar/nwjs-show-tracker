@@ -422,3 +422,21 @@
     }
   }
 }
+
+// modal overwrites
+.modal {
+  display: flex !important;
+  flex-direction: column;
+  .modal-dialog {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-body {
+    flex: 1;
+    overflow: auto;
+  }
+}
