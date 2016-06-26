@@ -29,6 +29,7 @@
     "ng-notify": "~0.7.2",
     "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.7.0",
     "angular-bootstrap": "^1.2.4",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "moment": "^2.13.0"
   }
 }

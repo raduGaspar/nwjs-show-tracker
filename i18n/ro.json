@@ -28,6 +28,7 @@
     "placeholders": {
       "addShow": "Tasteaza nume serial si apasa <Enter>",
       "filterShow": "Filtreaza seriale",
+      "filterResults": "Filtreaza rezultatele",
       "addTags": "Adauga taguri pentru serial: comedie, adventura, etc."
     },
     "descriptors": {

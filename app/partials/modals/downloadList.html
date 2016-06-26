@@ -4,6 +4,11 @@
       {{ L('labels.searching') }}
       <span class="search-for">{{ searchFor }}</span>
     </h3>
+    <div class="form-grp fa fa-filter">
+      <input class="form-ctrl filter"
+        placeholder="{{ L('shows.placeholders.filterResults') }}"
+        ng-model="filterResults" ng-auto-focus></input>
+    </div>
   </div>
   <div class="modal-body">
     <p class="text-center no-gap" ng-if="fetching">
@@ -13,25 +18,38 @@
       {{ L('labels.noResults') }}
     </p>
     <ul class="list" ng-if="!fetching && items.length">
-      <li ng-repeat="item in items | orderBy:'torrent.seeds':true">
-        <p class="no-gap">
+      <li class="animate"
+        ng-repeat="item in items
+          | filter: filterResults
+          | orderBy:'torrent.seeds':true">
+        <p class="title no-gap">
           <a href="{{ item.torrent.magnetURI }}">
-            <i class="fa fa-download"></i>
+            <i class="fa fa-arrow-circle-down"></i>
             {{ item.title }}
           </a>
         </p>
-        <p class="no-gap">
-          category: {{ item.category }}
+        <p class="category no-gap">
+          <i class="fa fa-tag"></i>
+          {{ item.category }}
         </p>
         <p class="details no-gap">
+          <span class="age">
+            <i class="fa fa-clock-o"></i>
+            {{ elapsedTime(item.pubDate) }}
+          </span>
           <span class="size">
-            size: {{ formatBytes(item.torrent.contentLength) }}
+            <i class="fa fa-hdd-o"></i>
+            {{ formatBytes(item.torrent.contentLength) }}
           </span>
           <span class="seeds">
-            seed: {{ item.torrent.seeds }}
+            <i class="fa fa-users"></i>
+            <i class="fa fa-arrow-up"></i>
+            {{ item.torrent.seeds }}
           </span>
           <span class="peers">
-            peers: {{ item.torrent.peers }}
+            <i class="fa fa-users"></i>
+            <i class="fa fa-arrow-down"></i>
+            {{ item.torrent.peers }}
           </span>
         </p>
       </li>

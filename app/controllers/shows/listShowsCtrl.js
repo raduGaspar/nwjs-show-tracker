@@ -136,6 +136,9 @@
       $scope.items = null;
       $scope.fetching = true;
       $scope.searchFor = searchFor;
+      $scope.elapsedTime = function(date) {
+        return moment(+new Date(date)).fromNow();
+      };
 
       modalInstance = $uibModal.open({
         templateUrl: 'downloadList.html',

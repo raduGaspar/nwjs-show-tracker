@@ -28,6 +28,7 @@
     "placeholders": {
       "addShow": "Type show name and press <Enter>",
       "filterShow": "Filter shows",
+      "filterResults": "Filter results",
       "addTags": "Add show tags: comedy, adventure, etc."
     },
     "descriptors": {
