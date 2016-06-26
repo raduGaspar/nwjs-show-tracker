@@ -173,8 +173,12 @@
                 .replace(']]>', '');
 
               if(comboName.length > 1) {
+                var leafVal = decodeURIComponent(entryHtml),
+                  leafInt = parseInt(leafVal, 10);
+                leafVal = isNaN(leafInt) ? leafVal : leafInt;
+
                 parent[node] = parent[node] || {};
-                parent[node][leaf] = decodeURIComponent(entryHtml);
+                parent[node][leaf] = leafVal;
               } else {
                 parent[arr[i].nodeName] = parent[arr[i].nodeName] || {};
                 parent[arr[i].nodeName] = decodeURIComponent(entryHtml);

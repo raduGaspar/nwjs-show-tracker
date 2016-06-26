@@ -76,6 +76,8 @@
   },
   "labels": {
     "search": "Cauta ${url}",
+    "searching": "Cautare:",
+    "noResults": ":( Nu exista rezultate",
     "all": "Toate",
     "today": "Azi"
   },

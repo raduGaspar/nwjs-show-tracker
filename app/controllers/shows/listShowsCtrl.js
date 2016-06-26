@@ -133,13 +133,15 @@
         searchFor = show.name + ' ' + next,
         url = settings.trackers.list[settings.trackers.selected].url + searchFor + '/?rss=1';
 
+      $scope.items = null;
+      $scope.fetching = true;
+      $scope.searchFor = searchFor;
+
       modalInstance = $uibModal.open({
         templateUrl: 'downloadList.html',
         scope: $scope
       });
 
-      $scope.items = null;
-      $scope.fetching = true;
       Utils.req.doGet(url).then(function(res) {
         $scope.fetching = false;
         var xml = Utils.parseXMLString(res, 'item');

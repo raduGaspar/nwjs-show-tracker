@@ -151,13 +151,6 @@
       }
     }
   }
-
-  // helpers
-  .gap { margin: $gapSize; }
-  .gap-top { margin-top: $gapSize; }
-  .gap-right { margin-right: $gapSize; }
-  .gap-bottom { margin-bottom: $gapSize; }
-  .gap-left { margin-left: $gapSize; }
 }
 
 // application menu
@@ -203,6 +196,14 @@
   }
 }
 
+// helpers
+.gap { margin: $gapSize; }
+.gap-top { margin-top: $gapSize; }
+.gap-right { margin-right: $gapSize; }
+.gap-bottom { margin-bottom: $gapSize; }
+.gap-left { margin-left: $gapSize; }
+.no-gap { margin: 0; }
+
 // main list filter
 .form-grp {
   display: flex;
@@ -232,6 +233,15 @@
 .badge {
   background: #eee;
   color: #555;
+}
+
+.no-results {
+  color: darken($borderColor, 20%);
+}
+
+.search-for {
+  color: $menuColor;
+  font-size: 2rem
 }
 
 // animations
@@ -395,6 +405,20 @@
     border-bottom: 1px solid $borderColor;
     &:last-child {
       border: 0 none;
+    }
+  }
+
+  .details {
+    span {
+      &:after {
+        content: "|";
+        padding: 0 0.5rem;
+        color: $borderColor;
+      }
+      &:last-child:after {
+        content: "";
+        padding: 0;
+      }
     }
   }
 }
