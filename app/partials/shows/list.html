@@ -93,10 +93,13 @@
     <p ng-if="!fetching && !items.length">:( nothing found</p>
     <ul class="list" ng-if="!fetching && items.length">
       <li ng-repeat="item in items">
-        <a href="{{ item.torrent.magnetURI }}">
-          <i class="fa fa-download"></i>
-          {{ item.title }}
-        </a>
+        <p>
+          <a href="{{ item.torrent.magnetURI }}">
+            <i class="fa fa-download"></i>
+            {{ item.title }}
+          </a>
+        </p>
+        <p>{{ formatBytes(item.torrent.contentLength) }}</p>
       </li>
     </ul>
   </div>

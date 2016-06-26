@@ -133,6 +133,17 @@
 
         return true;
       },
+      formatBytes: function(bytes, decimals) {
+        bytes = parseInt(bytes, 10);
+
+        if(bytes == 0) return '0 Byte';
+        var k = 1024;
+        var dm = decimals || 2;
+        var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        var i = Math.floor(Math.log(bytes) / Math.log(k));
+
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+      },
       parseXMLString: function(str, nodeSelector) {
         if(!str || !nodeSelector) return;
 

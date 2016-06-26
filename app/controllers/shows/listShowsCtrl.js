@@ -79,6 +79,7 @@
     $scope.showToday = showToday;
     $scope.trackers = settings.trackers;
     $scope.showTodayOnly = settings.showTodayOnly;
+    $scope.formatBytes = Utils.formatBytes;
 
     $scope.selectShow = function(show) {
       $scope.selectedShow = show;
@@ -144,6 +145,7 @@
         var xml = Utils.parseXMLString(res, 'item');
         if(xml && xml.items) {
           $scope.items = xml.items;
+          console.log(xml.items);
         }
         if(!$scope.$$phase) {
           $scope.$apply();
