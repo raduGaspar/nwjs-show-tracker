@@ -1,69 +1,64 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    {{ L('settings.panels.general') }}
-  </div>
-  <div class="panel-body">
-    <input class="db-import hide" type="file" accept=".json"
-      onchange="angular.element(this).scope().doImport(this)">
-    <input class="db-export hide" type="file" nwsaveas="stdb.json"
-      onchange="angular.element(this).scope().doExport(this)">
+<div class="col-xs-12 scrollable">
+  <input class="db-import hide" type="file" accept=".json"
+    onchange="angular.element(this).scope().doImport(this)">
+  <input class="db-export hide" type="file" nwsaveas="stdb.json"
+    onchange="angular.element(this).scope().doExport(this)">
 
-    <ul class="list-group">
-      <li class="list-group-item">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" ng-model="settings.showTags"></input>
-            {{ L('settings.labels.showTags') }}
-          </label>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="input-group">
-          <span class="input-group-addon">
-            {{ L('settings.descriptors.pickLanguage') }}
-          </span>
-          <select class="form-control"
-            ng-model="settings.language"
-            ng-options="value as value for value in languages.available"
-            ng-change="changeLanguage(settings.language)">
-          </select>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="alert alert-warning" role="alert">
-          <p class="gap-bottom">
-            <strong>{{ L('alerts.warning') }}</strong>&nbsp;
-            <span ng-bind-html="L('settings.warnings.general') | unsafe"></span>
-          </p>
-          <div class="btn-group btn-group-justified" role="group">
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-default btn-export"
-                bind-to=".db-export">
-                <i class="glyphicon glyphicon-export"></i>
-                {{ L('settings.buttons.export') }}
-              </button>
-            </div>
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-danger btn-import"
-                bind-to=".db-import">
-                <i class="glyphicon glyphicon-import"></i>
-                {{ L('settings.buttons.import') }}
-              </button>
-            </div>
+  <h4>{{ L('settings.panels.general') }}</h4>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="settings.showTags"></input>
+          {{ L('settings.labels.showTags') }}
+        </label>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="input-group">
+        <span class="input-group-addon">
+          {{ L('settings.descriptors.pickLanguage') }}
+        </span>
+        <select class="form-control"
+          ng-model="settings.language"
+          ng-options="value as value for value in languages.available"
+          ng-change="changeLanguage(settings.language)">
+        </select>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="alert alert-warning" role="alert">
+        <p class="gap-bottom">
+          <strong>{{ L('alerts.warning') }}</strong>&nbsp;
+          <span ng-bind-html="L('settings.warnings.general') | unsafe"></span>
+        </p>
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default btn-export"
+              bind-to=".db-export">
+              <i class="glyphicon glyphicon-export"></i>
+              {{ L('settings.buttons.export') }}
+            </button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-danger btn-import"
+              bind-to=".db-import">
+              <i class="glyphicon glyphicon-import"></i>
+              {{ L('settings.buttons.import') }}
+            </button>
           </div>
         </div>
-      </li>
-    </ul>
-  </div>
-</div>
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    {{ L('settings.panels.trackers') }}
-  </div>
-  <div class="panel-body trackers-list">
+      </div>
+    </li>
+  </ul>
+  <br>
+  <div class="trackers-list">
     <!-- trackers list -->
     <h4>{{ L('settings.titles.trackerList') }}</h4>
     <ul class="list-group">
+      <li class="list-group-item">
+        {{ L('settings.panels.trackers') }}
+      </li>
       <li class="list-group-item animate"
         ng-repeat="tracker in settings.trackers.list track by $index">
         <div class="row">
@@ -85,6 +80,7 @@
         </div>
       </li>
     </ul>
+
     <h4>{{ L('settings.titles.trackerAdd') }}</h4>
     <ul class="list-group">
       <li class="list-group-item">
@@ -105,26 +101,22 @@
       </li>
     </ul>
   </div>
-</div>
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    {{ L('settings.panels.restore') }}
-  </div>
-  <div class="panel-body">
-    <div class="alert alert-warning" role="alert">
-      <p class="gap-bottom">
-        <strong>{{ L('alerts.warning') }}</strong>&nbsp;
-        <span ng-bind-html="L('settings.warnings.restore') | unsafe"></span>
-      </p>
-      <div class="btn-group btn-group-justified" role="group">
-        <div class="btn-group" role="group">
-          <button class="btn btn-sm btn-danger"
-            ng-click="restoreDefaults()">
-            <i class="fa fa-refresh"></i>
-            {{ L('settings.buttons.restore') }}
-          </button>
-        </div>
+
+  <h4>{{ L('settings.panels.restore') }}</h4>
+  <div class="alert alert-warning" role="alert">
+    <p class="gap-bottom">
+      <strong>{{ L('alerts.warning') }}</strong>&nbsp;
+      <span ng-bind-html="L('settings.warnings.restore') | unsafe"></span>
+    </p>
+    <div class="btn-group btn-group-justified" role="group">
+      <div class="btn-group" role="group">
+        <button class="btn btn-sm btn-danger"
+          ng-click="restoreDefaults()">
+          <i class="fa fa-refresh"></i>
+          {{ L('settings.buttons.restore') }}
+        </button>
       </div>
     </div>
   </div>
+  <br>
 </div>
