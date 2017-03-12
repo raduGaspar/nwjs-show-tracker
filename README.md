@@ -1,38 +1,63 @@
-# Show Tracker
-A simple interface for tracking tv shows built with NW and AngularJS
+# BrewLeg
+A simple boilerplate for `babel-redux-eslint-webpack-less-enzyme-gulp`
 
-Download a packaged copy from the releases section!
+## Download and install Node v6.7.0 (or newer)
+https://nodejs.org/download/release/v6.7.0/
+
+## Upgrade npm to version 3.10.7 (or newer)
+on windows go to `C:\Program Files\nodejs` and run
 
 ```sh
-# if you encounter problems running the release on linux
-# open a terminal
-# navigate to application folder and run
-chmod u+x show-tracker .
-./show-tracker
+npm install npm@3.10.7
 ```
 
-# Running
-Make sure you have NodeWebkit installed locally and added to your path
+## Check you have the proper version by running
 ```sh
-# !!! make sure nw and gulp are globally accessible !!!
-# run this to install all dependencies (bower and npm) and prepare the app for packaging
-# this will minify/uglify all files and create a 'dist' folder
-sh dist.sh
-
-# you can run the app form the base folder like so:
-nw .
-
-# or from the 'dist' folder like so:
-nw dist
+node -v
+npm -v
 ```
 
-# Distribution and Packaging
-`package.js` was writen for Windows and it will put the packaged app in your `c:/builds` folder; edit this to your liking;
+## Install the following globally (run terminal as admin)
+```sh
+npm install -g gulp
+npm install -g webpack
+```
 
-The default targeted platforms are `win64`, `osx64` and `linux64`
+## Test that the global dependencies are available by running
+```sh
+gulp -v
+webpack
+```
 
-### Suggestions list
-* [x] store which tab is currently selected in db
-* [ ] keep imdb information in db, maybe add a show link to imdb (before show name?)
-* [ ] replace episodes list with season list
-* [ ] add a season details view (like imdb) with inversed history (latest appears first)
+If the commands don't work, make sure that gulp and webpack are in the environment PATH variables.
+
+## Install project dependencies by running
+```sh
+npm install
+```
+
+In the project root folder
+
+## If you're using Webstorm, disable file auto-save to make it easier for webpack to detect file changes.
+```sh
+Settings > System Settings and uncheck
+[ ] Save files on frame deactivation
+[ ] Use "safe write"
+```
+## Commands
+Running locally
+```sh
+npm run debug
+```
+Building for production
+```sh
+npm run build
+```
+Running Tests (automatically ran when building for production)
+```sh
+npm run test
+```
+Deploying to test environment (make sure you configure the `deploy-test` task in `gulpfile.js`)
+```sh
+npm run deploy-test
+```

@@ -1,0 +1,31 @@
+{
+  "extends": "airbnb",
+
+  "globals": {
+    "__DEV__": true,
+    "__PROD__": true,
+    "__TEST__": true,
+    "__DEBUG__": true,
+    "__DEBUG_NEW_WINDOW__": true,
+    "__BASENAME__": true
+  },
+
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+
+  "plugins": [
+    "babel"
+  ],
+
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-mixed-operators": "off",
+    "react/no-unused-prop-types": "off",
+    "react/no-find-dom-node": "off",
+    "no-bitwise": "off",
+    "no-template-curly-in-string": "off"
+  }
+}

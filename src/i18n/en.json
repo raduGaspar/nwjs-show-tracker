@@ -78,9 +78,7 @@
   "labels": {
     "search": "Search ${url}",
     "searching": "Searching:",
-    "noResults": ":( Nothing found",
-    "all": "All",
-    "today": "Today"
+    "noResults": ":( Nothing found"
   },
   "shortcuts": {
     "addShow": "${this.shows.buttons.add}"

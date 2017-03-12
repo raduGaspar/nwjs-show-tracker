@@ -78,9 +78,7 @@
   "labels": {
     "search": "Cauta ${url}",
     "searching": "Cautare:",
-    "noResults": ":( Nu exista rezultate",
-    "all": "Toate",
-    "today": "Azi"
+    "noResults": ":( Nu exista rezultate"
   },
   "shortcuts": {
     "addShow": "${this.shows.buttons.add}"

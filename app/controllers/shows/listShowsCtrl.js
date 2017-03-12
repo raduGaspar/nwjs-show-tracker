@@ -29,14 +29,6 @@
         callback: function() {
           angular.element('.filter').blur();
         }
-      })
-      .add({
-        combo: 'ctrl+tab',
-        description: 'Toggle between Today & All tabs',
-        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
-        callback: function() {
-          showToday(!$scope.showTodayOnly);
-        }
       });
 
     var modalInstance,
@@ -68,17 +60,11 @@
         console.log('addShow');
         $state.go('main.add');
         scopeUpdate();
-      },
-      showToday = function(bool) {
-        $scope.showTodayOnly = bool;
-        settings.showTodayOnly = bool;
       };
 
     $scope.getEpisodeToView = getEpisodeToView;
     $scope.addShow = addShow;
-    $scope.showToday = showToday;
     $scope.trackers = settings.trackers;
-    $scope.showTodayOnly = settings.showTodayOnly;
     $scope.formatBytes = Utils.formatBytes;
 
     $scope.selectShow = function(show) {
@@ -133,6 +119,7 @@
         searchFor = show.name + ' ' + next,
         url = settings.trackers.list[settings.trackers.selected].url + searchFor + '/?rss=1';
 
+      console.log(url);
       $scope.items = null;
       $scope.fetching = true;
       $scope.searchFor = searchFor;
@@ -171,10 +158,6 @@
       console.log('edit', show);
       ShowsServ.setSelected(show);
       $state.go('main.add');
-    };
-
-    $scope.today = function() {
-      return new Date().getDay();
     };
 
     // get all shows

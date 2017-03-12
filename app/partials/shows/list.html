@@ -6,20 +6,6 @@
     <i class="fa fa-plus"></i>
   </button>
 </div>
-<ul class="tabs">
-  <li role="presentation" ng-class="{active: showTodayOnly}">
-    <a href="" ng-click="showToday(true)">
-      {{ L('labels.today') }}
-      <span class="badge">{{ (shows | filter: { airsOn: today() }).length }}</span>
-    </a>
-  </li>
-  <li role="presentation" ng-class="{active: !showTodayOnly}">
-    <a href="" ng-click="showToday(false)">
-      {{ L('labels.all') }}
-      <span class="badge">{{ shows.length }}</span>
-    </a>
-  </li>
-</ul>
 <ul class="list-group slide-list scrollable" ng-if="shows.length">
   <li class="list-group-item animate"
     ng-class="{active: show._id === selectedShow._id}"
@@ -27,7 +13,6 @@
     ng-repeat="show in filtered = (
       shows
       | filter: showNameFilter
-      | filter: { airsOn: showTodayOnly ? today() : undefined }
     ) track by show._id">
     <div class="row"
       ng-class="{ animate: activeShowActions._id === show._id }">

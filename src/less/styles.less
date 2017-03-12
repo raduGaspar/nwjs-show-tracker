@@ -1,0 +1,29 @@
+@import './reset';
+@import './variables';
+@import './mixins';
+
+.app-container {
+  .flexbox();
+  background: @app-bg;
+
+  .main-menu {
+    .flex();
+    justify-content: center;
+    list-style: none;
+    background: @menu-bg;
+    color: @menu-color;
+
+    li {
+      cursor: pointer;
+      padding: 5px;
+      &:hover {
+        background: @menu-entry-hover-bg;
+        color: @menu-entry-hover-color;
+      }
+    }
+  }
+  .content {
+    .flexbox-grow();
+    padding: @app-padding;
+  }
+}
