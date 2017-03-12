@@ -6,7 +6,7 @@
     "start": "gulp",
     "debug": "set APP_ENV=development && gulp",
     "test": "mocha tests/.setup.js tests/**/*.test.js",
-    "build": "set APP_ENV=production && npm run test && gulp build"
+    "build": "rm -rf dist && set APP_ENV=production && npm run test && gulp build"
   },
   "keywords": [
     "tv",

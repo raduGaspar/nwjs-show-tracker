@@ -79,13 +79,6 @@ var path = require('path'),
         template: 'index.html'
       }
     ),
-    new CopyWebpackPlugin([
-      // copy all files and folder
-      {
-        from: './assets',
-        to: './assets'
-      }
-    ]),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.DedupePlugin(),
     devFlagPlugin
@@ -100,6 +93,12 @@ var path = require('path'),
       output: {
         comments: false
       }
-    }) : []
+    }) : new CopyWebpackPlugin([
+      // copy all asset files and folders
+      {
+        from: './assets',
+        to: './assets'
+      }
+    ])
   )
 };
