@@ -6,10 +6,14 @@ import AppViewer from './modules/app-viewer';
 import reducer from './modules/app-viewer/reducers';
 import { default as DevTools } from './containers/DevTools';
 
+const gui = window.require('nw.gui');
+const win = gui.Window.get();
+
 require('./less/styles.less');
 
 let store;
 if (__DEV__) {
+  win.showDevTools();
   store = createStore(reducer, DevTools.instrument());
 } else {
   store = createStore(reducer);
