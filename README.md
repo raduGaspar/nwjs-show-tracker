@@ -56,9 +56,11 @@ chmod u+x show-tracker .
 ```
 
 ## Commands
-Running locally
+Running locally (Make sure you have NodeWebkit installed globally and added to your path)
 ```sh
 npm run debug
+
+# run the app
 nw .
 ```
 Building for production
@@ -68,15 +70,6 @@ npm run build
 Running Tests (automatically ran when building for production)
 ```sh
 npm run test
-```
-# Running
-Make sure you have NodeWebkit installed locally and added to your path
-```sh
-# run webpack
-webpack --watch
-
-# run the app
-nw .
 ```
 
 # Distribution and Packaging
