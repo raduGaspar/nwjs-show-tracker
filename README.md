@@ -1,5 +1,5 @@
-# BrewLeg
-A simple boilerplate for `babel-redux-eslint-webpack-less-enzyme-gulp`
+# Show Tracker based on [BrewLeg](https://github.com/raduGaspar/brewleg)
+A simple interface for tracking tv shows built with NW and React
 
 ## Download and install Node v6.7.0 (or newer)
 https://nodejs.org/download/release/v6.7.0/
@@ -44,10 +44,22 @@ Settings > System Settings and uncheck
 [ ] Save files on frame deactivation
 [ ] Use "safe write"
 ```
+
+Download a packaged copy from the releases section!
+
+```sh
+# if you encounter problems running the release on linux
+# open a terminal
+# navigate to application folder and run
+chmod u+x show-tracker .
+./show-tracker
+```
+
 ## Commands
 Running locally
 ```sh
 npm run debug
+nw .
 ```
 Building for production
 ```sh
@@ -57,7 +69,18 @@ Running Tests (automatically ran when building for production)
 ```sh
 npm run test
 ```
-Deploying to test environment (make sure you configure the `deploy-test` task in `gulpfile.js`)
+# Running
+Make sure you have NodeWebkit installed locally and added to your path
 ```sh
-npm run deploy-test
+# run webpack
+webpack --watch
+
+# run the app
+nw .
 ```
+
+# Distribution and Packaging
+`package.js` was writen for Windows and it will put the packaged app in your `c:/builds` folder; edit this to your liking;
+
+The default targeted platforms are `win64`, `osx64` and `linux64`
+
