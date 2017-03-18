@@ -59,6 +59,8 @@ chmod u+x show-tracker .
 Running locally (Make sure you have NodeWebkit installed globally and added to your path)
 ```sh
 npm run debug
+# or
+webpack --watch
 
 # run the app
 nw .
