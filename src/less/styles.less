@@ -8,25 +8,35 @@
 
   .main-menu {
     .flex();
-    cursor: move;
     justify-content: flex-start;
     background: @menu-bg;
+    height: 2rem;
 
     button {
-      background: none;
-      color: @menu-color;
       outline: 0 none;
       border: 0 none;
+      display: inline-block;
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 1rem;
+      margin: 0 0.2rem;
       cursor: pointer;
-      padding: 5px;
-      &:hover {
-        background: @menu-entry-hover-bg;
-        color: @menu-entry-hover-color;
+
+      &:first-child {
+        margin-left: 0.4rem;
       }
-      &[disabled] {
-        cursor: default;
-        background: @menu-bg;
-        color: @menu-entry-disabled-color;
+
+      &.close {
+        background: #ff5d56;
+        border: 1px solid #de4740;
+      }
+      &.minimize {
+        background: #ffbd35;
+        border: 1px solid #df9e2a;
+      }
+      &.fullscreen {
+        background: #00cc4b;
+        border: 1px solid #00ae39;
       }
     }
   }

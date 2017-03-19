@@ -12,13 +12,18 @@ const Menu = (props) => {
   const noMenu = <p>menu is hidden :(</p>;
   const menuContent = (
     <div className="main-menu">
-      <button onClick={() => win.close(true)}>
-        Close
-      </button>
-      <button onClick={() => win.toggleFullscreen()}>
-        Fullscreen
-      </button>
-      <button onClick={() => win.minimize()}>Minimize</button>
+      <button
+        className="close"
+        onClick={() => win.close(true)}
+      />
+      <button
+        className="minimize"
+        onClick={() => win.minimize()}
+      />
+      <button
+        className="fullscreen"
+        onClick={() => win.toggleFullscreen()}
+      />
     </div>
   );
 
