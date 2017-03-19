@@ -9,7 +9,6 @@ const mapStateToProps = state => ({
 const Menu = (props) => {
   const { visible } = props.menu;
   const { win } = props.globals;
-  const noMenu = <p>menu is hidden :(</p>;
   const menuContent = (
     <div className="main-menu">
       <button
@@ -27,7 +26,7 @@ const Menu = (props) => {
     </div>
   );
 
-  return visible ? menuContent : noMenu;
+  return visible ? menuContent : null;
 };
 
 Menu.propTypes = {
