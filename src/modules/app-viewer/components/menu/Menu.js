@@ -18,7 +18,7 @@ const Menu = (props) => {
       <button onClick={() => win.toggleFullscreen()}>
         Fullscreen
       </button>
-      <button disabled>Minimize</button>
+      <button onClick={() => win.minimize()}>Minimize</button>
     </div>
   );
 
