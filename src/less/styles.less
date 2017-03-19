@@ -8,17 +8,24 @@
 
   .main-menu {
     .flex();
-    justify-content: center;
-    list-style: none;
+    justify-content: flex-start;
     background: @menu-bg;
-    color: @menu-color;
 
-    li {
+    button {
+      background: none;
+      color: @menu-color;
+      outline: 0 none;
+      border: 0 none;
       cursor: pointer;
       padding: 5px;
       &:hover {
         background: @menu-entry-hover-bg;
         color: @menu-entry-hover-color;
+      }
+      &[disabled] {
+        cursor: default;
+        background: @menu-bg;
+        color: @menu-entry-disabled-color;
       }
     }
   }

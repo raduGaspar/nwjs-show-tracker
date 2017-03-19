@@ -5,21 +5,18 @@ import { Provider } from 'react-redux';
 import AppViewer from './modules/app-viewer';
 import reducer from './modules/app-viewer/reducers';
 import { default as DevTools } from './containers/DevTools';
-
-const gui = window.require('nw.gui');
-const win = gui.Window.get();
+import { default as GUtils } from './utils/GUtils';
 
 require('./less/styles.less');
 
 let store;
+const tools = __DEV__ ? <DevTools /> : null;
 if (__DEV__) {
-  win.showDevTools();
+  GUtils.globals().win.showDevTools();
   store = createStore(reducer, DevTools.instrument());
 } else {
   store = createStore(reducer);
 }
-
-const tools = __DEV__ ? <DevTools /> : null;
 
 const App = () => (
   <Provider store={store}>

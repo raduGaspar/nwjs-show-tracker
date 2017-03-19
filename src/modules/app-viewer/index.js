@@ -28,9 +28,7 @@ const AppViewer = props => (
     <Menu />
     <div className="content">React Boilerplate: Hello World</div>
     <button
-      onClick={
-        () => props.handleMenuToggle()
-      }
+      onClick={props.handleMenuToggle}
     >
       Toggle Menu Visibility
     </button>

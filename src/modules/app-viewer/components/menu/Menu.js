@@ -3,17 +3,23 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
   menu: state.menu,
+  globals: state.globals,
 });
 
 const Menu = (props) => {
   const { visible } = props.menu;
+  const { win } = props.globals;
   const noMenu = <p>menu is hidden :(</p>;
   const menuContent = (
-    <ul className="main-menu">
-      <li>Dummy</li>
-      <li>Menu</li>
-      <li>...fabulous</li>
-    </ul>
+    <div className="main-menu">
+      <button onClick={() => win.close(true)}>
+        Close
+      </button>
+      <button onClick={() => win.toggleFullscreen()}>
+        Fullscreen
+      </button>
+      <button disabled>Minimize</button>
+    </div>
   );
 
   return visible ? menuContent : noMenu;
