@@ -6,11 +6,11 @@ const mapStateToProps = state => ({
   globals: state.globals,
 });
 
-const Menu = (props) => {
+const TitleBar = (props) => {
   const { visible } = props.menu;
   const { win } = props.globals;
   const menuContent = (
-    <div className="main-menu">
+    <div className="title-bar">
       <button
         className="close"
         onClick={() => win.close(true)}
@@ -29,10 +29,10 @@ const Menu = (props) => {
   return visible ? menuContent : null;
 };
 
-Menu.propTypes = {
+TitleBar.propTypes = {
   visible: React.PropTypes.bool,
 };
 
 export default connect(
   mapStateToProps
-)(Menu);
+)(TitleBar);

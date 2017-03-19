@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Menu from './components/menu/Menu';
+import { TitleBar } from './components';
 
 import {
-  toggleMenu,
+  toggleTitleBar,
 } from './actions';
 
 const mapStateToProps = state => ({
@@ -14,30 +14,36 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
   ...ownProps,
   ...stateProps,
   ...dispatchProps,
-  handleMenuToggle: () => {
-    dispatchProps.doMenuToggle();
+  handleTitleBarToggle: () => {
+    dispatchProps.doTitleBarToggle();
   },
 });
 
 const mapDispatchToProps = dispatch => ({
-  doMenuToggle: params => dispatch(toggleMenu(params)),
+  doTitleBarToggle: params => dispatch(toggleTitleBar(params)),
 });
 
 const AppViewer = props => (
   <div>
-    <Menu />
-    <div className="content">React Boilerplate: Hello World</div>
+    <TitleBar />
+    <div className="content">
+      <div className="menu">app menu</div>
+      <div className="main">
+        <div className="search-bar">search / filter / add bar</div>
+        <div className="shows">shows</div>
+      </div>
+    </div>
     <button
-      onClick={props.handleMenuToggle}
+      onClick={props.handleTitleBarToggle}
     >
-      Toggle Menu Visibility
+      Toggle Title Bar Visibility
     </button>
   </div>
 );
 
 // define React.PropTypes here
 AppViewer.propTypes = {
-  handleMenuToggle: React.PropTypes.func,
+  handleTitleBarToggle: React.PropTypes.func,
 };
 
 
