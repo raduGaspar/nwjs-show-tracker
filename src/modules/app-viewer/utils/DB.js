@@ -60,21 +60,30 @@ class DB {
     });
   }
 
+  static get SETTINGS_DB() {
+    return 'settings';
+  }
+
+  static get SHOWS_DB() {
+    return 'shows';
+  }
+
   constructor() {
     const db = {};
-    const dbs = ['settings', 'shows'];
+    const dbs = [DB.SETTINGS_DB, DB.SHOWS_DB];
 
     dbs.forEach((currentDb) => {
-      if (!db[currentDb]) {
-        db[currentDb] = new Datastore({
-          autoload: true,
-          filename: path.join(gui.App.dataPath, `${currentDb}.db`),
-        });
-      }
+      db[currentDb] = new Datastore({
+        autoload: true,
+        filename: path.join(gui.App.dataPath, `${currentDb}.db`),
+      });
     });
 
     this.db = db;
     this.dbs = dbs;
+    this.import = this.import.bind(this);
+    this.export = this.export.bind(this);
+    this.getDb = this.getDb.bind(this);
   }
 
   import(data) {

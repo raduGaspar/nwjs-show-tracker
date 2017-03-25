@@ -6,8 +6,14 @@ import {
   toggleTitleBar,
 } from './actions';
 
+// TODO: remove this DB test
 const d = new DB();
-console.log(d.getDb('shows'));
+const showsDb = d.getDb('shows');
+// get a list of all shows
+DB.find(showsDb, {})
+  .then((docs) => {
+    console.log('show entries', docs);
+  });
 
 const mapStateToProps = state => ({
   application: state.application,
