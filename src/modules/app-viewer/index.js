@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { TitleBar } from './components';
-
+import { default as DB } from './utils/DB';
 import {
   toggleTitleBar,
 } from './actions';
+
+const d = new DB();
+console.log(d.getDb('shows'));
 
 const mapStateToProps = state => ({
   application: state.application,
