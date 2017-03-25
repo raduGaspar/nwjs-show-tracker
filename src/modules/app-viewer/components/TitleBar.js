@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
-  menu: state.menu,
+  titleBar: state.titleBar,
   globals: state.globals,
 });
 
 const TitleBar = (props) => {
-  const { visible } = props.menu;
+  const { visible } = props.titleBar;
   const { win } = props.globals;
   const menuContent = (
     <div className="title-bar">

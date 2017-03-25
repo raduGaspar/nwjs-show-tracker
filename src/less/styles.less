@@ -1,5 +1,5 @@
-@import './reset';
 @import './variables';
+@import './reset';
 @import './mixins';
 
 .app-container {
@@ -9,7 +9,7 @@
   .title-bar {
     .flex();
     justify-content: flex-start;
-    background: @menu-bg;
+    background: fade(@menu-bg, 50%);
     height: 2rem;
 
     button {

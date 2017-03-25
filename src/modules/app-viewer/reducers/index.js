@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import menu from './menu';
+import titleBar from './titleBar';
 import { default as GUtils } from '../../../utils/GUtils';
 
 const appReducer = combineReducers({
-  menu,
+  titleBar,
   globals: GUtils.globals,
 });
 

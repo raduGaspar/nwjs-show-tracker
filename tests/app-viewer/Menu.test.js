@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import {
   toggleMenu,
 } from '../../src/modules/app-viewer/actions';
-import menu from '../../src/modules/app-viewer/reducers/menu';
+import menu from '../../src/modules/app-viewer/reducers/titleBar';
 
 const evaluate = (initialState, expectedState, type) => {
   Object.keys(expectedState).forEach((key) => {

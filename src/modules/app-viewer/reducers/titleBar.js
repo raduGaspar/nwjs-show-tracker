@@ -1,12 +1,12 @@
-import { default as MC } from '../constants/Menu';
+import { default as TC } from '../constants/TitleBar';
 
 const initialState = {
   visible: true,
 };
 
-export default function menu(state = initialState, action) {
+export default function titleBar(state = initialState, action) {
   switch (action.type) {
-    case MC.TOGGLE_MENU: {
+    case TC.TOGGLE_TITLE_BAR: {
       return {
         ...state,
         visible: !state.visible,
