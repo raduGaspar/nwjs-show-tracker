@@ -8,7 +8,7 @@ import {
 
 // TODO: remove this DB test
 const d = new DB();
-const showsDb = d.getDb('shows');
+const showsDb = d.getDb(DB.SETTINGS_DB);
 // get a list of all shows
 DB.find(showsDb, {})
   .then((docs) => {
