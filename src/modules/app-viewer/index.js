@@ -42,13 +42,13 @@ const AppViewer = props => (
           <input type="text" />
         </div>
         <div className="shows">shows</div>
+        <button
+          onClick={props.handleTitleBarToggle}
+        >
+          Toggle Title Bar Visibility
+        </button>
       </div>
     </div>
-    <button
-      onClick={props.handleTitleBarToggle}
-    >
-      Toggle Title Bar Visibility
-    </button>
   </div>
 );
 
