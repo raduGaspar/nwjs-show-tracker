@@ -38,7 +38,9 @@ const AppViewer = props => (
     <div className="content">
       <div className="menu">app menu</div>
       <div className="main">
-        <div className="search-bar">search / filter / add bar</div>
+        <div className="search-bar">
+          <input type="text" />
+        </div>
         <div className="shows">shows</div>
       </div>
     </div>
