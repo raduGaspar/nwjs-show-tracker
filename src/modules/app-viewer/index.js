@@ -1,19 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { default as ShowsContainer } from './containers/ShowsContainer';
 import { TitleBar } from './components';
-import { default as DB } from './utils/DB';
 import {
   toggleTitleBar,
 } from './actions';
-
-// TODO: remove this DB test
-const d = new DB();
-const showsDb = d.getDb(DB.SHOWS_DB);
-// get a list of all shows
-DB.find(showsDb, {})
-  .then((docs) => {
-    console.log('show entries', docs);
-  });
 
 const mapStateToProps = state => ({
   application: state.application,
@@ -41,7 +32,9 @@ const AppViewer = props => (
         <div className="search-bar">
           <input type="text" />
         </div>
-        <div className="shows">shows</div>
+        <div className="shows">
+          <ShowsContainer />
+        </div>
         <button
           onClick={props.handleTitleBarToggle}
         >
