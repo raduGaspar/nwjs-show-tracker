@@ -6,18 +6,16 @@
    -webkit-user-select: none;
 }
 
+.scrollbars(.5em, slategray);
+
 html, body {
   width: 100%;
   height: 100%;
-   -webkit-app-region: drag;
   background: @app-bg url('@{assets-base}/bg.jpg') no-repeat center center fixed;
   background-size: cover;
+  overflow: hidden;
 }
 
 input, textarea {
   -webkit-user-select: initial;
-}
-
-input, textarea, button, a {
-  -webkit-app-region: no-drag;
 }

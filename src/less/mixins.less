@@ -1,3 +1,17 @@
+.scrollbars(@size, @foreground, @background: mix(@foreground, #fff, 50%)) {
+  ::-webkit-scrollbar {
+      width:  @size;
+      height: @size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: @foreground;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: @background;
+  }
+}
 .flex {
   display: flex;
   align-items: center;

@@ -1,18 +1,27 @@
+@import './mixins';
 @import './variables';
 @import './reset';
-@import './mixins';
 
 .app-container {
   .flexbox();
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
   color: #fff;
 
   .title-bar {
     .flex();
+    -webkit-app-region: drag;
+    flex-direction: row;
     justify-content: flex-start;
     background: fade(@title-bar-bg, 25%);
     height: 2rem;
 
     button {
+      -webkit-app-region: no-drag;
       outline: 0 none;
       border: 0 none;
       display: inline-block;
@@ -40,7 +49,34 @@
       }
     }
   }
+
+  .search-bar {
+    background: rgba(0, 0, 0, 0.3);
+    margin-bottom: 1rem;
+
+    input {
+      background: none;
+      border: 0 none;
+      outline: 0 none;
+      display: block;
+      width: 100%;
+      padding: 0.5rem;
+      color: #fff;
+    }
+  }
+
   .content {
     .flexbox-grow();
+    flex-direction: row;
+
+    .menu {
+      width: 10rem;
+    }
+
+    .main {
+      flex: 1;
+    }
+
+    @import './showsList';
   }
 }

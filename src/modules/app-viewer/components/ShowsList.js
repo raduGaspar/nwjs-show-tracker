@@ -4,7 +4,7 @@ const ShowsList = (props) => {
   console.log('ShowsList::', props);
   const { shows } = props;
   if (shows.length) {
-    return <ul>{ shows.map((show, idx) => <li key={idx}>{show.name}</li>) } </ul>;
+    return <ul>{ shows.map((show, idx) => (<li key={idx}><p>{show.name}</p></li>)) } </ul>;
   }
 
   return <div>no shows</div>;
