@@ -51,8 +51,8 @@
   }
 
   .search-bar {
-    background: rgba(0, 0, 0, 0.3);
-    margin-bottom: 1rem;
+    background: fade(#000, 30%);
+    margin-bottom: @sections-gap;
     padding: 0 0.5rem;
 
     input {
@@ -74,8 +74,14 @@
       width: 10rem;
       overflow: auto;
       display: block;
-      margin: 0 1rem 1rem 1rem;
-      padding: 0 1rem;
+      margin: 0 @sections-gap @sections-gap @sections-gap;
+      padding: 0 @sections-gap 0 0;
+
+      li {
+        background: fade(#000, 30%);
+        padding: 0.3rem 0.6rem;
+        margin: 0.3rem;
+      }
     }
 
     @import './showsList';

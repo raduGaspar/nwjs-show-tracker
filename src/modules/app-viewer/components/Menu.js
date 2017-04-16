@@ -31,12 +31,14 @@ const Menu = (props) => {
 
   if (shows.length) {
     let allTags = [];
-    shows.forEach((show, idx) => {
+    shows.forEach((show) => {
       allTags = concatUnique(
         allTags,
-        (show.tags || []).map((t, i) => <li key={`${idx}-${i}`}>{t.text}</li>),
+        (show.tags || []).map(t => t.text)
       );
     });
+
+    const lis = allTags.map((tag, idx) => <li key={idx}>{tag}</li>);
 
     return (
       <div className="menu">
@@ -45,7 +47,7 @@ const Menu = (props) => {
         >
           Toggle Title Bar Visibility
         </button>
-        <ul>{ allTags }</ul>
+        <ul>{ lis }</ul>
       </div>
     );
   }
