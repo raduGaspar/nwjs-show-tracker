@@ -10,11 +10,7 @@ const AppViewer = () => (
     </div>
     <div className="content">
       <Menu />
-      <div className="main">
-        <div className="shows">
-          <ShowsContainer />
-        </div>
-      </div>
+      <ShowsContainer />
     </div>
   </div>
 );

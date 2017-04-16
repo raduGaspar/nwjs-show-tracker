@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const ShowsList = (props) => {
   console.log('ShowsList::', props);
   const { shows } = props;
+  let data;
 
   if (shows.length) {
     const lis = shows.map((show, idx) => (
@@ -12,10 +13,12 @@ const ShowsList = (props) => {
       </li>
     ));
 
-    return <ul>{ lis }</ul>;
+    data = <ul>{ lis }</ul>;
+  } else {
+    data = <div>no shows</div>;
   }
 
-  return <div>no shows</div>;
+  return <div className="shows">{data}</div>;
 };
 
 ShowsList.propTypes = {
