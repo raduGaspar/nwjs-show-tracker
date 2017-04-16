@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
@@ -7,6 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const TitleBar = (props) => {
+  console.log('TitleBar::', props);
   const { visible } = props.titleBar;
   const { win } = props.globals;
   const menuContent = (
@@ -30,7 +32,7 @@ const TitleBar = (props) => {
 };
 
 TitleBar.propTypes = {
-  visible: React.PropTypes.bool,
+  visible: PropTypes.bool,
 };
 
 export default connect(

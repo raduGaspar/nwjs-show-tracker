@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ShowsList } from '../components';
 import { default as DB } from '../utils/DB';
@@ -33,8 +34,8 @@ class ShowsContainer extends Component {
 }
 
 ShowsContainer.propTypes = {
-  doSetShows: React.PropTypes.func,
-  shows: React.PropTypes.shape(),
+  doSetShows: PropTypes.func,
+  shows: PropTypes.shape(),
 };
 
 export default connect(
