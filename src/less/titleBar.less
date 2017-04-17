@@ -1,0 +1,38 @@
+.title-bar {
+  .flex();
+  -webkit-app-region: drag;
+  -webkit-box-shadow: 0px 2px 5px 0px fade(#000, 40%);
+  flex-direction: row;
+  justify-content: flex-start;
+  background: fade(@title-bar-bg, 25%);
+  height: 2rem;
+
+  button {
+    -webkit-app-region: no-drag;
+    outline: 0 none;
+    border: 0 none;
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 1rem;
+    margin: 0 0.2rem;
+    cursor: pointer;
+
+    &:first-child {
+      margin-left: 0.4rem;
+    }
+
+    &.close {
+      background: #ff5d56;
+      border: 1px solid #de4740;
+    }
+    &.minimize {
+      background: #ffbd35;
+      border: 1px solid #df9e2a;
+    }
+    &.fullscreen {
+      background: #00cc4b;
+      border: 1px solid #00ae39;
+    }
+  }
+}

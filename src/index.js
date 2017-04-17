@@ -1,19 +1,19 @@
 import React from 'react'; // , { Component }
 import { render } from 'react-dom';
 import { createStore } from 'redux'; // combineReducers
+import devToolsEnhancer from 'remote-redux-devtools';
 import { Provider } from 'react-redux';
 import AppViewer from './modules/app-viewer';
 import reducer from './modules/app-viewer/reducers';
-import { default as DevTools } from './containers/DevTools';
 import { default as GUtils } from './utils/GUtils';
 
 require('./less/styles.less');
 
 let store;
-const tools = __DEV__ ? <DevTools /> : null;
 if (__DEV__) {
+  // show developer tools
   GUtils.globals().win.showDevTools();
-  store = createStore(reducer, DevTools.instrument());
+  store = createStore(reducer, devToolsEnhancer());
 } else {
   store = createStore(reducer);
 }
@@ -21,7 +21,6 @@ if (__DEV__) {
 const App = () => (
   <Provider store={store}>
     <div>
-      { tools }
       <AppViewer />
     </div>
   </Provider>
