@@ -1,6 +1,6 @@
-import React from 'react'; // , { Component }
+import React from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux'; // combineReducers
+import { createStore } from 'redux';
 import devToolsEnhancer from 'remote-redux-devtools';
 import { Provider } from 'react-redux';
 import AppViewer from './modules/app-viewer';
